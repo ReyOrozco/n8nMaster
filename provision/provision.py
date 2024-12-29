@@ -107,7 +107,7 @@ def provision_user():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-@app.route('/provision-test', methods=['POST'])
+@app.route('/provision-test-windows', methods=['POST'])
 def provision_user_test():
     try:
         data = request.get_json()
@@ -122,11 +122,41 @@ def provision_user_test():
             if not is_port_in_use(port):
                 break
         
-        def run_container():
+        def run_docker():
+            os.system(f'docker volume create n8n_data_{username}')
+            os.system(f'docker run --rm --name n8n-{username} -p {port}:5678 -v n8n_data_{username}:/home/node/.n8n 5quidw4rd/n8n-custom-amd:latest start --tunnel')
+
+        thread = threading.Thread(target=run_docker)
+        thread.daemon = True
+        thread.start()
+
+        return jsonify({
+            'status': 'success',
+            'url': f'http://localhost:{port}'
+        })
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/provision-test-mac', methods=['POST'])
+def provision_user_test_mac():
+    try:
+        data = request.get_json()
+        username = data.get('username')
+
+        if not username:
+            return jsonify({'error': 'Username is required'}), 400
+        
+        # get a random unused port
+        while True:
+            port = random.randint(49152, 65535)  # Dynamic port range
+            if not is_port_in_use(port):
+                break
+        
+        def run_docker():
             os.system(f'docker volume create n8n_data_{username}')
             os.system(f'docker run --rm --name n8n-{username} -p {port}:5678 -v n8n_data_{username}:/home/node/.n8n 5quidw4rd/n8n-custom:latest start --tunnel')
 
-        thread = threading.Thread(target=run_container)
+        thread = threading.Thread(target=run_docker)
         thread.daemon = True
         thread.start()
 
