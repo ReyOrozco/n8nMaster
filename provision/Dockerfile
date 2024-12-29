@@ -21,6 +21,6 @@ RUN pip install -r requirements.txt
 
 COPY provision.py .
 
-ENV DOMAIN_NAME=localhost
+ENV DOMAIN_NAME=173956.xyz
 
 CMD ["python", "provision.py"]

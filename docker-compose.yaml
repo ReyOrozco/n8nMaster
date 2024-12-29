@@ -35,7 +35,7 @@ services:
       - "traefik.http.routers.dashboard.tls=true"
 
   provisioning-api:
-    image: provision-script:latest
+    image: 5quidw4rd/provision-script:latest
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
