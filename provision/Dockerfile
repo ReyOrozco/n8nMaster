@@ -1,5 +1,5 @@
 # Dockerfile for provisioning service
-FROM python:3.9-slim
+FROM python:3.9-slim as build
 
 # Install Docker CLI
 RUN apt-get update && \
