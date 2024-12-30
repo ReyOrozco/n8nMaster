@@ -1,0 +1,54 @@
+networks:
+  traefik-network:
+    external: true
+
+services:
+  traefik:
+    image: "traefik:latest"
+    container_name: traefik
+    restart: always
+    ports:
+      - "80:80"     # Web
+      - "443:443"   # HTTPS
+      - "8080:8080" # Dashboard
+    command:
+      - "--api=true"
+      - "--api.dashboard=true"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
+      - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.mytlschallenge.acme.tlschallenge=true"
+      - "--certificatesresolvers.mytlschallenge.acme.email=${SSL_EMAIL}"
+      - "--certificatesresolvers.mytlschallenge.acme.storage=/letsencrypt/acme.json"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - traefik_data:/letsencrypt
+    networks:
+      - traefik-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dashboard.rule=Host(`traefik.${DOMAIN_NAME}`)"
+      - "traefik.http.routers.dashboard.service=api@internal"
+      - "traefik.http.routers.dashboard.tls=true"
+
+  provisioning-api:
+    image: 5quidw4rd/provision-script-windows:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - traefik-network
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.provision.rule=Host(`provision.${DOMAIN_NAME}`)
+      - traefik.http.services.provision.loadbalancer.server.port=9000
+      - traefik.http.routers.provision.tls=true
+      - traefik.http.routers.provision.entrypoints=websecure
+      - traefik.http.routers.provision.tls.certresolver=mytlschallenge
+
+volumes:
+  traefik_data:
+    name: traefik_data

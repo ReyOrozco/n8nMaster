@@ -32,7 +32,7 @@ def create_compose_config(username, randomised_port):
         },
         'services': {
             'n8n': {
-                'image': '5quidw4rd/n8n-custom:latest',
+                'image': '5quidw4rd/n8n-custom-amd:latest',
                 'restart': 'always',
                 'networks': ['traefik-network'],
                 'ports': {f'{randomised_port}:5678'},
