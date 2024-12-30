@@ -11,7 +11,7 @@ services:
       - "80:80"     # Web
       - "443:443"   # HTTPS
       - "8080:8080" # Dashboard
-    ommand:
+    command:
       - "--api=true"
       - "--api.dashboard=true"
       - "--api.insecure=true"
