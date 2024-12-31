@@ -24,7 +24,6 @@ def is_port_in_use(port):
 
 def create_compose_config(username, randomised_port):
     return {
-        'version': '3.7',
         'networks': {
             'traefik-network': {
                 'external': True
@@ -35,7 +34,7 @@ def create_compose_config(username, randomised_port):
                 'image': '5quidw4rd/n8n-custom-amd:latest',
                 'restart': 'always',
                 'networks': ['traefik-network'],
-                'ports': {f'{randomised_port}:5678'},
+                'ports': [f'{randomised_port}:5678'],
                 'labels': {
                     'traefik.enable': 'true',
                     'traefik.http.routers.n8n-{}'.format(username): f'Host(`{username}.{domain}`)',
