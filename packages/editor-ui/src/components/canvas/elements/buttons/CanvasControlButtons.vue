@@ -95,14 +95,6 @@ function trackBugReport() {
 				@click="onResetZoom"
 			/>
 		</KeyboardShortcutTooltip>
-		<KeyboardShortcutTooltip
-			v-if="props.showBugReportingButton"
-			:label="i18n.baseText('nodeView.reportBug')"
-		>
-			<a :href="getReportingURL()" target="_blank" @click="trackBugReport">
-				<N8nIconButton type="tertiary" size="large" icon="bug" data-test-id="report-bug" />
-			</a>
-		</KeyboardShortcutTooltip>
 	</Controls>
 </template>
 

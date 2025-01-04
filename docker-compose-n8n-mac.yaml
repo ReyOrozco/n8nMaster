@@ -1,0 +1,21 @@
+services:
+  n8n:
+    image: n8n-custom:latest
+    restart: always
+    ports:
+      - "127.0.0.1:5678:5678"
+    environment:
+      - EXTERNAL_HOOK_FILES=/home/node/.n8n/hooks.js
+      - LOGIN_EMAIL=brandontay2001@gmail.com
+      - LOGIN_PASSWORD=password
+      - N8N_HIDE_USAGE_PAGE=true
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - WEBHOOK_URL=http://localhost:5678/
+      - GENERIC_TIMEZONE=Europe/Berlin
+    volumes:
+      - n8n_data:/home/node/.n8n
+
+volumes:
+  n8n_data:
+    external: true

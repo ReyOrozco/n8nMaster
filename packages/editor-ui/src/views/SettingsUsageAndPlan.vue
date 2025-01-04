@@ -182,19 +182,6 @@ const openCommunityRegisterModal = () => {
 				</span>
 			</n8n-heading>
 
-			<N8nNotice v-if="isCommunity && canUserRegisterCommunityPlus" class="mt-0" theme="warning">
-				<i18n-t keypath="settings.usageAndPlan.callOut">
-					<template #link>
-						<N8nButton
-							class="pl-0 pr-0"
-							text
-							:label="locale.baseText('settings.usageAndPlan.callOut.link')"
-							@click="openCommunityRegisterModal"
-						/>
-					</template>
-				</i18n-t>
-			</N8nNotice>
-
 			<div :class="$style.quota">
 				<n8n-text size="medium" color="text-light">
 					{{ locale.baseText('settings.usageAndPlan.activeWorkflows') }}

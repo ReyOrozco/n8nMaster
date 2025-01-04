@@ -10,3 +10,11 @@
 - CNAME: www => example.com
 4. For cloudflare: Enable **full** SSL/TSL encryption mode
 5. In root directory: docker compose -f docker-compose-prod.yaml up -d
+
+# Removing nodes/credentials
+1. Remove the unneeded nodes or credentials in packages/nodes-base/package.json
+- pnpm i --force
+- pnpm build
+- pnpm dev
+OR
+2. Use the NODES_INCLUDE or NODES_EXCLUDE environment variable (not working as of Jan 2025)

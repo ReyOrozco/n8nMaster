@@ -27,60 +27,12 @@ const uiStore = useUIStore();
 const sidebarMenuItems = computed<IMenuItem[]>(() => {
 	const menuItems: IMenuItem[] = [
 		{
-			id: 'settings-usage-and-plan',
-			icon: 'chart-bar',
-			label: i18n.baseText('settings.usageAndPlan.title'),
-			position: 'top',
-			available: canUserAccessRouteByName(VIEWS.USAGE),
-			route: { to: { name: VIEWS.USAGE } },
-		},
-		{
 			id: 'settings-personal',
 			icon: 'user-circle',
 			label: i18n.baseText('settings.personal'),
 			position: 'top',
 			available: canUserAccessRouteByName(VIEWS.PERSONAL_SETTINGS),
 			route: { to: { name: VIEWS.PERSONAL_SETTINGS } },
-		},
-		{
-			id: 'settings-users',
-			icon: 'user-friends',
-			label: i18n.baseText('settings.users'),
-			position: 'top',
-			available: canUserAccessRouteByName(VIEWS.USERS_SETTINGS),
-			route: { to: { name: VIEWS.USERS_SETTINGS } },
-		},
-		{
-			id: 'settings-external-secrets',
-			icon: 'vault',
-			label: i18n.baseText('settings.externalSecrets.title'),
-			position: 'top',
-			available: canUserAccessRouteByName(VIEWS.EXTERNAL_SECRETS_SETTINGS),
-			route: { to: { name: VIEWS.EXTERNAL_SECRETS_SETTINGS } },
-		},
-		{
-			id: 'settings-source-control',
-			icon: 'code-branch',
-			label: i18n.baseText('settings.sourceControl.title'),
-			position: 'top',
-			available: canUserAccessRouteByName(VIEWS.SOURCE_CONTROL),
-			route: { to: { name: VIEWS.SOURCE_CONTROL } },
-		},
-		{
-			id: 'settings-sso',
-			icon: 'user-lock',
-			label: i18n.baseText('settings.sso'),
-			position: 'top',
-			available: canUserAccessRouteByName(VIEWS.SSO_SETTINGS),
-			route: { to: { name: VIEWS.SSO_SETTINGS } },
-		},
-		{
-			id: 'settings-ldap',
-			icon: 'network-wired',
-			label: i18n.baseText('settings.ldap'),
-			position: 'top',
-			available: canUserAccessRouteByName(VIEWS.LDAP_SETTINGS),
-			route: { to: { name: VIEWS.LDAP_SETTINGS } },
 		},
 		{
 			id: 'settings-workersview',
@@ -93,24 +45,6 @@ const sidebarMenuItems = computed<IMenuItem[]>(() => {
 			route: { to: { name: VIEWS.WORKER_VIEW } },
 		},
 	];
-
-	menuItems.push({
-		id: 'settings-log-streaming',
-		icon: 'sign-in-alt',
-		label: i18n.baseText('settings.log-streaming'),
-		position: 'top',
-		available: canUserAccessRouteByName(VIEWS.LOG_STREAMING_SETTINGS),
-		route: { to: { name: VIEWS.LOG_STREAMING_SETTINGS } },
-	});
-
-	menuItems.push({
-		id: 'settings-community-nodes',
-		icon: 'cube',
-		label: i18n.baseText('settings.communityNodes'),
-		position: 'top',
-		available: canUserAccessRouteByName(VIEWS.COMMUNITY_NODES),
-		route: { to: { name: VIEWS.COMMUNITY_NODES } },
-	});
 
 	return menuItems;
 });
@@ -128,11 +62,7 @@ const sidebarMenuItems = computed<IMenuItem[]>(() => {
 				</div>
 			</template>
 			<template #menuSuffix>
-				<div :class="$style.versionContainer">
-					<n8n-link size="small" @click="uiStore.openModal(ABOUT_MODAL_KEY)">
-						{{ i18n.baseText('settings.version') }} {{ rootStore.versionCli }}
-					</n8n-link>
-				</div>
+				<div :class="$style.versionContainer">Made with ❤️</div>
 			</template>
 		</n8n-menu>
 	</div>

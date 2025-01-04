@@ -274,8 +274,8 @@ export const useSettingsStore = defineStore(STORES.SETTINGS, () => {
 			initialized.value = true;
 		} catch (e) {
 			showToast({
-				title: i18n.baseText('startupError'),
-				message: i18n.baseText('startupError.message'),
+				title: 'Could not connect to Flowstate',
+				message: 'Please check your internet connection and try again.',
 				type: 'error',
 				duration: 0,
 			});

@@ -295,37 +295,6 @@ onBeforeUnmount(() => {
 					}}</n8n-link>
 				</n8n-input-label>
 			</div>
-			<div v-if="isMfaFeatureEnabled" data-test-id="mfa-section">
-				<div class="mb-xs">
-					<n8n-input-label :label="i18n.baseText('settings.personal.mfa.section.title')" />
-					<n8n-text :bold="false" :class="$style.infoText">
-						{{
-							mfaDisabled
-								? i18n.baseText('settings.personal.mfa.button.disabled.infobox')
-								: i18n.baseText('settings.personal.mfa.button.enabled.infobox')
-						}}
-						<n8n-link :to="MFA_DOCS_URL" size="small" :bold="true">
-							{{ i18n.baseText('generic.learnMore') }}
-						</n8n-link>
-					</n8n-text>
-				</div>
-				<n8n-button
-					v-if="mfaDisabled"
-					:class="$style.button"
-					type="tertiary"
-					:label="i18n.baseText('settings.personal.mfa.button.enabled')"
-					data-test-id="enable-mfa-button"
-					@click="onMfaEnableClick"
-				/>
-				<n8n-button
-					v-else
-					:class="$style.disableMfaButton"
-					type="tertiary"
-					:label="i18n.baseText('settings.personal.mfa.button.disabled')"
-					data-test-id="disable-mfa-button"
-					@click="onMfaDisableClick"
-				/>
-			</div>
 		</div>
 		<div>
 			<div class="mb-s">

@@ -160,11 +160,11 @@ const workflowMenuItems = computed<ActionDropdownItem[]>(() => {
 		});
 
 		actions.push(
-			{
-				id: WORKFLOW_MENU_ACTIONS.IMPORT_FROM_URL,
-				label: locale.baseText('menuActions.importFromUrl'),
-				disabled: !onWorkflowPage.value || onExecutionsTab.value,
-			},
+			// {
+			// 	id: WORKFLOW_MENU_ACTIONS.IMPORT_FROM_URL,
+			// 	label: locale.baseText('menuActions.importFromUrl'),
+			// 	disabled: !onWorkflowPage.value || onExecutionsTab.value,
+			// },
 			{
 				id: WORKFLOW_MENU_ACTIONS.IMPORT_FROM_FILE,
 				label: locale.baseText('menuActions.importFromFile'),
@@ -173,50 +173,11 @@ const workflowMenuItems = computed<ActionDropdownItem[]>(() => {
 		);
 	}
 
-	if (hasPermission(['rbac'], { rbac: { scope: 'sourceControl:push' } })) {
-		actions.push({
-			id: WORKFLOW_MENU_ACTIONS.PUSH,
-			label: locale.baseText('menuActions.push'),
-			disabled:
-				!sourceControlStore.isEnterpriseSourceControlEnabled ||
-				!onWorkflowPage.value ||
-				onExecutionsTab.value ||
-				sourceControlStore.preferences.branchReadOnly,
-		});
-	}
-
 	actions.push({
 		id: WORKFLOW_MENU_ACTIONS.SETTINGS,
 		label: locale.baseText('generic.settings'),
 		disabled: !onWorkflowPage.value || isNewWorkflow.value,
 	});
-
-	if (settingsStore.isCanvasV2Enabled) {
-		actions.push({
-			id: WORKFLOW_MENU_ACTIONS.SWITCH_NODE_VIEW_VERSION,
-			...(nodeViewVersion.value === '2'
-				? nodeViewSwitcherDiscovered.value || isNewUser.value
-					? {}
-					: {
-							badge: locale.baseText('menuActions.badge.new'),
-						}
-				: nodeViewSwitcherDiscovered.value
-					? {
-							badge: locale.baseText('menuActions.badge.beta'),
-							badgeProps: {
-								theme: 'tertiary',
-							},
-						}
-					: {
-							badge: locale.baseText('menuActions.badge.new'),
-						}),
-			label:
-				nodeViewVersion.value === '2'
-					? locale.baseText('menuActions.switchToOldNodeViewVersion')
-					: locale.baseText('menuActions.switchToNewNodeViewVersion'),
-			disabled: !onWorkflowPage.value,
-		});
-	}
 
 	if ((workflowPermissions.value.delete && !props.readOnly) || isNewWorkflow.value) {
 		actions.push({
@@ -691,7 +652,7 @@ function showCreateWorkflowSuccessToast(id?: string) {
 					:workflow-permissions="workflowPermissions"
 				/>
 			</span>
-			<EnterpriseEdition :features="[EnterpriseEditionFeature.Sharing]">
+			<!-- <EnterpriseEdition :features="[EnterpriseEditionFeature.Sharing]">
 				<div :class="$style.group">
 					<CollaborationPane v-if="!isNewWorkflow" />
 					<N8nButton
@@ -729,7 +690,7 @@ function showCreateWorkflowSuccessToast(id?: string) {
 						</template>
 					</N8nTooltip>
 				</template>
-			</EnterpriseEdition>
+			</EnterpriseEdition> -->
 			<div :class="$style.group">
 				<SaveButton
 					type="primary"
@@ -743,12 +704,12 @@ function showCreateWorkflowSuccessToast(id?: string) {
 					data-test-id="workflow-save-button"
 					@click="onSaveButtonClick"
 				/>
-				<WorkflowHistoryButton
+				<!-- <WorkflowHistoryButton
 					:workflow-id="props.id"
 					:is-feature-enabled="isWorkflowHistoryFeatureEnabled"
 					:is-new-workflow="isNewWorkflow"
 					@upgrade="goToWorkflowHistoryUpgrade"
-				/>
+				/> -->
 			</div>
 			<div :class="[$style.workflowMenuContainer, $style.group]">
 				<input

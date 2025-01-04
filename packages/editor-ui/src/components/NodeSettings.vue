@@ -1092,17 +1092,6 @@ onBeforeUnmount(() => {
 					@value-changed="valueChanged"
 					@parameter-blur="onParameterBlur"
 				/>
-				<div class="node-version" data-test-id="node-version">
-					{{
-						i18n.baseText('nodeSettings.nodeVersion', {
-							interpolate: {
-								node: nodeType?.displayName as string,
-								version: (node.typeVersion ?? latestVersion).toString(),
-							},
-						})
-					}}
-					<span>({{ nodeVersionTag }})</span>
-				</div>
 			</div>
 		</div>
 		<NDVSubConnections

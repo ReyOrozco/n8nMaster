@@ -2,8 +2,7 @@ import { RateLimitError } from 'openai';
 import { OpenAIError } from 'openai/error';
 
 const errorMap: Record<string, string> = {
-	insufficient_quota:
-		'Insufficient quota detected. <a href="https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-langchain.openai/common-issues/#insufficient-quota" target="_blank">Learn more</a> about resolving this issue',
+	insufficient_quota: 'Insufficient quota detected.',
 	rate_limit_exceeded: 'OpenAI: Rate limit reached',
 };
 

@@ -145,35 +145,130 @@ export function AIView(_nodes: SimplifiedNodeType[]): NodeView {
 
 	websiteCategoryURL.append('utm_user_role', 'AdvancedAI');
 
+	function getAISubcategoryProperties(nodeConnectionType: NodeConnectionType) {
+		return {
+			connectionType: nodeConnectionType,
+			iconProps: {
+				color: `var(--node-type-${nodeConnectionType}-color)`,
+			},
+			panelClass: `nodes-list-panel-${nodeConnectionType}`,
+		};
+	}
+
+	function getSubcategoryInfo(subcategory: string) {
+		const localeKey = `nodeCreator.subcategoryInfos.${camelCase(subcategory)}` as BaseTextKey;
+
+		const info = i18n.baseText(localeKey);
+
+		// Return undefined if the locale key is not found
+		if (info === localeKey) return undefined;
+
+		return info;
+	}
+
 	return {
 		value: AI_NODE_CREATOR_VIEW,
 		title: i18n.baseText('nodeCreator.aiPanel.aiNodes'),
 		subtitle: i18n.baseText('nodeCreator.aiPanel.selectAiNode'),
 		items: [
-			{
-				key: 'ai_templates_root',
-				type: 'link',
-				properties: {
-					title: i18n.baseText('nodeCreator.aiPanel.linkItem.title'),
-					icon: 'box-open',
-					description: i18n.baseText('nodeCreator.aiPanel.linkItem.description'),
-					name: 'ai_templates_root',
-					url: websiteCategoryURL.toString(),
-					tag: {
-						type: 'info',
-						text: i18n.baseText('nodeCreator.triggerHelperPanel.manualTriggerTag'),
-					},
-				},
-			},
 			...agentNodes,
 			...chainNodes,
 			{
-				key: AI_OTHERS_NODE_CREATOR_VIEW,
-				type: 'view',
+				key: AI_CATEGORY_DOCUMENT_LOADERS,
+				type: 'subcategory',
 				properties: {
-					title: i18n.baseText('nodeCreator.aiPanel.aiOtherNodes'),
-					icon: 'robot',
-					description: i18n.baseText('nodeCreator.aiPanel.aiOtherNodesDescription'),
+					title: AI_CATEGORY_DOCUMENT_LOADERS,
+					info: getSubcategoryInfo(AI_CATEGORY_DOCUMENT_LOADERS),
+					icon: 'file-import',
+					...getAISubcategoryProperties(NodeConnectionType.AiDocument),
+				},
+			},
+			{
+				key: AI_CATEGORY_LANGUAGE_MODELS,
+				type: 'subcategory',
+				properties: {
+					title: AI_CATEGORY_LANGUAGE_MODELS,
+					info: getSubcategoryInfo(AI_CATEGORY_LANGUAGE_MODELS),
+					icon: 'language',
+					...getAISubcategoryProperties(NodeConnectionType.AiLanguageModel),
+				},
+			},
+			{
+				key: AI_CATEGORY_MEMORY,
+				type: 'subcategory',
+				properties: {
+					title: AI_CATEGORY_MEMORY,
+					info: getSubcategoryInfo(AI_CATEGORY_MEMORY),
+					icon: 'brain',
+					...getAISubcategoryProperties(NodeConnectionType.AiMemory),
+				},
+			},
+			{
+				key: AI_CATEGORY_OUTPUTPARSER,
+				type: 'subcategory',
+				properties: {
+					title: AI_CATEGORY_OUTPUTPARSER,
+					info: getSubcategoryInfo(AI_CATEGORY_OUTPUTPARSER),
+					icon: 'list',
+					...getAISubcategoryProperties(NodeConnectionType.AiOutputParser),
+				},
+			},
+			{
+				key: AI_CATEGORY_RETRIEVERS,
+				type: 'subcategory',
+				properties: {
+					title: AI_CATEGORY_RETRIEVERS,
+					info: getSubcategoryInfo(AI_CATEGORY_RETRIEVERS),
+					icon: 'search',
+					...getAISubcategoryProperties(NodeConnectionType.AiRetriever),
+				},
+			},
+			{
+				key: AI_CATEGORY_TEXT_SPLITTERS,
+				type: 'subcategory',
+				properties: {
+					title: AI_CATEGORY_TEXT_SPLITTERS,
+					info: getSubcategoryInfo(AI_CATEGORY_TEXT_SPLITTERS),
+					icon: 'grip-lines-vertical',
+					...getAISubcategoryProperties(NodeConnectionType.AiTextSplitter),
+				},
+			},
+			{
+				type: 'subcategory',
+				key: AI_CATEGORY_TOOLS,
+				category: CORE_NODES_CATEGORY,
+				properties: {
+					title: AI_CATEGORY_TOOLS,
+					info: getSubcategoryInfo(AI_CATEGORY_TOOLS),
+					icon: 'tools',
+					...getAISubcategoryProperties(NodeConnectionType.AiTool),
+					sections: [
+						{
+							key: 'popular',
+							title: i18n.baseText('nodeCreator.sectionNames.popular'),
+							items: [AI_WORKFLOW_TOOL_LANGCHAIN_NODE_TYPE, AI_CODE_TOOL_LANGCHAIN_NODE_TYPE],
+						},
+					],
+				},
+			},
+			{
+				key: AI_CATEGORY_EMBEDDING,
+				type: 'subcategory',
+				properties: {
+					title: AI_CATEGORY_EMBEDDING,
+					info: getSubcategoryInfo(AI_CATEGORY_EMBEDDING),
+					icon: 'vector-square',
+					...getAISubcategoryProperties(NodeConnectionType.AiEmbedding),
+				},
+			},
+			{
+				key: AI_CATEGORY_VECTOR_STORES,
+				type: 'subcategory',
+				properties: {
+					title: AI_CATEGORY_VECTOR_STORES,
+					info: getSubcategoryInfo(AI_CATEGORY_VECTOR_STORES),
+					icon: 'project-diagram',
+					...getAISubcategoryProperties(NodeConnectionType.AiVectorStore),
 				},
 			},
 		],
@@ -543,10 +638,6 @@ export function RegularView(nodes: SimplifiedNodeType[]) {
 				title: i18n.baseText('nodeCreator.aiPanel.langchainAiNodes'),
 				icon: 'robot',
 				description: i18n.baseText('nodeCreator.aiPanel.nodesForAi'),
-				tag: {
-					type: 'success',
-					text: i18n.baseText('nodeCreator.aiPanel.newTag'),
-				},
 				borderless: true,
 			},
 		} as NodeViewItem);
