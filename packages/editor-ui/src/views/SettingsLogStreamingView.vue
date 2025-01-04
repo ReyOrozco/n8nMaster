@@ -181,11 +181,6 @@ async function onEdit(destinationId?: string) {
 			</div>
 		</div>
 		<template v-if="isLicensed">
-			<div class="mb-l">
-				<n8n-info-tip theme="info" type="note">
-					<span v-n8n-html="i18n.baseText('settings.log-streaming.infoText')"></span>
-				</n8n-info-tip>
-			</div>
 			<template v-if="storeHasItems()">
 				<el-row
 					v-for="item in sortedItemKeysByLabel"
@@ -221,11 +216,6 @@ async function onEdit(destinationId?: string) {
 			</div>
 		</template>
 		<template v-else>
-			<div v-if="i18n.baseText('settings.log-streaming.infoText')" class="mb-l">
-				<n8n-info-tip theme="info" type="note">
-					<span v-n8n-html="i18n.baseText('settings.log-streaming.infoText')"></span>
-				</n8n-info-tip>
-			</div>
 			<div data-test-id="action-box-unlicensed">
 				<n8n-action-box
 					:description="i18n.baseText('settings.log-streaming.actionBox.description')"

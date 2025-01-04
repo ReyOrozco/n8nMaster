@@ -21,7 +21,7 @@ withDefaults(defineProps<IconProps>(), {
 </script>
 
 <template>
-	<N8nText :size="size" :color="color" :compact="true" class="n8n-icon" v-bind="$attrs">
+	<N8nText :size="size" :color="color" :compact="true" class="flowstate-icon" v-bind="$attrs">
 		<FontAwesomeIcon :icon="icon" :spin="spin" :class="$style[size]" />
 	</N8nText>
 </template>

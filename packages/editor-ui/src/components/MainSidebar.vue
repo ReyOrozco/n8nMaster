@@ -59,107 +59,48 @@ const userMenuItems = ref([
 		id: 'settings',
 		label: i18n.baseText('settings'),
 	},
-	{
-		id: 'logout',
-		label: i18n.baseText('auth.signout'),
-	},
 ]);
 
 const mainMenuItems = computed(() => [
 	{
-		id: 'cloud-admin',
-		position: 'bottom',
-		label: 'Admin Panel',
-		icon: 'cloud',
-		available: settingsStore.isCloudDeployment && hasPermission(['instanceOwner']),
-	},
-	{
-		// Link to in-app templates, available if custom templates are enabled
-		id: 'templates',
-		icon: 'box-open',
-		label: i18n.baseText('mainSidebar.templates'),
-		position: 'bottom',
-		available: settingsStore.isTemplatesEnabled && templatesStore.hasCustomTemplatesHost,
-		route: { to: { name: VIEWS.TEMPLATES } },
-	},
-	{
-		// Link to website templates, available if custom templates are not enabled
-		id: 'templates',
-		icon: 'box-open',
-		label: i18n.baseText('mainSidebar.templates'),
-		position: 'bottom',
-		available: settingsStore.isTemplatesEnabled && !templatesStore.hasCustomTemplatesHost,
+		id: 'telegram',
+		icon: 'fa-brands fa-telegram',
+		label: 'Telegram',
 		link: {
-			href: templatesStore.websiteTemplateRepositoryURL,
+			href: 'https://telegram.org/',
 			target: '_blank',
 		},
+		position: 'bottom',
 	},
 	{
-		id: 'variables',
-		icon: 'variable',
-		label: i18n.baseText('mainSidebar.variables'),
-		customIconSize: 'medium',
+		id: 'x',
+		icon: 'x-twitter',
+		label: 'X',
+		link: {
+			href: 'https://x.com/',
+			target: '_blank',
+		},
 		position: 'bottom',
-		route: { to: { name: VIEWS.VARIABLES } },
 	},
 	{
-		id: 'help',
-		icon: 'question',
-		label: i18n.baseText('mainSidebar.help'),
+		id: 'docs',
+		icon: 'book',
+		label: 'Docs/Whitepaper',
+		link: {
+			href: 'https://www.google.com/',
+			target: '_blank',
+		},
 		position: 'bottom',
-		children: [
-			{
-				id: 'quickstart',
-				icon: 'video',
-				label: i18n.baseText('mainSidebar.helpMenuItems.quickstart'),
-				link: {
-					href: 'https://www.youtube.com/watch?v=1MwSoB0gnM4',
-					target: '_blank',
-				},
-			},
-			{
-				id: 'docs',
-				icon: 'book',
-				label: i18n.baseText('mainSidebar.helpMenuItems.documentation'),
-				link: {
-					href: 'https://docs.n8n.io?utm_source=n8n_app&utm_medium=app_sidebar',
-					target: '_blank',
-				},
-			},
-			{
-				id: 'forum',
-				icon: 'users',
-				label: i18n.baseText('mainSidebar.helpMenuItems.forum'),
-				link: {
-					href: 'https://community.n8n.io?utm_source=n8n_app&utm_medium=app_sidebar',
-					target: '_blank',
-				},
-			},
-			{
-				id: 'examples',
-				icon: 'graduation-cap',
-				label: i18n.baseText('mainSidebar.helpMenuItems.course'),
-				link: {
-					href: 'https://docs.n8n.io/courses/',
-					target: '_blank',
-				},
-			},
-			{
-				id: 'report-bug',
-				icon: 'bug',
-				label: i18n.baseText('mainSidebar.helpMenuItems.reportBug'),
-				link: {
-					href: getReportingURL(),
-					target: '_blank',
-				},
-			},
-			{
-				id: 'about',
-				icon: 'info',
-				label: i18n.baseText('mainSidebar.aboutN8n'),
-				position: 'bottom',
-			},
-		],
+	},
+	{
+		id: 'about',
+		icon: 'globe',
+		label: 'Website',
+		link: {
+			href: 'https://www.google.com/',
+			target: '_blank',
+		},
+		position: 'bottom',
 	},
 ]);
 const createBtn = ref<InstanceType<typeof N8nNavigationDropdown>>();
@@ -259,7 +200,7 @@ const handleSelect = (key: string) => {
 			void pageRedirectionHelper.goToDashboard();
 			break;
 		}
-		case 'quickstart':
+		case 'telegram':
 		case 'docs':
 		case 'forum':
 		case 'examples': {
@@ -394,9 +335,6 @@ onClickOutside(createBtn as Ref<VueInstance>, () => {
 								<ElDropdownMenu>
 									<ElDropdownItem command="settings">
 										{{ i18n.baseText('settings') }}
-									</ElDropdownItem>
-									<ElDropdownItem command="logout">
-										{{ i18n.baseText('auth.signout') }}
 									</ElDropdownItem>
 								</ElDropdownMenu>
 							</template>

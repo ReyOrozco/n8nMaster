@@ -1237,8 +1237,8 @@ importers:
         specifier: ^1.2.36
         version: 1.2.36
       '@fortawesome/free-solid-svg-icons':
-        specifier: ^5.15.4
-        version: 5.15.4
+        specifier: ^6.7.2
+        version: 6.7.2
       '@fortawesome/vue-fontawesome':
         specifier: ^3.0.3
         version: 3.0.3(@fortawesome/fontawesome-svg-core@1.2.36)(vue@3.5.13(typescript@5.7.2))
@@ -3382,6 +3382,10 @@ packages:
     resolution: {integrity: sha512-rBevIsj2nclStJ7AxTdfsa3ovHb1H+qApwrxcTVo+NNdeJiB9V75hsKfrkG5AwNcRUNxrPPiScGYCNmLMoh8pg==}
     engines: {node: '>=6'}
 
+  '@fortawesome/fontawesome-common-types@6.7.2':
+    resolution: {integrity: sha512-Zs+YeHUC5fkt7Mg1l6XTniei3k4bwG/yo3iFUtZWd/pMx9g3fdvkSK9E0FOC+++phXOka78uJcYb8JaFkW52Xg==}
+    engines: {node: '>=6'}
+
   '@fortawesome/fontawesome-svg-core@1.2.36':
     resolution: {integrity: sha512-YUcsLQKYb6DmaJjIHdDWpBIGCcyE/W+p/LMGvjQem55Mm2XWVAP5kWTMKWLv9lwpCVjpLxPyOMOyUocP1GxrtA==}
     engines: {node: '>=6'}
@@ -3392,6 +3396,10 @@ packages:
 
   '@fortawesome/free-solid-svg-icons@5.15.4':
     resolution: {integrity: sha512-JLmQfz6tdtwxoihXLg6lT78BorrFyCf59SAwBM6qV/0zXyVeDygJVb3fk+j5Qat+Yvcxp1buLTY5iDh1ZSAQ8w==}
+    engines: {node: '>=6'}
+
+  '@fortawesome/free-solid-svg-icons@6.7.2':
+    resolution: {integrity: sha512-GsBrnOzU8uj0LECDfD5zomZJIjrPhIlWU82AHwa2s40FKH+kcxQaBvBo3Z4TxyZHIyX8XTDxsyA33/Vx9eFuQA==}
     engines: {node: '>=6'}
 
   '@fortawesome/vue-fontawesome@3.0.3':
@@ -12996,6 +13004,9 @@ packages:
   vue-component-type-helpers@2.1.10:
     resolution: {integrity: sha512-lfgdSLQKrUmADiSV6PbBvYgQ33KF3Ztv6gP85MfGaGaSGMTXORVaHT1EHfsqCgzRNBstPKYDmvAV9Do5CmJ07A==}
 
+  vue-component-type-helpers@2.2.0:
+    resolution: {integrity: sha512-cYrAnv2me7bPDcg9kIcGwjJiSB6Qyi08+jLDo9yuvoFQjzHiPTzML7RnkJB1+3P6KMsX/KbCD4QE3Tv/knEllw==}
+
   vue-demi@0.14.10:
     resolution: {integrity: sha512-nMZBOwuzabUO0nLgIcc6rycZEebF6eeUfaiQx9+WSk8e29IbLvPU9feI6tqW4kTo3hvoYAJkMh8n8D0fuISphg==}
     engines: {node: '>=12'}
@@ -15658,6 +15669,8 @@ snapshots:
 
   '@fortawesome/fontawesome-common-types@6.2.0': {}
 
+  '@fortawesome/fontawesome-common-types@6.7.2': {}
+
   '@fortawesome/fontawesome-svg-core@1.2.36':
     dependencies:
       '@fortawesome/fontawesome-common-types': 0.2.36
@@ -15669,6 +15682,10 @@ snapshots:
   '@fortawesome/free-solid-svg-icons@5.15.4':
     dependencies:
       '@fortawesome/fontawesome-common-types': 0.2.36
+
+  '@fortawesome/free-solid-svg-icons@6.7.2':
+    dependencies:
+      '@fortawesome/fontawesome-common-types': 6.7.2
 
   '@fortawesome/vue-fontawesome@3.0.3(@fortawesome/fontawesome-svg-core@1.2.36)(vue@3.5.13(typescript@5.7.2))':
     dependencies:
@@ -18024,7 +18041,7 @@ snapshots:
       ts-dedent: 2.2.0
       type-fest: 2.19.0
       vue: 3.5.13(typescript@5.7.2)
-      vue-component-type-helpers: 2.1.10
+      vue-component-type-helpers: 2.2.0
 
   '@supabase/auth-js@2.65.0':
     dependencies:
@@ -19024,7 +19041,7 @@ snapshots:
   '@vue/test-utils@2.4.6':
     dependencies:
       js-beautify: 1.14.9
-      vue-component-type-helpers: 2.1.10
+      vue-component-type-helpers: 2.2.0
 
   '@vueuse/components@10.11.0(vue@3.5.13(typescript@5.7.2))':
     dependencies:
@@ -27336,6 +27353,8 @@ snapshots:
       typescript: 5.7.2
 
   vue-component-type-helpers@2.1.10: {}
+
+  vue-component-type-helpers@2.2.0: {}
 
   vue-demi@0.14.10(vue@3.5.13(typescript@5.7.2)):
     dependencies:

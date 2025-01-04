@@ -51,14 +51,6 @@ const sidebarMenuItems = computed<IMenuItem[]>(() => {
 			route: { to: { name: VIEWS.USERS_SETTINGS } },
 		},
 		{
-			id: 'settings-api',
-			icon: 'plug',
-			label: i18n.baseText('settings.n8napi'),
-			position: 'top',
-			available: settingsStore.isPublicApiEnabled && canUserAccessRouteByName(VIEWS.API_SETTINGS),
-			route: { to: { name: VIEWS.API_SETTINGS } },
-		},
-		{
 			id: 'settings-external-secrets',
 			icon: 'vault',
 			label: i18n.baseText('settings.externalSecrets.title'),
@@ -66,7 +58,6 @@ const sidebarMenuItems = computed<IMenuItem[]>(() => {
 			available: canUserAccessRouteByName(VIEWS.EXTERNAL_SECRETS_SETTINGS),
 			route: { to: { name: VIEWS.EXTERNAL_SECRETS_SETTINGS } },
 		},
-
 		{
 			id: 'settings-source-control',
 			icon: 'code-branch',
