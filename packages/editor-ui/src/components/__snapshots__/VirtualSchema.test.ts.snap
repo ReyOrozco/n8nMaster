@@ -37,7 +37,7 @@ exports[`VirtualSchema.vue > renders previous nodes schema for AI tools 1`] = `
     />
   </div>
   <div
-    class="n8n-node-icon icon icon"
+    class="flowstate-node-icon icon icon"
     data-v-882a318e=""
   >
     <div
@@ -112,7 +112,7 @@ exports[`VirtualSchema.vue > renders schema for correct output branch 1`] = `
     />
   </div>
   <div
-    class="n8n-node-icon icon icon"
+    class="flowstate-node-icon icon icon"
     data-v-882a318e=""
   >
     <div
@@ -639,7 +639,7 @@ exports[`VirtualSchema.vue > renders schema with spaces and dots 1`] = `
             />
           </div>
           <div
-            class="n8n-node-icon icon icon-trigger icon icon-trigger"
+            class="flowstate-node-icon icon icon-trigger icon icon-trigger"
             data-v-882a318e=""
           >
             <div
@@ -1183,7 +1183,7 @@ exports[`VirtualSchema.vue > renders schema with spaces and dots 1`] = `
             />
           </div>
           <div
-            class="n8n-node-icon icon icon"
+            class="flowstate-node-icon icon icon"
             data-v-882a318e=""
           >
             <div

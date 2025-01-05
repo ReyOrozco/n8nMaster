@@ -8,7 +8,7 @@ exports[`InputPanel > should render 1`] = `
     data-v-2e5cd75c=""
   >
     <div
-      class="n8n-callout callout secondary round pinnedDataCallout"
+      class="flowstate-callout callout secondary round pinnedDataCallout"
       data-v-2e5cd75c=""
       role="alert"
     >
@@ -19,7 +19,7 @@ exports[`InputPanel > should render 1`] = `
           class="icon"
         >
           <span
-            class="n8n-text compact size-medium regular n8n-icon n8n-icon"
+            class="flowstate-text compact size-medium regular n8n-icon n8n-icon"
           >
             
             <svg
@@ -42,7 +42,7 @@ exports[`InputPanel > should render 1`] = `
           </span>
         </div>
         <span
-          class="n8n-text size-small regular"
+          class="flowstate-text size-small regular"
         >
           
           
@@ -52,7 +52,7 @@ exports[`InputPanel > should render 1`] = `
             data-v-2e5cd75c=""
           >
             <a
-              class="n8n-link"
+              class="flowstate-link"
               data-test-id="ndv-unpin-data"
               data-v-2e5cd75c=""
               target="_blank"
@@ -62,7 +62,7 @@ exports[`InputPanel > should render 1`] = `
                 class="secondary-underline"
               >
                 <span
-                  class="n8n-text size-small bold"
+                  class="flowstate-text size-small bold"
                 >
                   
                   
@@ -83,7 +83,7 @@ exports[`InputPanel > should render 1`] = `
       </div>
       
       <a
-        class="n8n-link"
+        class="flowstate-link"
         data-v-2e5cd75c=""
         href="https://docs.n8n.io/data/data-pinning/"
         target="_blank"
@@ -93,7 +93,7 @@ exports[`InputPanel > should render 1`] = `
           class="secondary-underline"
         >
           <span
-            class="n8n-text size-small bold"
+            class="flowstate-text size-small bold"
           >
             
             
@@ -121,14 +121,14 @@ exports[`InputPanel > should render 1`] = `
           Input
         </span>
         <div
-          class="n8n-radio-buttons radioGroup"
+          class="flowstate-radio-buttons radioGroup"
           data-test-id="input-panel-mode"
           role="radiogroup"
         >
           
           <label
             aria-checked="false"
-            class="n8n-radio-button container hoverable"
+            class="flowstate-radio-button container hoverable"
             role="radio"
             tabindex="-1"
           >
@@ -141,7 +141,7 @@ exports[`InputPanel > should render 1`] = `
           </label>
           <label
             aria-checked="true"
-            class="n8n-radio-button container hoverable"
+            class="flowstate-radio-button container hoverable"
             role="radio"
             tabindex="-1"
           >
@@ -163,7 +163,7 @@ exports[`InputPanel > should render 1`] = `
       >
         <!---->
         <div
-          class="n8n-radio-buttons radioGroup"
+          class="flowstate-radio-buttons radioGroup"
           data-test-id="ndv-run-data-display-mode"
           data-v-2e5cd75c=""
           role="radiogroup"
@@ -171,7 +171,7 @@ exports[`InputPanel > should render 1`] = `
           
           <label
             aria-checked="true"
-            class="n8n-radio-button container hoverable"
+            class="flowstate-radio-button container hoverable"
             role="radio"
             tabindex="-1"
           >
@@ -184,7 +184,7 @@ exports[`InputPanel > should render 1`] = `
           </label>
           <label
             aria-checked="false"
-            class="n8n-radio-button container hoverable"
+            class="flowstate-radio-button container hoverable"
             role="radio"
             tabindex="-1"
           >
@@ -197,7 +197,7 @@ exports[`InputPanel > should render 1`] = `
           </label>
           <label
             aria-checked="false"
-            class="n8n-radio-button container hoverable"
+            class="flowstate-radio-button container hoverable"
             role="radio"
             tabindex="-1"
           >
@@ -271,7 +271,7 @@ exports[`InputPanel > should render 1`] = `
     >
       <div
         aria-hidden="true"
-        class="n8n-block-ui uiBlocker"
+        class="flowstate-block-ui uiBlocker"
         data-v-249d9307=""
         role="dialog"
         style="display: none;"

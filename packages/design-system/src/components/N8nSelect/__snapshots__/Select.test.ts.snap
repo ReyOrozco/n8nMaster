@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`components > N8nSelect > should render correctly 1`] = `
-"<div class="n8n-select container">
+"<div class="flowstate-select container">
   <!--v-if-->
   <div class="el-select el-select--large" popperappendtobody="false" limitpopperwidth="false">
     <div class="select-trigger el-tooltip__trigger el-tooltip__trigger">

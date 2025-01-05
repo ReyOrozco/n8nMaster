@@ -72,7 +72,7 @@ const badgeStyleData = computed((): Record<string, string> => {
 </script>
 
 <template>
-	<div class="n8n-node-icon" v-bind="$attrs">
+	<div class="flowstate-node-icon" v-bind="$attrs">
 		<div
 			:class="{
 				[$style.nodeIconWrapper]: true,

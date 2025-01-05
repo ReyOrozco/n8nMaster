@@ -3,13 +3,13 @@
 exports[`FormBox > should render the component 1`] = `
 <div>
   <div
-    class="n8n-form-box container"
+    class="flowstate-form-box container"
   >
     <div
       class="heading"
     >
       <span
-        class="n8n-heading size-xlarge regular"
+        class="flowstate-heading size-xlarge regular"
       >
         
         Title
@@ -34,19 +34,19 @@ exports[`FormBox > should render the component 1`] = `
               data-test-id="name"
             >
               <label
-                class="n8n-input-label inputLabel heading small"
+                class="flowstate-input-label inputLabel heading small"
                 for="name"
               >
                 <div
                   class="title"
                 >
                   <span
-                    class="n8n-text size-small bold"
+                    class="flowstate-text size-small bold"
                   >
                     
                     Name 
                     <span
-                      class="n8n-text primary size-small bold"
+                      class="flowstate-text primary size-small bold"
                     >
                       
                       *
@@ -106,19 +106,19 @@ exports[`FormBox > should render the component 1`] = `
               data-test-id="email"
             >
               <label
-                class="n8n-input-label inputLabel heading medium"
+                class="flowstate-input-label inputLabel heading medium"
                 for="email"
               >
                 <div
                   class="title"
                 >
                   <span
-                    class="n8n-text size-medium bold"
+                    class="flowstate-text size-medium bold"
                   >
                     
                     Email 
                     <span
-                      class="n8n-text primary size-medium bold"
+                      class="flowstate-text primary size-medium bold"
                     >
                       
                       *
@@ -178,19 +178,19 @@ exports[`FormBox > should render the component 1`] = `
               data-test-id="password"
             >
               <label
-                class="n8n-input-label inputLabel heading medium"
+                class="flowstate-input-label inputLabel heading medium"
                 for="password"
               >
                 <div
                   class="title"
                 >
                   <span
-                    class="n8n-text size-medium bold"
+                    class="flowstate-text size-medium bold"
                   >
                     
                     Password 
                     <span
-                      class="n8n-text primary size-medium bold"
+                      class="flowstate-text primary size-medium bold"
                     >
                       
                       *

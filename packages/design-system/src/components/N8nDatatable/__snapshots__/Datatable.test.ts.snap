@@ -108,7 +108,7 @@ exports[`components > N8nDatatable > should render correctly 1`] = `
           </svg></i></button>
     </div>
     <div class="pageSizeSelector">
-      <div class="n8n-select container withPrepend">
+      <div class="flowstate-select container withPrepend">
         <div class="prepend">Page size</div>
         <div class="el-select el-select--small" popperappendtobody="false" limitpopperwidth="false">
           <div class="select-trigger el-tooltip__trigger el-tooltip__trigger">

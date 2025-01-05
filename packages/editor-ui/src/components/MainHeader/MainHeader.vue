@@ -220,25 +220,6 @@ function hideGithubButton() {
 				@update:model-value="onTabSelected"
 			/>
 		</div>
-		<div v-if="showGitHubButton" class="github-button">
-			<div class="github-button-container">
-				<GithubButton
-					href="https://github.com/n8n-io/n8n"
-					:data-color-scheme="uiStore.appliedTheme"
-					data-size="large"
-					data-show-count="true"
-					aria-label="Star n8n-io/n8n on GitHub"
-				>
-					Star
-				</GithubButton>
-				<N8nIcon
-					class="close-github-button"
-					icon="times-circle"
-					size="medium"
-					@click="hideGithubButton"
-				/>
-			</div>
-		</div>
 	</div>
 </template>
 

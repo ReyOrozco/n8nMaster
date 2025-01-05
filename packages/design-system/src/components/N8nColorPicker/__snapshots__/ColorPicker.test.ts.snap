@@ -3,7 +3,7 @@
 exports[`components > N8nColorPicker > should render with input 1`] = `
 <div>
   <span
-    class="n8n-color-picker component"
+    class="flowstate-color-picker component"
     data-v-dab78bb8=""
   >
     
@@ -101,7 +101,7 @@ exports[`components > N8nColorPicker > should render with input 1`] = `
 exports[`components > N8nColorPicker > should render without input 1`] = `
 <div>
   <span
-    class="n8n-color-picker component"
+    class="flowstate-color-picker component"
     data-v-dab78bb8=""
   >
     

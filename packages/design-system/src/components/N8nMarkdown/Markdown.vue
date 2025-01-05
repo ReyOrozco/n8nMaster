@@ -194,7 +194,7 @@ const onCheckboxChange = (index: number) => {
 </script>
 
 <template>
-	<div class="n8n-markdown">
+	<div class="flowstate-markdown">
 		<div
 			v-if="!loading"
 			ref="editor"

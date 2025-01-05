@@ -737,6 +737,26 @@ onBeforeUnmount(() => {
 				@dragstart="onDragStart"
 				@dragend="onDragEnd"
 			>
+				<template #main>
+					<NodeSettings
+						:event-bus="settingsEventBus"
+						:dragging="isDragging"
+						:push-ref="pushRef"
+						:node-type="activeNodeType"
+						:foreign-credentials="foreignCredentials"
+						:read-only="readOnly"
+						:block-u-i="blockUi && showTriggerPanel"
+						:executable="!readOnly"
+						:input-size="inputSize"
+						@value-changed="valueChanged"
+						@execute="onNodeExecute"
+						@stop-execution="onStopExecution"
+						@redraw-required="redrawRequired = true"
+						@activate="onWorkflowActivate"
+						@switch-selected-node="onSwitchSelectedNode"
+						@open-connection-node-creator="onOpenConnectionNodeCreator"
+					/>
+				</template>
 				<template v-if="showTriggerPanel || !isTriggerNode" #input>
 					<TriggerPanel
 						v-if="showTriggerPanel"
@@ -788,26 +808,6 @@ onBeforeUnmount(() => {
 						@table-mounted="onOutputTableMounted"
 						@item-hover="onOutputItemHover"
 						@search="onSearch"
-					/>
-				</template>
-				<template #main>
-					<NodeSettings
-						:event-bus="settingsEventBus"
-						:dragging="isDragging"
-						:push-ref="pushRef"
-						:node-type="activeNodeType"
-						:foreign-credentials="foreignCredentials"
-						:read-only="readOnly"
-						:block-u-i="blockUi && showTriggerPanel"
-						:executable="!readOnly"
-						:input-size="inputSize"
-						@value-changed="valueChanged"
-						@execute="onNodeExecute"
-						@stop-execution="onStopExecution"
-						@redraw-required="redrawRequired = true"
-						@activate="onWorkflowActivate"
-						@switch-selected-node="onSwitchSelectedNode"
-						@open-connection-node-creator="onOpenConnectionNodeCreator"
 					/>
 				</template>
 			</NDVDraggablePanels>

@@ -7,13 +7,13 @@ exports[`component > Text overflow behavior > displays ellipsis with options 1`]
     data-test-id="input-label"
   >
     <label
-      class="n8n-input-label inputLabel heading medium"
+      class="flowstate-input-label inputLabel heading medium"
     >
       <div
         class="title"
       >
         <span
-          class="n8n-text size-medium bold textEllipses textEllipses"
+          class="flowstate-text size-medium bold textEllipses textEllipses"
         >
           
           a label 
@@ -38,13 +38,13 @@ exports[`component > Text overflow behavior > displays full text without options
     data-test-id="input-label"
   >
     <label
-      class="n8n-input-label inputLabel heading medium"
+      class="flowstate-input-label inputLabel heading medium"
     >
       <div
         class="title"
       >
         <span
-          class="n8n-text size-medium bold"
+          class="flowstate-text size-medium bold"
         >
           
           a label 

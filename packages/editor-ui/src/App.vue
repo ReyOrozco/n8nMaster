@@ -89,7 +89,7 @@ watch(defaultLocale, (newLocale) => {
 	<LoadingView v-if="loading" />
 	<div
 		v-else
-		id="n8n-app"
+		id="flowstate-app"
 		:class="{
 			[$style.container]: true,
 			[$style.sidebarCollapsed]: uiStore.sidebarMenuCollapsed,

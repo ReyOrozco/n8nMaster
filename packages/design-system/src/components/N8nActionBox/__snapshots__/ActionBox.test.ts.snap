@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`N8NActionBox > should render correctly 1`] = `
-"<div class="n8n-action-box container" data-test-id="action-box">
+"<div class="flowstate-action-box container" data-test-id="action-box">
   <div class="emoji">😿</div>
   <div class="heading">
     <n8n-heading-stub align="center" tag="span" bold="false" size="xlarge"></n8n-heading-stub>

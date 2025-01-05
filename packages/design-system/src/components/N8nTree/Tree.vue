@@ -55,7 +55,7 @@ const getPath = (key: string): Array<string | number> => {
 </script>
 
 <template>
-	<div v-if="isObject(value)" class="n8n-tree">
+	<div v-if="isObject(value)" class="flowstate-tree">
 		<div v-for="(label, i) in Object.keys(value)" :key="i" :class="classes">
 			<div v-if="isSimple(value[label])" :class="$style.simple">
 				<slot v-if="$slots.label" name="label" :label="label" :path="getPath(label)" />

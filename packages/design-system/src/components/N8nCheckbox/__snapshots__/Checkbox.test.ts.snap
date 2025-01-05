@@ -32,13 +32,13 @@ exports[`components > N8nCheckbox > should render with both child and label 1`] 
         data-test-id="input-label"
       >
         <label
-          class="n8n-input-label inputLabel heading medium"
+          class="flowstate-input-label inputLabel heading medium"
         >
           <div
             class="title"
           >
             <span
-              class="n8n-text size-medium regular"
+              class="flowstate-text size-medium regular"
             >
               
               Checkbox 
@@ -123,13 +123,13 @@ exports[`components > N8nCheckbox > should render with label 1`] = `
         data-test-id="input-label"
       >
         <label
-          class="n8n-input-label inputLabel heading medium"
+          class="flowstate-input-label inputLabel heading medium"
         >
           <div
             class="title"
           >
             <span
-              class="n8n-text size-medium regular"
+              class="flowstate-text size-medium regular"
             >
               
               Checkbox 

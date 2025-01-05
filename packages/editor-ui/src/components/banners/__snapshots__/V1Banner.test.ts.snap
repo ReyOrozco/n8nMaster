@@ -3,7 +3,7 @@
 exports[`V1 Banner > should render banner 1`] = `
 <div>
   <div
-    class="n8n-callout callout warning onlyBottomBorder callout v1container"
+    class="flowstate-callout callout warning onlyBottomBorder callout v1container"
     data-test-id="banners-V1"
     role="alert"
   >
@@ -14,7 +14,7 @@ exports[`V1 Banner > should render banner 1`] = `
         class="icon"
       >
         <span
-          class="n8n-text compact size-medium regular n8n-icon n8n-icon"
+          class="flowstate-text compact size-medium regular n8n-icon n8n-icon"
         >
           
           <svg
@@ -37,7 +37,7 @@ exports[`V1 Banner > should render banner 1`] = `
         </span>
       </div>
       <span
-        class="n8n-text size-small regular"
+        class="flowstate-text size-small regular"
       >
         
         
@@ -72,7 +72,7 @@ exports[`V1 Banner > should render banner 1`] = `
       
       
       <span
-        class="n8n-text compact size-small regular n8n-icon clickable clickable n8n-icon clickable clickable"
+        class="flowstate-text compact size-small regular n8n-icon clickable clickable n8n-icon clickable clickable"
         data-test-id="banner-V1-close"
         title="Dismiss"
       >
@@ -104,7 +104,7 @@ exports[`V1 Banner > should render banner 1`] = `
 exports[`V1 Banner > should render banner with dismiss call if user is owner 1`] = `
 <div>
   <div
-    class="n8n-callout callout warning onlyBottomBorder callout v1container"
+    class="flowstate-callout callout warning onlyBottomBorder callout v1container"
     data-test-id="banners-V1"
     role="alert"
   >
@@ -115,7 +115,7 @@ exports[`V1 Banner > should render banner with dismiss call if user is owner 1`]
         class="icon"
       >
         <span
-          class="n8n-text compact size-medium regular n8n-icon n8n-icon"
+          class="flowstate-text compact size-medium regular n8n-icon n8n-icon"
         >
           
           <svg
@@ -138,7 +138,7 @@ exports[`V1 Banner > should render banner with dismiss call if user is owner 1`]
         </span>
       </div>
       <span
-        class="n8n-text size-small regular"
+        class="flowstate-text size-small regular"
       >
         
         
@@ -180,7 +180,7 @@ exports[`V1 Banner > should render banner with dismiss call if user is owner 1`]
       
       
       <span
-        class="n8n-text compact size-small regular n8n-icon clickable clickable n8n-icon clickable clickable"
+        class="flowstate-text compact size-small regular n8n-icon clickable clickable n8n-icon clickable clickable"
         data-test-id="banner-V1-close"
         title="Dismiss"
       >

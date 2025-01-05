@@ -17,7 +17,7 @@ const meta = {
 
 			return {};
 		},
-		template: '<div id="n8n-chat" />',
+		template: '<div id="flowstate-chat" />',
 	}),
 	parameters: {
 		layout: 'fullscreen',

@@ -19,7 +19,6 @@ import { useUsersStore } from './users.store';
 import { useVersionsStore } from './versions.store';
 import { makeRestApiRequest } from '@/utils/apiUtils';
 import { useToast } from '@/composables/useToast';
-import { i18n } from '@/plugins/i18n';
 
 export const useSettingsStore = defineStore(STORES.SETTINGS, () => {
 	const initialized = ref(false);
