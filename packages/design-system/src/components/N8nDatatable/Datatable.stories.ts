@@ -14,7 +14,7 @@ export const Default: StoryFn = (args, { argTypes }) => ({
 	components: {
 		N8nDatatable,
 	},
-	template: '<n8n-datatable v-bind="args"></n8n-datatable>',
+	template: '<flowstate-datatable v-bind="args"></flowstate-datatable>',
 });
 
 Default.args = {

@@ -23,7 +23,7 @@ const Template: StoryFn = (args, { argTypes }) => ({
 	components: {
 		N8nBadge,
 	},
-	template: '<n8n-badge v-bind="args">Badge</n8n-badge>',
+	template: '<flowstate-badge v-bind="args">Badge</flowstate-badge>',
 });
 
 export const Badge = Template.bind({});

@@ -22,8 +22,8 @@ const Template: StoryFn = (args, { argTypes }) => ({
 	components: {
 		N8nTabs,
 	},
-	template: `<n8n-tabs v-model="val" v-bind="args" @update:modelValue="onUpdateModelValue">
-		</n8n-tabs>`,
+	template: `<flowstate-tabs v-model="val" v-bind="args" @update:modelValue="onUpdateModelValue">
+		</flowstate-tabs>`,
 	methods,
 	data() {
 		return {

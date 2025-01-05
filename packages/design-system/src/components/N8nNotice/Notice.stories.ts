@@ -20,7 +20,7 @@ const SlotTemplate: StoryFn = (args, { argTypes }) => ({
 		N8nNotice,
 	},
 	template:
-		'<n8n-notice v-bind="args">This is a notice! Thread carefully from this point forward.</n8n-notice>',
+		'<flowstate-notice v-bind="args">This is a notice! Thread carefully from this point forward.</flowstate-notice>',
 });
 
 const PropTemplate: StoryFn = (args, { argTypes }) => ({
@@ -29,7 +29,7 @@ const PropTemplate: StoryFn = (args, { argTypes }) => ({
 	components: {
 		N8nNotice,
 	},
-	template: '<n8n-notice v-bind="args"/>',
+	template: '<flowstate-notice v-bind="args"/>',
 });
 
 export const Warning = SlotTemplate.bind({});

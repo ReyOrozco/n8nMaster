@@ -23,7 +23,7 @@ const Template: StoryFn = (args, { argTypes }) => ({
 	components: {
 		N8nFormBox,
 	},
-	template: '<n8n-form-box v-bind="args" @submit="onSubmit" @update="onUpdate" />',
+	template: '<flowstate-form-box v-bind="args" @submit="onSubmit" @update="onUpdate" />',
 	methods,
 });
 
@@ -66,5 +66,5 @@ FormBox.args = {
 	],
 	buttonText: 'Action',
 	redirectText: 'Go somewhere',
-	redirectLink: 'https://n8n.io',
+	redirectLink: 'https://flowstate.io',
 };

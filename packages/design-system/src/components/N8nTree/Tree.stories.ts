@@ -14,14 +14,14 @@ export const Default: StoryFn = (args, { argTypes }) => ({
 	components: {
 		N8nTree,
 	},
-	template: `<n8n-tree v-bind="args">
+	template: `<flowstate-tree v-bind="args">
 		<template v-slot:label="{ label }">
 			<span>{{ label }}</span>
 		</template>
 		<template v-slot:value="{ value }">
 			<span>{{ value }}</span>
 		</template>
-	</n8n-tree>`,
+	</flowstate-tree>`,
 });
 
 Default.args = {

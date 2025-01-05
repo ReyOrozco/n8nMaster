@@ -18,7 +18,7 @@ const template: StoryFn = (args, { argTypes }) => ({
 	template: `
 		<div style="width: 200px">
 			<el-menu>
-				<n8n-menu-item v-bind="args" />
+				<flowstate-menu-item v-bind="args" />
 			</el-menu>
 		</div>
 	`,

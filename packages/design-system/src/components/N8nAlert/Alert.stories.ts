@@ -25,7 +25,7 @@ const Template: StoryFn = (args, { argTypes }) => ({
 		N8nAlert,
 	},
 	template:
-		'<div style="position: relative; width: 100%; height: 300px;"><n8n-alert v-bind="args"><template #aside>custom content slot</template></n8n-alert></div>',
+		'<div style="position: relative; width: 100%; height: 300px;"><flowstate-alert v-bind="args"><template #aside>custom content slot</template></flowstate-alert></div>',
 });
 
 export const ContentAsProps = Template.bind({});
@@ -47,14 +47,14 @@ const TemplateForSlots: StoryFn = (args, { argTypes }) => ({
 		N8nIcon,
 	},
 	template: `<div style="position: relative; width: 100%; height: 300px;">
-			  <n8n-alert v-bind="args">
+			  <flowstate-alert v-bind="args">
 					<template #title>Title</template>
 					Description
 					<template #aside><button>Button</button></template>
 					<template #icon>
-						<n8n-icon icon="grin-stars" size="xlarge" />
+						<flowstate-icon icon="grin-stars" size="xlarge" />
 					</template>
-				</n8n-alert>
+				</flowstate-alert>
 		</div>`,
 });
 

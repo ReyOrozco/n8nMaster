@@ -14,7 +14,7 @@ const Template: StoryFn = (args, { argTypes }) => ({
 		N8nBlockUi,
 	},
 	template:
-		'<div style="position: relative; width: 100%; height: 300px;"><n8n-block-ui v-bind="args" /></div>',
+		'<div style="position: relative; width: 100%; height: 300px;"><flowstate-block-ui v-bind="args" /></div>',
 });
 
 export const BlockUi = Template.bind({});

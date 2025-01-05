@@ -46,7 +46,7 @@ const iconData = computed<{ icon: IconMap[keyof IconMap]; color: IconColor }>(()
 <template>
 	<div
 		:class="{
-			'n8n-info-tip': true,
+			'flowstate-info-tip': true,
 			[$style.infoTip]: true,
 			[$style[theme]]: true,
 			[$style[type]]: true,

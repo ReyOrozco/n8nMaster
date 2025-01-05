@@ -32,7 +32,7 @@ const template: StoryFn = (args, { argTypes }) => ({
 	components: {
 		N8nActionDropdown,
 	},
-	template: '<n8n-action-dropdown v-bind="args" />',
+	template: '<flowstate-action-dropdown v-bind="args" />',
 });
 
 export const defaultActionDropdown = template.bind({});

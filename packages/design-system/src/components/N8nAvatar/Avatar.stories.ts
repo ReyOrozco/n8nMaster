@@ -19,7 +19,7 @@ const Template: StoryFn = (args, { argTypes }) => ({
 	components: {
 		N8nAvatar,
 	},
-	template: '<n8n-avatar v-bind="args" />',
+	template: '<flowstate-avatar v-bind="args" />',
 });
 
 export const Avatar = Template.bind({});

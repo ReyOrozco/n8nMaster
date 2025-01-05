@@ -20,9 +20,9 @@ const Template: StoryFn = (args, { argTypes }) => ({
 		N8nInput,
 	},
 	template: `<div style="margin-top:50px">
-			<n8n-input-label v-bind="args">
-				<n8n-input />
-			</n8n-input-label>
+			<flowstate-input-label v-bind="args">
+				<flowstate-input />
+			</flowstate-input-label>
 		</div>`,
 });
 

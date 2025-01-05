@@ -23,7 +23,7 @@ const template: StoryFn = (args, { argTypes }) => ({
 	},
 	template: `
 		<div style="height: 90vh; width: 200px">
-			<n8n-menu v-bind="args" @select="onSelect"></n8n-menu>
+			<flowstate-menu v-bind="args" @select="onSelect"></flowstate-menu>
 		</div>
 	`,
 	methods,
@@ -39,19 +39,19 @@ const templateWithHeaderAndFooter: StoryFn = (args, { argTypes }) => ({
 	},
 	template: `
 		<div style="height: 90vh; width: 200px">
-			<n8n-menu v-bind="args" @select="onSelect">
+			<flowstate-menu v-bind="args" @select="onSelect">
 				<template #header>
 					<a href="#" class="p-m hideme" style="display: block;">
-						<n8n-icon icon="long-arrow-alt-left"/>&nbsp;&nbsp;Back to home
+						<flowstate-icon icon="long-arrow-alt-left"/>&nbsp;&nbsp;Back to home
 					</a>
 				</template>
 				<template #footer>
 					<div class="p-m hideme">
-						<n8n-icon icon="user-circle" size="xlarge"/>&nbsp;&nbsp;
-						<n8n-text>John Smithson</n8n-text>
+						<flowstate-icon icon="user-circle" size="xlarge"/>&nbsp;&nbsp;
+						<flowstate-text>John Smithson</flowstate-text>
 					</div>
 				</template>
-			</n8n-menu>
+			</flowstate-menu>
 		</div>
 	`,
 	methods,
@@ -67,25 +67,25 @@ const templateWithAllSlots: StoryFn = (args, { argTypes }) => ({
 	},
 	template: `
 		<div style="height: 90vh; width: 200px">
-			<n8n-menu v-bind="args" @select="onSelect">
+			<flowstate-menu v-bind="args" @select="onSelect">
 				<template #header>
 					<a href="#" class="p-m hideme" style="display: block;">
-						<n8n-icon icon="long-arrow-alt-left"/>&nbsp;&nbsp;Back to home
+						<flowstate-icon icon="long-arrow-alt-left"/>&nbsp;&nbsp;Back to home
 					</a>
 				</template>
 				<template #menuPrefix>
-					<n8n-text class="hideme" size="small"  color="text-light">Something can be added here...</n8n-text>
+					<flowstate-text class="hideme" size="small"  color="text-light">Something can be added here...</flowstate-text>
 				</template>
 				<template #menuSuffix>
-					<n8n-text class="hideme" size="small" color="text-light">...and here if needed</n8n-text>
+					<flowstate-text class="hideme" size="small" color="text-light">...and here if needed</flowstate-text>
 				</template>
 				<template #footer>
 					<div class="p-m hideme">
-						<n8n-icon icon="user-circle" size="xlarge"/>&nbsp;&nbsp;
-						<n8n-text>John Smithson</n8n-text>
+						<flowstate-icon icon="user-circle" size="xlarge"/>&nbsp;&nbsp;
+						<flowstate-text>John Smithson</flowstate-text>
 					</div>
 				</template>
-			</n8n-menu>
+			</flowstate-menu>
 		</div>
 	`,
 	methods,

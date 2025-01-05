@@ -39,7 +39,11 @@ const onClick = (
 <template>
 	<div
 		role="radiogroup"
-		:class="{ 'n8n-radio-buttons': true, [$style.radioGroup]: true, [$style.disabled]: disabled }"
+		:class="{
+			'flowstate-radio-buttons': true,
+			[$style.radioGroup]: true,
+			[$style.disabled]: disabled,
+		}"
 	>
 		<RadioButton
 			v-for="option in options"

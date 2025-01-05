@@ -26,7 +26,7 @@ withDefaults(defineProps<ActionBoxProps>(), {
 </script>
 
 <template>
-	<div :class="['n8n-action-box', $style.container]" data-test-id="action-box">
+	<div :class="['flowstate-action-box', $style.container]" data-test-id="action-box">
 		<div v-if="emoji" :class="$style.emoji">
 			{{ emoji }}
 		</div>

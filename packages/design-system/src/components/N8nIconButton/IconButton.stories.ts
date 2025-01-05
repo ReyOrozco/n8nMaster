@@ -33,7 +33,7 @@ const Template: StoryFn = (args, { argTypes }) => ({
 	components: {
 		N8nIconButton,
 	},
-	template: '<n8n-icon-button @click="onClick" v-bind="args" />',
+	template: '<flowstate-icon-button @click="onClick" v-bind="args" />',
 	methods,
 });
 
@@ -50,7 +50,7 @@ const ManyTemplate: StoryFn = (args, { argTypes }) => ({
 		N8nIconButton,
 	},
 	template:
-		'<div> <n8n-icon-button v-bind="args" size="xlarge" @click="onClick" /> <n8n-icon-button v-bind="args" size="large" @click="onClick" />  <n8n-icon-button v-bind="args" size="medium" @click="onClick" />  <n8n-icon-button v-bind="args" size="small" @click="onClick" />  <n8n-icon-button v-bind="args" :loading="true" @click="onClick" />  <n8n-icon-button v-bind="args" :disabled="true" @click="onClick" /></div>',
+		'<div> <flowstate-icon-button v-bind="args" size="xlarge" @click="onClick" /> <flowstate-icon-button v-bind="args" size="large" @click="onClick" />  <flowstate-icon-button v-bind="args" size="medium" @click="onClick" />  <flowstate-icon-button v-bind="args" size="small" @click="onClick" />  <flowstate-icon-button v-bind="args" :loading="true" @click="onClick" />  <flowstate-icon-button v-bind="args" :disabled="true" @click="onClick" /></div>',
 	methods,
 });
 

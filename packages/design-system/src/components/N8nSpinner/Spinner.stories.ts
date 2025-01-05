@@ -27,7 +27,7 @@ const Template: StoryFn = (args, { argTypes }) => ({
 	components: {
 		N8nSpinner,
 	},
-	template: '<n8n-spinner v-bind="args" />',
+	template: '<flowstate-spinner v-bind="args" />',
 });
 
 export const Spinner = Template.bind({});

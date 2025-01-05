@@ -26,7 +26,7 @@ const props = withDefaults(defineProps<ButtonProps>(), {
 
 watchEffect(() => {
 	if (props.element === 'a' && !props.href) {
-		console.error('n8n-button:href is required for link buttons');
+		console.error('flowstate-button:href is required for link buttons');
 	}
 });
 

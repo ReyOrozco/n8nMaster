@@ -42,7 +42,7 @@ const onSecondaryButtonClick = (event: Event) => emit('secondaryClick', event);
 </script>
 
 <template>
-	<div :class="['n8n-form-box', $style.container]">
+	<div :class="['flowstate-form-box', $style.container]">
 		<div v-if="title" :class="$style.heading">
 			<N8nHeading size="xlarge">
 				{{ title }}

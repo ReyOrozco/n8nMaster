@@ -36,7 +36,7 @@ withDefaults(defineProps<LoadingProps>(), {
 	<ElSkeleton
 		:loading="loading"
 		:animated="animated"
-		:class="['n8n-loading', `n8n-loading-${variant}`]"
+		:class="['flowstate-loading', `flowstate-loading-${variant}`]"
 	>
 		<template #template>
 			<div v-if="variant === 'h1'">

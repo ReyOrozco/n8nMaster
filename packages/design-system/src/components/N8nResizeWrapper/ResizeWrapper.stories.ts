@@ -55,7 +55,7 @@ const Template: StoryFn = (args, { argTypes }) => ({
 		},
 	},
 	template: `<div style="width: fit-content; height: fit-content">
-			<n8n-resize-wrapper
+			<flowstate-resize-wrapper
 				v-bind="args"
 				@resize="onResize"
 				@resizeend="onResizeEnd"
@@ -65,7 +65,7 @@ const Template: StoryFn = (args, { argTypes }) => ({
 				:height="newHeight"
 			>
 				<div :style="containerStyles" />
-			</n8n-resize-wrapper>
+			</flowstate-resize-wrapper>
 		</div>`,
 	methods,
 });

@@ -40,7 +40,10 @@ defineOptions({
 </script>
 
 <template>
-	<ElTooltip v-bind="{ ...props, ...$attrs }" :popper-class="props.popperClass ?? 'n8n-tooltip'">
+	<ElTooltip
+		v-bind="{ ...props, ...$attrs }"
+		:popper-class="props.popperClass ?? 'flowstate-tooltip'"
+	>
 		<slot />
 		<template #content>
 			<slot name="content">

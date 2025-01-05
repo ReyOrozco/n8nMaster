@@ -15,5 +15,5 @@ export const Default: StoryFn = () => ({
 	components: {
 		N8nPulse,
 	},
-	template: '<n8n-pulse> yo </n8n-pulse>',
+	template: '<flowstate-pulse> yo </flowstate-pulse>',
 });

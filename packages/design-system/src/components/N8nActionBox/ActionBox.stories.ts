@@ -29,7 +29,7 @@ const Template: StoryFn = (args, { argTypes }) => ({
 	components: {
 		N8nActionBox,
 	},
-	template: '<n8n-action-box v-bind="args" @click="onClick" />',
+	template: '<flowstate-action-box v-bind="args" @click="onClick" />',
 	methods,
 });
 

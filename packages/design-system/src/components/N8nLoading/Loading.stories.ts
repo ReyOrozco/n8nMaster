@@ -37,7 +37,7 @@ const Template: StoryFn = (args, { argTypes }) => ({
 	components: {
 		N8nLoading,
 	},
-	template: '<n8n-loading v-bind="args"></n8n-loading>',
+	template: '<flowstate-loading v-bind="args"></flowstate-loading>',
 });
 
 export const Loading = Template.bind({});

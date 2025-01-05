@@ -60,7 +60,7 @@ const Template: StoryFn = (args, { argTypes }) => ({
 		N8nInputNumber,
 	},
 	template:
-		'<n8n-input-number v-bind="args" v-model="val" @update:modelValue="onUpdateModelValue" />',
+		'<flowstate-input-number v-bind="args" v-model="val" @update:modelValue="onUpdateModelValue" />',
 	data() {
 		return {
 			val: null,
@@ -82,7 +82,7 @@ const ManyTemplate: StoryFn = (args, { argTypes }) => ({
 		N8nInputNumber,
 	},
 	template:
-		'<div> <n8n-input-number style="margin-bottom:10px" v-bind="args" v-model="val" @update:modelValue="onUpdateModelValue" /> <n8n-input-number style="margin-bottom:10px" v-bind="args" size="medium" v-model="val" @update:modelValue="onUpdateModelValue" /> <n8n-input-number style="margin-bottom:10px" v-bind="args" size="small" v-model="val" @update:modelValue="onUpdateModelValue" /> <n8n-input-number style="margin-bottom:10px" v-bind="args" v-model="val" size="mini" @update:modelValue="onUpdateModelValue" /> </div>',
+		'<div> <flowstate-input-number style="margin-bottom:10px" v-bind="args" v-model="val" @update:modelValue="onUpdateModelValue" /> <flowstate-input-number style="margin-bottom:10px" v-bind="args" size="medium" v-model="val" @update:modelValue="onUpdateModelValue" /> <flowstate-input-number style="margin-bottom:10px" v-bind="args" size="small" v-model="val" @update:modelValue="onUpdateModelValue" /> <flowstate-input-number style="margin-bottom:10px" v-bind="args" v-model="val" size="mini" @update:modelValue="onUpdateModelValue" /> </div>',
 	methods,
 	data() {
 		return {
@@ -104,7 +104,7 @@ const ControlsTemplate: StoryFn = (args, { argTypes }) => ({
 		N8nInputNumber,
 	},
 	template:
-		'<div> <n8n-input-number style="margin-bottom:10px" v-bind="args" v-model="val" @update:modelValue="onUpdateModelValue" /> <n8n-input-number style="margin-bottom:10px" v-bind="args" size="medium" v-model="val" @update:modelValue="onUpdateModelValue" /> <n8n-input-number style="margin-bottom:10px" v-bind="args" size="small" v-model="val" @update:modelValue="onUpdateModelValue" /> <n8n-input-number style="margin-bottom:10px" v-bind="args" v-model="val" size="mini" @update:modelValue="onUpdateModelValue" /> <n8n-input-number controls-position="right" style="margin-bottom:10px" v-bind="args" v-model="val" @update:modelValue="onUpdateModelValue" /> <n8n-input-number controls-position="right" style="margin-bottom:10px" v-bind="args" size="medium" v-model="val" @update:modelValue="onUpdateModelValue" /> <n8n-input-number controls-position="right" style="margin-bottom:10px" v-bind="args" size="small" v-model="val" @update:modelValue="onUpdateModelValue" /> <n8n-input-number controls-position="right" style="margin-bottom:10px" v-bind="args" v-model="val" size="mini" @update:modelValue="onUpdateModelValue" /> </div>',
+		'<div> <flowstate-input-number style="margin-bottom:10px" v-bind="args" v-model="val" @update:modelValue="onUpdateModelValue" /> <flowstate-input-number style="margin-bottom:10px" v-bind="args" size="medium" v-model="val" @update:modelValue="onUpdateModelValue" /> <flowstate-input-number style="margin-bottom:10px" v-bind="args" size="small" v-model="val" @update:modelValue="onUpdateModelValue" /> <flowstate-input-number style="margin-bottom:10px" v-bind="args" v-model="val" size="mini" @update:modelValue="onUpdateModelValue" /> <flowstate-input-number controls-position="right" style="margin-bottom:10px" v-bind="args" v-model="val" @update:modelValue="onUpdateModelValue" /> <flowstate-input-number controls-position="right" style="margin-bottom:10px" v-bind="args" size="medium" v-model="val" @update:modelValue="onUpdateModelValue" /> <flowstate-input-number controls-position="right" style="margin-bottom:10px" v-bind="args" size="small" v-model="val" @update:modelValue="onUpdateModelValue" /> <flowstate-input-number controls-position="right" style="margin-bottom:10px" v-bind="args" v-model="val" size="mini" @update:modelValue="onUpdateModelValue" /> </div>',
 	methods,
 	data() {
 		return {

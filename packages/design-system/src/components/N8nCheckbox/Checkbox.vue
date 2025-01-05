@@ -41,7 +41,7 @@ const onLabelClick = () => {
 	<ElCheckbox
 		v-bind="$props"
 		ref="checkbox"
-		:class="['n8n-checkbox', $style.n8nCheckbox]"
+		:class="['flowstate-checkbox', $style.n8nCheckbox]"
 		:disabled="disabled"
 		:indeterminate="indeterminate"
 		:model-value="modelValue"

@@ -78,7 +78,7 @@ const onInputScroll = (event: WheelEvent) => {
 <template>
 	<div
 		:class="{
-			'n8n-sticky': true,
+			'flowstate-sticky': true,
 			[$style.sticky]: true,
 			[$style.clickable]: !isResizing,
 			[$style[`color-${backgroundColor}`]]: true,

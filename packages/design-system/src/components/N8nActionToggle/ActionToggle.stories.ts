@@ -32,7 +32,7 @@ const Template: StoryFn = (args, { argTypes }) => ({
 		N8nActionToggle,
 	},
 	template: `<div style="height:300px; width:300px; display:flex; align-items:center; justify-content:center">
-			<n8n-action-toggle v-bind="args" @action="onAction" />
+			<flowstate-action-toggle v-bind="args" @action="onAction" />
 		</div>`,
 	methods,
 });

@@ -37,7 +37,7 @@ const Template: StoryFn = (args, { argTypes }) => ({
 	components: {
 		N8nMarkdown,
 	},
-	template: '<n8n-markdown v-bind="args"></n8n-markdown>',
+	template: '<flowstate-markdown v-bind="args"></flowstate-markdown>',
 });
 
 export const Markdown = Template.bind({});
@@ -59,7 +59,7 @@ const TemplateWithCheckboxes: StoryFn = (args, { argTypes }) => ({
 	components: {
 		N8nMarkdown,
 	},
-	template: '<n8n-markdown v-bind="args"></n8n-markdown>',
+	template: '<flowstate-markdown v-bind="args"></flowstate-markdown>',
 });
 
 export const WithCheckboxes = TemplateWithCheckboxes.bind({});

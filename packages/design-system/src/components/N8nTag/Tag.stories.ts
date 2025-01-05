@@ -20,7 +20,7 @@ const Template: StoryFn = (args, { argTypes }) => ({
 	components: {
 		N8nTag,
 	},
-	template: '<n8n-tag v-bind="args"></n8n-tag>',
+	template: '<flowstate-tag v-bind="args"></flowstate-tag>',
 });
 
 export const Tag = Template.bind({});

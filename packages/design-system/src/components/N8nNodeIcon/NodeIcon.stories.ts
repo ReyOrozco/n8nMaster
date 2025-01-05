@@ -13,7 +13,7 @@ const DefaultTemplate: StoryFn = (args, { argTypes }) => ({
 	components: {
 		N8nNodeIcon,
 	},
-	template: '<n8n-node-icon v-bind="args"></n8n-node-icon>',
+	template: '<flowstate-node-icon v-bind="args"></flowstate-node-icon>',
 });
 
 export const FileIcon = DefaultTemplate.bind({});

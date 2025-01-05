@@ -24,7 +24,7 @@ const Template: StoryFn = (args, { argTypes }) => ({
 	components: {
 		N8nUsersList,
 	},
-	template: '<n8n-users-list v-bind="args" :actions="actions" @action="action" />',
+	template: '<flowstate-users-list v-bind="args" :actions="actions" @action="action" />',
 	methods,
 });
 

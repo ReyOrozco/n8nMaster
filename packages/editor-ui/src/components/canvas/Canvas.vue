@@ -721,7 +721,7 @@ provide(CanvasKey, {
 			<MiniMap
 				v-show="isMinimapVisible"
 				data-test-id="canvas-minimap"
-				aria-label="n8n Minimap"
+				aria-label="flowstate Minimap"
 				:height="120"
 				:width="200"
 				:position="PanelPosition.BottomLeft"

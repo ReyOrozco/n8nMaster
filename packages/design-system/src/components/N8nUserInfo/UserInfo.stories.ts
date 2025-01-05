@@ -16,7 +16,7 @@ const Template: StoryFn = (args, { argTypes }) => ({
 	components: {
 		N8nUserInfo,
 	},
-	template: '<n8n-user-info v-bind="args" />',
+	template: '<flowstate-user-info v-bind="args" />',
 });
 
 export const Member = Template.bind({});

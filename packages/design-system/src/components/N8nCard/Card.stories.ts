@@ -16,7 +16,7 @@ export const Default: StoryFn = (args, { argTypes }) => ({
 	components: {
 		N8nCard,
 	},
-	template: '<n8n-card v-bind="args">This is a card.</n8n-card>',
+	template: '<flowstate-card v-bind="args">This is a card.</flowstate-card>',
 });
 
 export const Hoverable: StoryFn = (args, { argTypes }) => ({
@@ -28,10 +28,10 @@ export const Hoverable: StoryFn = (args, { argTypes }) => ({
 		N8nText,
 	},
 	template: `<div style="width: 140px; text-align: center;">
-		<n8n-card v-bind="args">
-			<n8n-icon icon="plus" size="xlarge" />
-			<n8n-text size="large" class="mt-2xs">Add</n8n-text>
-		</n8n-card>
+		<flowstate-card v-bind="args">
+			<flowstate-icon icon="plus" size="xlarge" />
+			<flowstate-text size="large" class="mt-2xs">Add</flowstate-text>
+		</flowstate-card>
 	</div>`,
 });
 
@@ -48,23 +48,23 @@ export const WithSlots: StoryFn = (args, { argTypes }) => ({
 		N8nIcon,
 		N8nText,
 	},
-	template: `<n8n-card v-bind="args">
+	template: `<flowstate-card v-bind="args">
 		<template #prepend>
-			<n8n-icon icon="check" size="large" />
+			<flowstate-icon icon="check" size="large" />
 		</template>
 		<template #header>
 			<strong>Card header</strong>
 		</template>
-		<n8n-text color="text-light" size="medium" class="mt-2xs mb-2xs">
+		<flowstate-text color="text-light" size="medium" class="mt-2xs mb-2xs">
 			This is the card body.
-		</n8n-text>
+		</flowstate-text>
 		<template #footer>
-			<n8n-text size="medium">
+			<flowstate-text size="medium">
 				Card footer
-			</n8n-text>
+			</flowstate-text>
 		</template>
 		<template #append>
-			<n8n-button>Click me</n8n-button>
+			<flowstate-button>Click me</flowstate-button>
 		</template>
-	</n8n-card>`,
+	</flowstate-card>`,
 });

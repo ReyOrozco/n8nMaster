@@ -24,7 +24,7 @@ const Template: StoryFn = (args, { argTypes }) => ({
 		N8nPagination,
 	},
 	template: `
-		<n8n-pagination
+		<flowstate-pagination
 			v-bind="args"
 			v-model:current-page="args.currentPage"
 			v-model:page-size="args.pageSize"

@@ -19,7 +19,7 @@ withDefaults(defineProps<RadioButtonProps>(), {
 		role="radio"
 		tabindex="-1"
 		:class="{
-			'n8n-radio-button': true,
+			'flowstate-radio-button': true,
 			[$style.container]: true,
 			[$style.hoverable]: !disabled,
 		}"

@@ -25,7 +25,7 @@ export default {
 	parameters: {
 		design: {
 			type: 'figma',
-			url: 'https://www.figma.com/file/DxLbnIyMK8X0uLkUguFV4n/n8n-design-system_v1?node-id=5%3A1147',
+			url: 'https://www.figma.com/file/DxLbnIyMK8X0uLkUguFV4n/flowstate-design-system_v1?node-id=5%3A1147',
 		},
 	},
 };
@@ -40,7 +40,7 @@ const Template: StoryFn = (args, { argTypes }) => ({
 	components: {
 		N8nButton,
 	},
-	template: '<n8n-button v-bind="args" @click="onClick" />',
+	template: '<flowstate-button v-bind="args" @click="onClick" />',
 	methods,
 });
 
@@ -56,11 +56,11 @@ const AllSizesTemplate: StoryFn = (args, { argTypes }) => ({
 		N8nButton,
 	},
 	template: `<div>
-		<n8n-button v-bind="args" size="large" @click="onClick" />
-		<n8n-button v-bind="args" size="medium" @click="onClick" />
-		<n8n-button v-bind="args" size="small" @click="onClick" />
-		<n8n-button v-bind="args" :loading="true" @click="onClick" />
-		<n8n-button v-bind="args" :disabled="true" @click="onClick" />
+		<flowstate-button v-bind="args" size="large" @click="onClick" />
+		<flowstate-button v-bind="args" size="medium" @click="onClick" />
+		<flowstate-button v-bind="args" size="small" @click="onClick" />
+		<flowstate-button v-bind="args" :loading="true" @click="onClick" />
+		<flowstate-button v-bind="args" :disabled="true" @click="onClick" />
 	</div>`,
 	methods,
 });
@@ -72,28 +72,28 @@ const AllColorsAndSizesTemplate: StoryFn = (args, { argTypes }) => ({
 		N8nButton,
 	},
 	template: `<div>
-		<n8n-button v-bind="args" size="large" type="primary" @click="onClick" />
-		<n8n-button v-bind="args" size="large" type="secondary" @click="onClick" />
-		<n8n-button v-bind="args" size="large" type="tertiary" @click="onClick" />
-		<n8n-button v-bind="args" size="large" type="success" @click="onClick" />
-		<n8n-button v-bind="args" size="large" type="warning" @click="onClick" />
-		<n8n-button v-bind="args" size="large" type="danger" @click="onClick" />
+		<flowstate-button v-bind="args" size="large" type="primary" @click="onClick" />
+		<flowstate-button v-bind="args" size="large" type="secondary" @click="onClick" />
+		<flowstate-button v-bind="args" size="large" type="tertiary" @click="onClick" />
+		<flowstate-button v-bind="args" size="large" type="success" @click="onClick" />
+		<flowstate-button v-bind="args" size="large" type="warning" @click="onClick" />
+		<flowstate-button v-bind="args" size="large" type="danger" @click="onClick" />
 		<br/>
 		<br/>
-		<n8n-button v-bind="args" size="medium" type="primary" @click="onClick" />
-		<n8n-button v-bind="args" size="medium" type="secondary" @click="onClick" />
-		<n8n-button v-bind="args" size="medium" type="tertiary" @click="onClick" />
-		<n8n-button v-bind="args" size="medium" type="success" @click="onClick" />
-		<n8n-button v-bind="args" size="medium" type="warning" @click="onClick" />
-		<n8n-button v-bind="args" size="medium" type="danger" @click="onClick" />
+		<flowstate-button v-bind="args" size="medium" type="primary" @click="onClick" />
+		<flowstate-button v-bind="args" size="medium" type="secondary" @click="onClick" />
+		<flowstate-button v-bind="args" size="medium" type="tertiary" @click="onClick" />
+		<flowstate-button v-bind="args" size="medium" type="success" @click="onClick" />
+		<flowstate-button v-bind="args" size="medium" type="warning" @click="onClick" />
+		<flowstate-button v-bind="args" size="medium" type="danger" @click="onClick" />
 		<br/>
 		<br/>
-		<n8n-button v-bind="args" size="small" type="primary" @click="onClick" />
-		<n8n-button v-bind="args" size="small" type="secondary" @click="onClick" />
-		<n8n-button v-bind="args" size="small" type="tertiary" @click="onClick" />
-		<n8n-button v-bind="args" size="small" type="success" @click="onClick" />
-		<n8n-button v-bind="args" size="small" type="warning" @click="onClick" />
-		<n8n-button v-bind="args" size="small" type="danger" @click="onClick" />
+		<flowstate-button v-bind="args" size="small" type="primary" @click="onClick" />
+		<flowstate-button v-bind="args" size="small" type="secondary" @click="onClick" />
+		<flowstate-button v-bind="args" size="small" type="tertiary" @click="onClick" />
+		<flowstate-button v-bind="args" size="small" type="success" @click="onClick" />
+		<flowstate-button v-bind="args" size="small" type="warning" @click="onClick" />
+		<flowstate-button v-bind="args" size="small" type="danger" @click="onClick" />
 	</div>`,
 	methods,
 });

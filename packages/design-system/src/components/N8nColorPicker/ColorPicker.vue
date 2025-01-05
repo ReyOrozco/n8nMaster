@@ -60,7 +60,7 @@ const onColorSelect = (value: string | null) => {
 </script>
 
 <template>
-	<span :class="['n8n-color-picker', $style.component]">
+	<span :class="['flowstate-color-picker', $style.component]">
 		<ElColorPicker
 			v-bind="colorPickerProps"
 			:model-value="modelValue"

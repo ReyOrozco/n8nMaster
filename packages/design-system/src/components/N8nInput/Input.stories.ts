@@ -43,7 +43,7 @@ const Template: StoryFn = (args, { argTypes }) => ({
 		N8nInput,
 	},
 	template:
-		'<n8n-input v-bind="args" v-model="val" @update:modelValue="onUpdateModelValue" @change="onChange" @focus="onFocus" />',
+		'<flowstate-input v-bind="args" v-model="val" @update:modelValue="onUpdateModelValue" @change="onChange" @focus="onFocus" />',
 	data() {
 		return {
 			val: '',
@@ -64,7 +64,7 @@ const ManyTemplate: StoryFn = (args, { argTypes }) => ({
 		N8nInput,
 	},
 	template:
-		'<div class="multi-container"> <n8n-input size="xlarge" v-bind="args" v-model="val" @update:modelValue="onUpdateModelValue" @change="onChange" @focus="onFocus" /> <n8n-input v-bind="args" v-model="val" @update:modelValue="onUpdateModelValue" @change="onChange" @focus="onFocus" /> <n8n-input v-bind="args" size="medium" v-model="val" @update:modelValue="onUpdateModelValue" @change="onChange" @focus="onFocus" /> <n8n-input v-bind="args" size="small" v-model="val" @update:modelValue="onUpdateModelValue" @change="onChange" @focus="onFocus" /> <n8n-input v-bind="args" v-model="val" size="mini" @update:modelValue="onUpdateModelValue" @change="onChange" @focus="onFocus" /> </div> ',
+		'<div class="multi-container"> <flowstate-input size="xlarge" v-bind="args" v-model="val" @update:modelValue="onUpdateModelValue" @change="onChange" @focus="onFocus" /> <flowstate-input v-bind="args" v-model="val" @update:modelValue="onUpdateModelValue" @change="onChange" @focus="onFocus" /> <flowstate-input v-bind="args" size="medium" v-model="val" @update:modelValue="onUpdateModelValue" @change="onChange" @focus="onFocus" /> <flowstate-input v-bind="args" size="small" v-model="val" @update:modelValue="onUpdateModelValue" @change="onChange" @focus="onFocus" /> <flowstate-input v-bind="args" v-model="val" size="mini" @update:modelValue="onUpdateModelValue" @change="onChange" @focus="onFocus" /> </div> ',
 	methods,
 	data() {
 		return {
@@ -93,7 +93,7 @@ const WithPrefix: StoryFn = (args, { argTypes }) => ({
 		N8nInput,
 	},
 	template:
-		'<n8n-input v-bind="args" v-model="val" @update:modelValue="onUpdateModelValue" @change="onChange" @focus="onFocus"><n8n-icon icon="clock" slot="prefix" /></n8n-input>',
+		'<flowstate-input v-bind="args" v-model="val" @update:modelValue="onUpdateModelValue" @change="onChange" @focus="onFocus"><flowstate-icon icon="clock" slot="prefix" /></flowstate-input>',
 	data() {
 		return {
 			val: '',
@@ -115,7 +115,7 @@ const WithSuffix: StoryFn = (args, { argTypes }) => ({
 		N8nInput,
 	},
 	template:
-		'<n8n-input v-bind="args" v-model="val" @update:modelValue="onUpdateModelValue" @change="onChange" @focus="onFocus"><n8n-icon icon="clock" slot="suffix" /></n8n-input>',
+		'<flowstate-input v-bind="args" v-model="val" @update:modelValue="onUpdateModelValue" @change="onChange" @focus="onFocus"><flowstate-icon icon="clock" slot="suffix" /></flowstate-input>',
 	data() {
 		return {
 			val: '',

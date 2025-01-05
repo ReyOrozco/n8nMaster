@@ -42,7 +42,7 @@ const Template: StoryFn = (args, { argTypes }) => ({
 	components: {
 		N8nTooltip,
 	},
-	template: '<n8n-tooltip v-bind="args"><button>Hover me</button></n8n-tooltip>',
+	template: '<flowstate-tooltip v-bind="args"><button>Hover me</button></flowstate-tooltip>',
 });
 
 export const Tooltip = Template.bind({});

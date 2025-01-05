@@ -46,7 +46,7 @@ const DefaultTemplate: StoryFn = (args, { argTypes }) => ({
 		color: null,
 	}),
 	template:
-		'<n8n-color-picker v-model="color" v-bind="args" @update:modelValue="onInput" @change="onChange" @active-change="onActiveChange" />',
+		'<flowstate-color-picker v-model="color" v-bind="args" @update:modelValue="onInput" @change="onChange" @active-change="onActiveChange" />',
 	methods,
 });
 

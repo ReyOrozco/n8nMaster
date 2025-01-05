@@ -13,7 +13,7 @@ const template: StoryFn = (args, { argTypes }) => ({
 	components: {
 		N8nKeyboardShorcut,
 	},
-	template: '<n8n-keyboard-shortcut v-bind="args" />',
+	template: '<flowstate-keyboard-shortcut v-bind="args" />',
 });
 
 export const defaultShortcut = template.bind({});

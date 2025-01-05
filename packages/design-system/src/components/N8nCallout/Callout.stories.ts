@@ -50,7 +50,7 @@ const template: StoryFn<Args> = (args, { argTypes }) => ({
 		N8nCallout,
 	},
 	template: `
-		<n8n-callout v-bind="args">
+		<flowstate-callout v-bind="args">
 			${args.default}
 			<template #actions v-if="args.actions">
 				${args.actions}
@@ -58,7 +58,7 @@ const template: StoryFn<Args> = (args, { argTypes }) => ({
 			<template #trailingContent v-if="args.trailingContent">
 				${args.trailingContent}
 			</template>
-		</n8n-callout>
+		</flowstate-callout>
 	`,
 });
 
@@ -78,9 +78,9 @@ customCallout.args = {
 		This is a custom callout.
 	`,
 	actions: `
-		<n8n-link size="small">
+		<flowstate-link size="small">
 			Do something!
-		</n8n-link>
+		</flowstate-link>
 	`,
 };
 
@@ -92,19 +92,19 @@ secondaryCallout.args = {
 		This data is pinned.
 	`,
 	actions: `
-		<n8n-link theme="secondary" size="small" :bold="true" :underline="true">
+		<flowstate-link theme="secondary" size="small" :bold="true" :underline="true">
 			Unpin
-		</n8n-link>
+		</flowstate-link>
 	`,
 	trailingContent: `
-		<n8n-link
+		<flowstate-link
 			theme="secondary"
 			size="small"
 			:bold="true"
 			:underline="true"
-			to="https://n8n.io"
+			to="https://flowstate.io"
 		>
 			Learn more
-		</n8n-link>
+		</flowstate-link>
 	`,
 };

@@ -42,14 +42,14 @@ const Template: StoryFn = (args, { argTypes }) => ({
 	components: {
 		N8nPopover,
 	},
-	template: `<n8n-popover v-bind="args">
+	template: `<flowstate-popover v-bind="args">
 			<div style="margin:50px; display: inline-block;">
 				<span>yo</span>
 			</div>
 			<template #content>
 				Popover
 			</template>
-		</n8n-popover>`,
+		</flowstate-popover>`,
 });
 
 export const Popover = Template.bind({});

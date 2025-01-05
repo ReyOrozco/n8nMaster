@@ -55,7 +55,7 @@ const Template: StoryFn = (args, { argTypes }) => ({
 		N8nIcon,
 	},
 	template:
-		'<n8n-select v-bind="args" v-model="val" @update:modelValue="onUpdateModelValue" @change="onChange"><n8n-option value="1">op1</n8n-option><n8n-option value="2">op2</n8n-option></n8n-select>',
+		'<flowstate-select v-bind="args" v-model="val" @update:modelValue="onUpdateModelValue" @change="onChange"><flowstate-option value="1">op1</flowstate-option><flowstate-option value="2">op2</flowstate-option></flowstate-select>',
 	data() {
 		return {
 			val: '',
@@ -75,7 +75,7 @@ Filterable.args = {
 const selects = ['large', 'medium', 'small', 'mini']
 	.map(
 		(size) =>
-			`<n8n-select v-bind="args" v-model="val" @update:modelValue="onUpdateModelValue" @change="onChange" size="${size}"><n8n-option value="1">op1</n8n-option><n8n-option value="2">op2</n8n-option></n8n-select>`,
+			`<flowstate-select v-bind="args" v-model="val" @update:modelValue="onUpdateModelValue" @change="onChange" size="${size}"><flowstate-option value="1">op1</flowstate-option><flowstate-option value="2">op2</flowstate-option></flowstate-select>`,
 	)
 	.join('');
 
@@ -106,7 +106,7 @@ Sizes.args = {
 const selectsWithIcon = ['xlarge', 'large', 'medium', 'small', 'mini']
 	.map(
 		(size) =>
-			`<n8n-select v-bind="args" v-model="val" @update:modelValue="onUpdateModelValue" size="${size}"><n8n-icon icon="search" slot="prefix" /><n8n-option value="1">op1</n8n-option><n8n-option value="2">op2</n8n-option></n8n-select>`,
+			`<flowstate-select v-bind="args" v-model="val" @update:modelValue="onUpdateModelValue" size="${size}"><flowstate-icon icon="search" slot="prefix" /><flowstate-option value="1">op1</flowstate-option><flowstate-option value="2">op2</flowstate-option></flowstate-select>`,
 	)
 	.join('');
 
@@ -143,7 +143,7 @@ const LimitedWidthTemplate: StoryFn = (args, { argTypes }) => ({
 		N8nIcon,
 	},
 	template:
-		'<div style="width:100px;"><n8n-select v-bind="args" v-model="val" @update:modelValue="onUpdateModelValue" @change="onChange"><n8n-option value="1" label="opt1 11 1111" /><n8n-option value="2" label="opt2 test very long ipsum"/></n8n-select></div>',
+		'<div style="width:100px;"><flowstate-select v-bind="args" v-model="val" @update:modelValue="onUpdateModelValue" @change="onChange"><flowstate-option value="1" label="opt1 11 1111" /><flowstate-option value="2" label="opt2 test very long ipsum"/></flowstate-select></div>',
 	data() {
 		return {
 			val: '',

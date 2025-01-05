@@ -72,7 +72,7 @@ defineExpose({ focus, blur, select });
 		:model-value="modelValue"
 		:type="type"
 		:size="resolvedSize"
-		:class="['n8n-input', ...classes]"
+		:class="['flowstate-input', ...classes]"
 		:autocomplete="autocomplete"
 		:name="name"
 		:placeholder="placeholder"

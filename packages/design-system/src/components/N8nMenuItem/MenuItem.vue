@@ -64,7 +64,7 @@ const isItemActive = (item: IMenuItem): boolean => {
 </script>
 
 <template>
-	<div :class="['n8n-menu-item', $style.item]">
+	<div :class="['flowstate-menu-item', $style.item]">
 		<ElSubMenu
 			v-if="item.children?.length"
 			:id="item.id"

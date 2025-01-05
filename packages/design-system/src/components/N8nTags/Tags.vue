@@ -51,7 +51,7 @@ const onExpand = () => {
 </script>
 
 <template>
-	<div :class="['n8n-tags', $style.tags]">
+	<div :class="['flowstate-tags', $style.tags]">
 		<N8nTag
 			v-for="tag in visibleTags"
 			:key="tag.id"

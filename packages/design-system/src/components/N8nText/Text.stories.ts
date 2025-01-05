@@ -35,7 +35,7 @@ const Template: StoryFn = (args, { argTypes }) => ({
 	components: {
 		N8nText,
 	},
-	template: '<n8n-text v-bind="args">hello world</n8n-text>',
+	template: '<flowstate-text v-bind="args">hello world</flowstate-text>',
 });
 
 export const Text = Template.bind({});

@@ -54,7 +54,7 @@ const Template: StoryFn = (args, { argTypes }) => ({
 		N8nResizeableSticky,
 	},
 	template:
-		'<n8n-resizeable-sticky v-bind="args"  @resize="onResize" @resizeend="onResizeEnd" @resizeStart="onResizeStart" @input="onInput"></n8n-resizeable-sticky>',
+		'<flowstate-resizeable-sticky v-bind="args"  @resize="onResize" @resizeend="onResizeEnd" @resizeStart="onResizeStart" @input="onInput"></flowstate-resizeable-sticky>',
 	methods,
 });
 

@@ -28,7 +28,7 @@ withDefaults(defineProps<BadgeProps>(), {
 </script>
 
 <template>
-	<span :class="['n8n-badge', $style[theme]]">
+	<span :class="['flowstate-badge', $style[theme]]">
 		<N8nText :size="size" :bold="bold" :compact="true">
 			<slot></slot>
 		</N8nText>

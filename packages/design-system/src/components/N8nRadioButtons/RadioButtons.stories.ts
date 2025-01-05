@@ -27,8 +27,8 @@ const Template: StoryFn = (args, { argTypes }) => ({
 	components: {
 		N8nRadioButtons,
 	},
-	template: `<n8n-radio-buttons v-model="val" v-bind="args" @update:modelValue="onInput">
-		</n8n-radio-buttons>`,
+	template: `<flowstate-radio-buttons v-model="val" v-bind="args" @update:modelValue="onInput">
+		</flowstate-radio-buttons>`,
 	methods,
 	data() {
 		return {

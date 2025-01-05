@@ -14,11 +14,11 @@ const DefaultTemplate: StoryFn = (args, { argTypes }) => ({
 		N8nNodeCreatorNode,
 	},
 	template: `
-		<n8n-node-creator-node v-bind="args">
+		<flowstate-node-creator-node v-bind="args">
 			<template #icon>
 				<img src="https://dev.w3.org/SVG/tools/svgweb/samples/svg-files/cartman.svg" />
 			</template>
-		</n8n-node-creator-node>
+		</flowstate-node-creator-node>
 	`,
 });
 
@@ -42,7 +42,7 @@ const PanelTemplate: StoryFn = (args, { argTypes }) => ({
 		};
 	},
 	template: `
-		<n8n-node-creator-node v-bind="args" :isPanelActive="isPanelActive" @click.capture="isPanelActive = true">
+		<flowstate-node-creator-node v-bind="args" :isPanelActive="isPanelActive" @click.capture="isPanelActive = true">
 			<template #icon>
 				<img src="https://dev.w3.org/SVG/tools/svgweb/samples/svg-files/cartman.svg" />
 			</template>
@@ -50,7 +50,7 @@ const PanelTemplate: StoryFn = (args, { argTypes }) => ({
 				<p style="width: 100%; height: 300px; background: white">Lorem ipsum dolor sit amet</p>
 				<button @click="isPanelActive = false">Close</button>
 			</template>
-		</n8n-node-creator-node>
+		</flowstate-node-creator-node>
 	`,
 });
 export const WithPanel = PanelTemplate.bind({});

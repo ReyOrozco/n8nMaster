@@ -24,7 +24,7 @@ const DefaultTemplate: StoryFn = (args, { argTypes }) => ({
 		isChecked: false,
 	}),
 	template:
-		'<n8n-checkbox v-model="isChecked" v-bind="args" @update:modelValue="onUpdateModelValue"></n8n-checkbox>',
+		'<flowstate-checkbox v-model="isChecked" v-bind="args" @update:modelValue="onUpdateModelValue"></flowstate-checkbox>',
 	methods,
 });
 

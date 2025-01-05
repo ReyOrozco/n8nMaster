@@ -38,7 +38,7 @@ const template: StoryFn<Args> = (args, { argTypes }) => ({
 	},
 	template: `
 		<div>
-			<n8n-circle-loader v-bind="args" />
+			<flowstate-circle-loader v-bind="args" />
 		</div>
 	`,
 });

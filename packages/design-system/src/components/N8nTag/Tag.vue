@@ -10,7 +10,7 @@ withDefaults(defineProps<TagProps>(), {
 </script>
 
 <template>
-	<span :class="['n8n-tag', $style.tag, { [$style.clickable]: clickable }]" v-bind="$attrs">
+	<span :class="['flowstate-tag', $style.tag, { [$style.clickable]: clickable }]" v-bind="$attrs">
 		{{ text }}
 	</span>
 </template>

@@ -29,7 +29,7 @@ const Template: StoryFn = (args, { argTypes }) => ({
 	components: {
 		N8nIcon,
 	},
-	template: '<n8n-icon v-bind="args" />',
+	template: '<flowstate-icon v-bind="args" />',
 });
 
 export const Clock = Template.bind({});

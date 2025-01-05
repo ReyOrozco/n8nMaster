@@ -74,7 +74,7 @@ const scrollRight = () => scroll(50);
 </script>
 
 <template>
-	<div :class="['n8n-tabs', $style.container]">
+	<div :class="['flowstate-tabs', $style.container]">
 		<div v-if="scrollPosition > 0" :class="$style.back" @click="scrollLeft">
 			<N8nIcon icon="chevron-left" size="small" />
 		</div>

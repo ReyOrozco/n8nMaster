@@ -14,7 +14,7 @@ const Template: StoryFn = (args, { argTypes }) => ({
 		N8nInfoTip,
 	},
 	template:
-		'<n8n-info-tip v-bind="args">Need help doing something? <a href="/docs" target="_blank">Open docs</a></n8n-info-tip>',
+		'<flowstate-info-tip v-bind="args">Need help doing something? <a href="/docs" target="_blank">Open docs</a></flowstate-info-tip>',
 });
 
 export const Note = Template.bind({});

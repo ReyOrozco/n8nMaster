@@ -64,7 +64,7 @@ const send = async () => {
 			});
 			toast.showMessage({
 				title: 'Thanks!',
-				message: "It's people like you that help make n8n better",
+				message: "It's people like you that help make Flowstate better",
 				type: 'success',
 			});
 		}

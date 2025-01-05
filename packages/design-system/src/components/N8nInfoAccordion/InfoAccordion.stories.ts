@@ -22,7 +22,7 @@ export const Default: StoryFn = (args, { argTypes }) => ({
 	components: {
 		N8nInfoAccordion,
 	},
-	template: '<n8n-info-accordion v-bind="args" @click="onClick" />',
+	template: '<flowstate-info-accordion v-bind="args" @click="onClick" />',
 	methods,
 });
 

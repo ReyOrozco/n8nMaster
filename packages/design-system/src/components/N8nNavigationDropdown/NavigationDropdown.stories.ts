@@ -21,9 +21,9 @@ const template: StoryFn = (args, { argTypes }) => ({
 	},
 	template: `
 		<div style="height: 10vh; width: 200px">
-			<n8n-navigation-dropdown v-bind="args" @select="onSelect">
+			<flowstate-navigation-dropdown v-bind="args" @select="onSelect">
 				<button type="button">trigger</button>
-			</n8n-navigation-dropdown>
+			</flowstate-navigation-dropdown>
 		</div>
 	`,
 	methods,

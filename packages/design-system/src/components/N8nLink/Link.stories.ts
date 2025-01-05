@@ -26,11 +26,11 @@ const Template: StoryFn = (args, { argTypes }) => ({
 	components: {
 		N8nLink,
 	},
-	template: '<n8n-link v-bind="args" @click="onClick">hello world</n8n-link>',
+	template: '<flowstate-link v-bind="args" @click="onClick">hello world</flowstate-link>',
 	methods,
 });
 
 export const Link = Template.bind({});
 Link.args = {
-	href: 'https://n8n.io/',
+	href: 'https://flowstate.io/',
 };

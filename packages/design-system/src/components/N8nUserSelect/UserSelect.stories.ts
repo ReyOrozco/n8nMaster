@@ -25,7 +25,7 @@ const Template: StoryFn = (args, { argTypes }) => ({
 		N8nUserSelect,
 	},
 	template:
-		'<n8n-user-select v-bind="args" v-model="val" @change="onChange" @blur="onBlur" @focus="onFocus" />',
+		'<flowstate-user-select v-bind="args" v-model="val" @change="onChange" @blur="onBlur" @focus="onFocus" />',
 	methods,
 	data() {
 		return {

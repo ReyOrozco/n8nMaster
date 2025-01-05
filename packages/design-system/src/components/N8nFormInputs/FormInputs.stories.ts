@@ -23,7 +23,7 @@ const Template: StoryFn = (args, { argTypes }) => ({
 	components: {
 		N8nFormInputs,
 	},
-	template: '<n8n-form-inputs v-bind="args" @submit="onSubmit" @change="onChange" />',
+	template: '<flowstate-form-inputs v-bind="args" @submit="onSubmit" @change="onChange" />',
 	methods,
 });
 
