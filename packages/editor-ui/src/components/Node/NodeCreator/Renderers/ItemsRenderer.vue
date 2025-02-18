@@ -210,12 +210,9 @@ watch(
 		bottom: 0;
 		border-left: 2px solid transparent;
 	}
-	&:not(.label):not(.category):hover::before {
-		border-color: $node-creator-item-hover-border-color;
-	}
-
-	&.active:not(.category)::before {
-		border-color: $color-primary;
+	&:not(.label):not(.category):hover {
+		background-color: #f7f9fb;
+		border-radius: 8px;
 	}
 }
 .empty {

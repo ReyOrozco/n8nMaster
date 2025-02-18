@@ -9,6 +9,7 @@ import { useI18n } from '@/composables/useI18n';
 import type { PermissionsRecord } from '@/permissions';
 import { EXECUTE_WORKFLOW_TRIGGER_NODE_TYPE, PLACEHOLDER_EMPTY_WORKFLOW_ID } from '@/constants';
 import WorkflowActivationErrorMessage from './WorkflowActivationErrorMessage.vue';
+import { N8nCheckbox, N8nFormInput } from 'n8n-design-system';
 
 const props = defineProps<{
 	workflowActive: boolean;
@@ -104,19 +105,17 @@ async function displayActivationError() {
 
 <template>
 	<div class="workflow-activator">
-		<div :class="$style.activeStatusText" data-test-id="workflow-activator-status">
-			<n8n-text
-				v-if="workflowActive"
-				:color="couldNotBeStarted ? 'danger' : 'success'"
-				size="small"
-				bold
-			>
-				{{ i18n.baseText('workflowActivator.active') }}
-			</n8n-text>
-			<n8n-text v-else color="text-base" size="small" bold>
-				{{ i18n.baseText('workflowActivator.inactive') }}
-			</n8n-text>
-		</div>
+		<N8nCheckbox
+			label="Active"
+			:model-value="true"
+			:disabled="
+				disabled ||
+				workflowActivate.updatingWorkflowActivation.value ||
+				(!isNewWorkflow && !workflowPermissions.update)
+			"
+			@change="activeChanged($event)"
+		/>
+
 		<n8n-tooltip :disabled="!disabled" placement="bottom">
 			<template #content>
 				<div>
@@ -129,25 +128,6 @@ async function displayActivationError() {
 					}}
 				</div>
 			</template>
-			<el-switch
-				v-loading="workflowActivate.updatingWorkflowActivation.value"
-				:model-value="workflowActive"
-				:title="
-					workflowActive
-						? i18n.baseText('workflowActivator.deactivateWorkflow')
-						: i18n.baseText('workflowActivator.activateWorkflow')
-				"
-				:disabled="
-					disabled ||
-					workflowActivate.updatingWorkflowActivation.value ||
-					(!isNewWorkflow && !workflowPermissions.update)
-				"
-				:active-color="getActiveColor"
-				inactive-color="#8899AA"
-				data-test-id="workflow-activate-switch"
-				@update:model-value="activeChanged"
-			>
-			</el-switch>
 		</n8n-tooltip>
 
 		<div v-if="couldNotBeStarted" class="could-not-be-started">
@@ -176,9 +156,9 @@ async function displayActivationError() {
 
 <style lang="scss" scoped>
 .workflow-activator {
-	display: inline-flex;
+	display: flex;
 	flex-wrap: nowrap;
-	align-items: center;
+	height: 18px;
 }
 
 .could-not-be-started {

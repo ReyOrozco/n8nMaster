@@ -118,19 +118,6 @@ const onSelect = (action: string) => {
 					</slot>
 				</N8nText>
 			</div>
-			<div v-if="route.name !== VIEWS.PROJECT_SETTINGS" :class="[$style.headerActions]">
-				<ProjectCreateResource
-					data-test-id="add-resource-buttons"
-					:actions="menu"
-					@action="onSelect"
-				>
-					<N8nButton
-						data-test-id="add-resource-workflow"
-						v-bind="createWorkflowButton"
-						@click="onSelect(ACTION_TYPES.WORKFLOW)"
-					/>
-				</ProjectCreateResource>
-			</div>
 		</div>
 		<div :class="$style.actions">
 			<ProjectTabs :show-settings="showSettings" />
@@ -161,6 +148,6 @@ const onSelect = (action: string) => {
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-end;
-	padding: var(--spacing-2xs) 0 var(--spacing-l);
+	padding: var(--spacing-2xs) 0 var(--spacing-l) !important;
 }
 </style>

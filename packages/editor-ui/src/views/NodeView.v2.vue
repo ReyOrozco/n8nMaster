@@ -1652,36 +1652,7 @@ onBeforeUnmount(() => {
 		@viewport-change="onViewportChange"
 		@drag-and-drop="onDragAndDrop"
 	>
-		<div v-if="!isCanvasReadOnly" :class="$style.executionButtons">
-			<CanvasRunWorkflowButton
-				v-if="isRunWorkflowButtonVisible"
-				:waiting-for-webhook="isExecutionWaitingForWebhook"
-				:disabled="isExecutionDisabled"
-				:executing="isWorkflowRunning"
-				@mouseenter="onRunWorkflowButtonMouseEnter"
-				@mouseleave="onRunWorkflowButtonMouseLeave"
-				@click="onRunWorkflow"
-			/>
-			<CanvasChatButton
-				v-if="containsChatTriggerNodes"
-				:type="isChatOpen ? 'tertiary' : 'primary'"
-				:label="isChatOpen ? i18n.baseText('chat.hide') : i18n.baseText('chat.window.title')"
-				@click="onOpenChat"
-			/>
-			<CanvasStopCurrentExecutionButton
-				v-if="isStopExecutionButtonVisible"
-				:stopping="isStoppingExecution"
-				@click="onStopExecution"
-			/>
-			<CanvasStopWaitingForWebhookButton
-				v-if="isStopWaitingForWebhookButtonVisible"
-				@click="onStopWaitingForWebhook"
-			/>
-			<CanvasClearExecutionDataButton
-				v-if="isClearExecutionButtonVisible"
-				@click="onClearExecutionData"
-			/>
-		</div>
+		<div v-if="!isCanvasReadOnly" :class="$style.executionButtons"></div>
 		<Suspense>
 			<LazyNodeCreation
 				v-if="!isCanvasReadOnly"

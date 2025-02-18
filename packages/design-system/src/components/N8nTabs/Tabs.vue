@@ -132,19 +132,23 @@ const scrollRight = () => scroll(50);
 <style lang="scss" module>
 .container {
 	position: relative;
-	height: 24px;
-	min-height: 24px;
+	height: 47px;
+	min-height: 47px;
 	width: 100%;
 }
 
 .tabs {
 	color: var(--color-text-base);
 	font-weight: var(--font-weight-bold);
+	background: #fafafa;
 	display: flex;
 	align-items: center;
-	width: 100%;
 	position: absolute;
 	overflow-x: scroll;
+	border-radius: 10px;
+	overflow: hidden;
+	border: 1px solid #e9e9e9;
+	box-shadow: 0px 0px 2px 0px #0000001f;
 
 	/* Hide scrollbar for Chrome, Safari and Opera */
 	&::-webkit-scrollbar {
@@ -158,15 +162,21 @@ const scrollRight = () => scroll(50);
 
 .tab {
 	--active-tab-border-width: 2px;
-	display: block;
 	padding: 0 var(--spacing-s);
-	padding-bottom: calc(var(--spacing-2xs) + var(--active-tab-border-width));
 	font-size: var(--font-size-s);
 	cursor: pointer;
 	white-space: nowrap;
 	color: var(--color-text-base);
+
+	height: 47px;
+	min-width: 150px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-right: 2px solid #e9e9e9;
+
 	&:hover {
-		color: var(--color-primary);
+		color: black;
 	}
 
 	span + span {
@@ -174,10 +184,21 @@ const scrollRight = () => scroll(50);
 	}
 }
 
+.tabs > div:last-child > .tab {
+	border-right: 0;
+}
+.tabs > div:first-child > .tab {
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+.tabs > div:last-child > .tab {
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
 .activeTab {
-	color: var(--color-primary);
-	padding-bottom: var(--spacing-2xs);
-	border-bottom: var(--color-primary) var(--active-tab-border-width) solid;
+	color: black;
+	border: 1px solid #383838 !important;
 }
 
 .alignRight:not(.alignRight + .alignRight) {

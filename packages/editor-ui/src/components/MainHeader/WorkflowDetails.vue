@@ -14,15 +14,10 @@ import {
 	WORKFLOW_SHARE_MODAL_KEY,
 } from '@/constants';
 import ShortenName from '@/components/ShortenName.vue';
-import WorkflowTagsContainer from '@/components/WorkflowTagsContainer.vue';
 import PushConnectionTracker from '@/components/PushConnectionTracker.vue';
 import WorkflowActivator from '@/components/WorkflowActivator.vue';
-import SaveButton from '@/components/SaveButton.vue';
-import WorkflowTagsDropdown from '@/components/WorkflowTagsDropdown.vue';
 import InlineTextEdit from '@/components/InlineTextEdit.vue';
 import BreakpointsObserver from '@/components/BreakpointsObserver.vue';
-import WorkflowHistoryButton from '@/components/MainHeader/WorkflowHistoryButton.vue';
-import CollaborationPane from '@/components/MainHeader/CollaborationPane.vue';
 
 import { useRootStore } from '@/stores/root.store';
 import { useSettingsStore } from '@/stores/settings.store';
@@ -40,7 +35,6 @@ import { useToast } from '@/composables/useToast';
 import { getResourcePermissions } from '@/permissions';
 import { createEventBus } from 'n8n-design-system/utils';
 import { nodeViewEventBus } from '@/event-bus';
-import { hasPermission } from '@/utils/rbac/permissions';
 import { useCanvasStore } from '@/stores/canvas.store';
 import { useRoute, useRouter } from 'vue-router';
 import { useWorkflowHelpers } from '@/composables/useWorkflowHelpers';
@@ -53,10 +47,10 @@ import type {
 } from '@/Interface';
 import { useI18n } from '@/composables/useI18n';
 import { useTelemetry } from '@/composables/useTelemetry';
-import type { BaseTextKey } from '@/plugins/i18n';
 import { useNpsSurveyStore } from '@/stores/npsSurvey.store';
 import { useNodeViewVersionSwitcher } from '@/composables/useNodeViewVersionSwitcher';
 import { usePageRedirectionHelper } from '@/composables/usePageRedirectionHelper';
+import { Save } from 'lucide-vue-next';
 
 const props = defineProps<{
 	readOnly?: boolean;
@@ -611,39 +605,6 @@ function showCreateWorkflowSuccessToast(id?: string) {
 			</template>
 		</BreakpointsObserver>
 
-		<span v-if="settingsStore.areTagsEnabled" class="tags" data-test-id="workflow-tags-container">
-			<WorkflowTagsDropdown
-				v-if="isTagsEditEnabled && !readOnly && (isNewWorkflow || workflowPermissions.update)"
-				ref="dropdown"
-				v-model="appliedTagIds"
-				:event-bus="tagsEventBus"
-				:placeholder="i18n.baseText('workflowDetails.chooseOrCreateATag')"
-				class="tags-edit"
-				data-test-id="workflow-tags-dropdown"
-				@blur="onTagsBlur"
-				@esc="onTagsEditEsc"
-			/>
-			<div
-				v-else-if="
-					(tags ?? []).length === 0 && !readOnly && (isNewWorkflow || workflowPermissions.update)
-				"
-			>
-				<span class="add-tag clickable" data-test-id="new-tag-link" @click="onTagsEditEnable">
-					+ {{ i18n.baseText('workflowDetails.addTag') }}
-				</span>
-			</div>
-			<WorkflowTagsContainer
-				v-else
-				:key="id"
-				:tag-ids="workflowTagIds"
-				:clickable="true"
-				:responsive="true"
-				data-test-id="workflow-tags"
-				@click="onTagsEditEnable"
-			/>
-		</span>
-		<span v-else class="tags"></span>
-
 		<PushConnectionTracker class="actions">
 			<span :class="`activator ${$style.group}`">
 				<WorkflowActivator
@@ -652,64 +613,20 @@ function showCreateWorkflowSuccessToast(id?: string) {
 					:workflow-permissions="workflowPermissions"
 				/>
 			</span>
-			<!-- <EnterpriseEdition :features="[EnterpriseEditionFeature.Sharing]">
-				<div :class="$style.group">
-					<CollaborationPane v-if="!isNewWorkflow" />
-					<N8nButton
-						type="secondary"
-						data-test-id="workflow-share-button"
-						@click="onShareButtonClick"
-					>
-						{{ i18n.baseText('workflowDetails.share') }}
-					</N8nButton>
-				</div>
-				<template #fallback>
-					<N8nTooltip>
-						<N8nButton type="secondary" :class="['mr-2xs', $style.disabledShareButton]">
-							{{ i18n.baseText('workflowDetails.share') }}
-						</N8nButton>
-						<template #content>
-							<i18n-t
-								:keypath="
-									uiStore.contextBasedTranslationKeys.workflows.sharing.unavailable.description
-										.tooltip
-								"
-								tag="span"
-							>
-								<template #action>
-									<a @click="goToUpgrade">
-										{{
-											i18n.baseText(
-												uiStore.contextBasedTranslationKeys.workflows.sharing.unavailable
-													.button as BaseTextKey,
-											)
-										}}
-									</a>
-								</template>
-							</i18n-t>
-						</template>
-					</N8nTooltip>
-				</template>
-			</EnterpriseEdition> -->
+
 			<div :class="$style.group">
-				<SaveButton
-					type="primary"
-					:saved="!uiStore.stateIsDirty && !isNewWorkflow"
+				<n8n-button
+					type="secondary"
+					size="small"
+					:class="$style.saveBtn"
 					:disabled="
 						isWorkflowSaving || readOnly || (!isNewWorkflow && !workflowPermissions.update)
 					"
-					:is-saving="isWorkflowSaving"
-					:with-shortcut="!readOnly && workflowPermissions.update"
-					:shortcut-tooltip="i18n.baseText('saveWorkflowButton.hint')"
-					data-test-id="workflow-save-button"
+					:loading="isWorkflowSaving"
 					@click="onSaveButtonClick"
-				/>
-				<!-- <WorkflowHistoryButton
-					:workflow-id="props.id"
-					:is-feature-enabled="isWorkflowHistoryFeatureEnabled"
-					:is-new-workflow="isNewWorkflow"
-					@upgrade="goToWorkflowHistoryUpgrade"
-				/> -->
+				>
+					<Save />
+				</n8n-button>
 			</div>
 			<div :class="[$style.workflowMenuContainer, $style.group]">
 				<input
@@ -751,7 +668,13 @@ $--text-line-height: 24px;
 $--header-spacing: 20px;
 
 .name-container {
-	margin-right: $--header-spacing;
+	min-width: 300px;
+	border: 1px solid #e2e2e2;
+	box-shadow: 0px 0px 7px 0px #00000026;
+	height: 52px;
+	display: flex;
+	align-items: center;
+	padding: 0px 8px;
 
 	:deep(.el-input) {
 		padding: 0;
@@ -761,6 +684,14 @@ $--header-spacing: 20px;
 .name {
 	color: $custom-font-dark;
 	font-size: 15px;
+	margin: 0;
+}
+
+.saveBtn {
+	svg {
+		width: 10px;
+		height: 10px;
+	}
 }
 
 .activator {
@@ -807,6 +738,7 @@ $--header-spacing: 20px;
 	align-items: center;
 	gap: var(--spacing-m);
 	flex-wrap: wrap;
+	margin-left: auto;
 }
 </style>
 

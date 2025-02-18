@@ -148,8 +148,8 @@
 
 		@include mixins.when(checked) {
 			.el-checkbox__inner {
-				background-color: var.$checkbox-checked-background-color;
-				border-color: var.$checkbox-checked-input-border-color;
+				background-color: black;
+				border-color: black;
 
 				&::after {
 					transform: rotate(45deg) scaleY(1);
@@ -159,7 +159,7 @@
 		@include mixins.when(focus) {
 			/*focus时 视觉上区分*/
 			.el-checkbox__inner {
-				border-color: var.$checkbox-input-border-color-hover;
+				border-color: black;
 			}
 		}
 		@include mixins.when(indeterminate) {

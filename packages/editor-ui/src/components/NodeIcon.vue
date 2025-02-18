@@ -126,8 +126,16 @@ const badge = computed(() => {
 		:show-tooltip="showTooltip"
 		:tooltip-position="tooltipPosition"
 		:badge="badge"
+		:class="$style.nodeIcon"
 		@click="emit('click')"
 	></n8n-node-icon>
 </template>
 
-<style lang="scss" module></style>
+<style lang="scss" module>
+.nodeIcon {
+	img,
+	svg {
+		width: 11px !important;
+	}
+}
+</style>

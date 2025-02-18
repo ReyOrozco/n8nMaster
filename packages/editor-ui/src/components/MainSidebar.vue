@@ -27,6 +27,10 @@ import { N8nNavigationDropdown } from 'n8n-design-system';
 import { onClickOutside, type VueInstance } from '@vueuse/core';
 import Logo from './Logo/Logo.vue';
 
+import dummyImage from '@/assets/image.png';
+
+import { Globe, LogOut } from 'lucide-vue-next';
+
 const becomeTemplateCreatorStore = useBecomeTemplateCreatorStore();
 const cloudPlanStore = useCloudPlanStore();
 const rootStore = useRootStore();
@@ -63,8 +67,18 @@ const userMenuItems = ref([
 
 const mainMenuItems = computed(() => [
 	{
+		id: 'about',
+		icon: Globe,
+		label: 'Website',
+		link: {
+			href: 'https://www.google.com/',
+			target: '_blank',
+		},
+		position: 'bottom',
+	},
+	{
 		id: 'telegram',
-		icon: 'fa-brands fa-telegram',
+		icon: Globe,
 		label: 'Telegram',
 		link: {
 			href: 'https://telegram.org/',
@@ -74,8 +88,8 @@ const mainMenuItems = computed(() => [
 	},
 	{
 		id: 'x',
-		icon: 'x-twitter',
-		label: 'X',
+		icon: Globe,
+		label: 'Twitter/X',
 		link: {
 			href: 'https://x.com/',
 			target: '_blank',
@@ -84,18 +98,8 @@ const mainMenuItems = computed(() => [
 	},
 	{
 		id: 'docs',
-		icon: 'book',
-		label: 'Docs/Whitepaper',
-		link: {
-			href: 'https://www.google.com/',
-			target: '_blank',
-		},
-		position: 'bottom',
-	},
-	{
-		id: 'about',
-		icon: 'globe',
-		label: 'Website',
+		icon: Globe,
+		label: 'Linkedin',
 		link: {
 			href: 'https://www.google.com/',
 			target: '_blank',
@@ -264,7 +268,7 @@ onClickOutside(createBtn as Ref<VueInstance>, () => {
 				:collapsed="isCollapsed"
 				:release-channel="settingsStore.settings.releaseChannel"
 			/>
-			<N8nNavigationDropdown
+			<!-- <N8nNavigationDropdown
 				ref="createBtn"
 				data-test-id="universal-add"
 				:menu="menu"
@@ -283,7 +287,7 @@ onClickOutside(createBtn as Ref<VueInstance>, () => {
 						</N8nButton>
 					</N8nTooltip>
 				</template>
-			</N8nNavigationDropdown>
+			</N8nNavigationDropdown> -->
 		</div>
 		<N8nMenu :items="mainMenuItems" :collapsed="isCollapsed" @select="handleSelect">
 			<template #header>
@@ -319,45 +323,50 @@ onClickOutside(createBtn as Ref<VueInstance>, () => {
 					<MainSidebarSourceControl :is-collapsed="isCollapsed" />
 				</div>
 			</template>
-			<template v-if="showUserArea" #footer>
-				<div ref="user" :class="$style.userArea">
-					<div class="ml-3xs" data-test-id="main-sidebar-user-menu">
-						<!-- This dropdown is only enabled when sidebar is collapsed -->
-						<ElDropdown placement="right-end" trigger="click" @command="onUserActionToggle">
-							<div :class="{ [$style.avatar]: true, ['clickable']: isCollapsed }">
-								<N8nAvatar
-									:first-name="usersStore.currentUser?.firstName"
-									:last-name="usersStore.currentUser?.lastName"
-									size="small"
-								/>
-							</div>
-							<template v-if="isCollapsed" #dropdown>
-								<ElDropdownMenu>
-									<ElDropdownItem command="settings">
-										{{ i18n.baseText('settings') }}
-									</ElDropdownItem>
-								</ElDropdownMenu>
-							</template>
-						</ElDropdown>
-					</div>
-					<div
-						:class="{ ['ml-2xs']: true, [$style.userName]: true, [$style.expanded]: fullyExpanded }"
-					>
-						<N8nText size="small" :bold="true" color="text-dark">{{
-							usersStore.currentUser?.fullName
-						}}</N8nText>
-					</div>
-					<div :class="{ [$style.userActions]: true, [$style.expanded]: fullyExpanded }">
-						<N8nActionDropdown
-							:items="userMenuItems"
-							placement="top-start"
-							data-test-id="user-menu"
-							@select="onUserActionToggle"
-						/>
-					</div>
-				</div>
-			</template>
 		</N8nMenu>
+
+		<div v-if="showUserArea" :class="$style.footer">
+			<div ref="user" :class="$style.userArea">
+				<div class="ml-3xs" data-test-id="main-sidebar-user-menu">
+					<!-- This dropdown is only enabled when sidebar is collapsed -->
+					<ElDropdown placement="right-end" trigger="click" @command="onUserActionToggle">
+						<div :class="{ [$style.avatar]: true, ['clickable']: isCollapsed }">
+							<N8nAvatar
+								:first-name="usersStore.currentUser?.firstName"
+								:last-name="usersStore.currentUser?.lastName"
+								size="medium"
+							/>
+						</div>
+						<template v-if="isCollapsed" #dropdown>
+							<ElDropdownMenu>
+								<ElDropdownItem command="settings">
+									{{ i18n.baseText('settings') }}
+								</ElDropdownItem>
+							</ElDropdownMenu>
+						</template>
+					</ElDropdown>
+				</div>
+				<div
+					:class="{ ['ml-2xs']: true, [$style.userName]: true, [$style.expanded]: fullyExpanded }"
+				>
+					<N8nText size="small" :bold="true" color="text-dark">{{
+						usersStore.currentUser?.fullName
+					}}</N8nText>
+				</div>
+				<div :class="{ [$style.userActions]: true, [$style.expanded]: fullyExpanded }">
+					<N8nActionDropdown
+						:items="userMenuItems"
+						placement="top-start"
+						data-test-id="user-menu"
+						@select="onUserActionToggle"
+					/>
+				</div>
+			</div>
+
+			<div :class="$style.logout">
+				<LogOut />
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -365,21 +374,21 @@ onClickOutside(createBtn as Ref<VueInstance>, () => {
 .sideMenu {
 	position: relative;
 	height: 100%;
-	border-right: var(--border-width-base) var(--border-style-base) var(--color-foreground-base);
 	transition: width 150ms ease-in-out;
 	width: $sidebar-expanded-width;
-	padding-top: 54px;
-	background-color: var(--menu-background, var(--color-background-xlight));
 
 	.logo {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
 		display: flex;
 		align-items: center;
-		padding: var(--spacing-xs);
+		padding: 10px var(--spacing-xs);
 		justify-content: space-between;
+		height: 52px;
+
+		background-color: #f7f9fb;
+		box-shadow: 0px 0px 3px 0px #0000001f;
+		border: 1px solid #e9e9e9;
+
+		margin: 15px 0px 15px 8px;
 
 		img {
 			position: relative;
@@ -444,36 +453,30 @@ onClickOutside(createBtn as Ref<VueInstance>, () => {
 	}
 }
 
-.userArea {
+.footer {
+	height: 52px;
+	margin: 15px 0px 15px 8px;
 	display: flex;
-	padding: var(--spacing-xs);
-	align-items: center;
-	height: 60px;
-	border-top: var(--border-width-base) var(--border-style-base) var(--color-foreground-base);
+	gap: 16px;
 
-	.userName {
-		display: none;
-		overflow: hidden;
-		width: 100px;
-		white-space: nowrap;
-		text-overflow: ellipsis;
-
-		&.expanded {
-			display: initial;
-		}
-
-		span {
-			overflow: hidden;
-			text-overflow: ellipsis;
-		}
+	.userArea,
+	.logout {
+		height: 100%;
+		border: 1px solid #e9e9e9;
+		box-shadow: 0px 0px 3px 0px #0000001f;
+		background: #f7f9fb;
+		display: flex;
+		align-items: center;
 	}
 
-	.userActions {
-		display: none;
-
-		&.expanded {
-			display: initial;
-		}
+	.userArea {
+		flex: 1;
+		padding: 8px 16px;
+	}
+	.logout {
+		width: 54px;
+		justify-content: center;
+		cursor: pointer;
 	}
 }
 

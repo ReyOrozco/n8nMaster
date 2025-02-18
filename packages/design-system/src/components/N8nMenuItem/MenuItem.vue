@@ -65,44 +65,7 @@ const isItemActive = (item: IMenuItem): boolean => {
 
 <template>
 	<div :class="['flowstate-menu-item', $style.item]">
-		<ElSubMenu
-			v-if="item.children?.length"
-			:id="item.id"
-			:class="{
-				[$style.submenu]: true,
-				[$style.compact]: compact,
-				[$style.active]: mode === 'router' && isItemActive(item),
-			}"
-			:index="item.id"
-			teleported
-			:popper-class="submenuPopperClass"
-		>
-			<template #title>
-				<N8nIcon
-					v-if="item.icon"
-					:class="$style.icon"
-					:icon="item.icon"
-					:size="item.customIconSize || 'large'"
-				/>
-				<span v-if="!compact" :class="$style.label">{{ item.label }}</span>
-				<span v-if="!item.icon && compact" :class="[$style.label, $style.compactLabel]">{{
-					getInitials(item.label)
-				}}</span>
-			</template>
-			<N8nMenuItem
-				v-for="child in availableChildren"
-				:key="child.id"
-				:item="child"
-				:compact="false"
-				:tooltip-delay="tooltipDelay"
-				:popper-class="popperClass"
-				:mode="mode"
-				:active-tab="activeTab"
-				:handle-select="handleSelect"
-			/>
-		</ElSubMenu>
 		<N8nTooltip
-			v-else
 			placement="right"
 			:content="compact ? item.label : ''"
 			:disabled="!compact"
@@ -158,10 +121,7 @@ const isItemActive = (item: IMenuItem): boolean => {
 :global(.el-menu-item),
 :global(.el-sub-menu__title) {
 	--menu-font-color: var(--color-text-base);
-	--menu-item-active-background-color: var(--color-foreground-base);
 	--menu-item-active-font-color: var(--color-text-dark);
-	--menu-item-hover-fill: var(--color-foreground-base);
-	--menu-item-hover-font-color: var(--color-text-dark);
 	--menu-item-height: 35px;
 	--sub-menu-item-height: 27px;
 }
@@ -220,7 +180,7 @@ const isItemActive = (item: IMenuItem): boolean => {
 	}
 
 	&:hover {
-		background-color: var(--color-foreground-base) !important;
+		color: var(--color-text-dark) !important;
 		svg {
 			color: var(--color-text-dark) !important;
 		}
@@ -231,22 +191,30 @@ const isItemActive = (item: IMenuItem): boolean => {
 }
 
 .active {
-	&,
-	& :global(.el-sub-menu__title) {
-		background-color: var(--color-foreground-base);
-		border-radius: var(--border-radius-base);
-		.icon {
-			color: var(--color-text-dark);
-		}
+	&.menuItem {
+		position: relative;
+	}
+	&.menuItem::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		width: 5px;
+		background-color: black;
 	}
 }
 
 .menuItem {
+	height: 52px;
 	display: flex;
 	padding: var(--spacing-2xs) var(--spacing-xs) !important;
 	margin: 0 !important;
 	border-radius: var(--border-radius-base) !important;
 	overflow: hidden;
+	background-color: white !important;
+	border: 1px solid #e6e6e6;
+	box-shadow: 0px 2px 8px 0px #8c8c8c1a;
 
 	&.compact {
 		padding: var(--spacing-2xs) 0 !important;
@@ -280,10 +248,6 @@ const isItemActive = (item: IMenuItem): boolean => {
 
 .compactLabel {
 	text-overflow: unset;
-}
-
-.item + .item {
-	margin-top: 8px !important;
 }
 
 .compact {

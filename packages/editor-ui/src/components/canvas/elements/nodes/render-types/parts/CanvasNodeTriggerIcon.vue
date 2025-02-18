@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useI18n } from '@/composables/useI18n';
+import { Zap } from 'lucide-vue-next';
 
 const i18n = useI18n();
 </script>
@@ -10,7 +11,7 @@ const i18n = useI18n();
 			<span v-n8n-html="i18n.baseText('node.thisIsATriggerNode')" />
 		</template>
 		<div :class="$style.triggerIcon">
-			<FontAwesomeIcon icon="bolt" size="lg" />
+			<Zap />
 		</div>
 	</N8nTooltip>
 </template>
@@ -20,7 +21,6 @@ const i18n = useI18n();
 	position: absolute;
 	right: 100%;
 	margin: auto;
-	color: var(--color-primary);
 	padding: var(--spacing-2xs);
 }
 </style>

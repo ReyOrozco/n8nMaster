@@ -37,20 +37,14 @@ const sizes: { [size: string]: number } = {
 	xsmall: 20,
 	small: 28,
 	large: 48,
-	medium: 40,
+	medium: 36,
 };
 const getSize = (size: string): number => sizes[size];
 </script>
 
 <template>
 	<span :class="['flowstate-avatar', $style.container]" v-bind="$attrs">
-		<Avatar
-			v-if="name"
-			:size="getSize(size)"
-			:name="name"
-			variant="marble"
-			:colors="getColors(colors)"
-		/>
+		<Avatar v-if="name" :size="getSize(size)" :name="name" variant="marble" :colors="['#2F2F2F']" />
 		<div v-else :class="[$style.empty, $style[size]]"></div>
 		<span v-if="firstName || lastName" :class="[$style.initials, $style[`text-${size}`]]">
 			{{ initials }}

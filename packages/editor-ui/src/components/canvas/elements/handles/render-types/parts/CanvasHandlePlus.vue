@@ -104,7 +104,8 @@ function onClick(event: MouseEvent) {
 			:x2="linePosition[1][0]"
 			:y2="linePosition[1][1]"
 			stroke="var(--color-foreground-xdark)"
-			stroke-width="2"
+			stroke-width="1"
+			stroke-dasharray="6, 4"
 		/>
 		<g
 			:class="[$style.plus, handleClasses, 'clickable']"
@@ -118,7 +119,7 @@ function onClick(event: MouseEvent) {
 				width="20"
 				height="20"
 				stroke="var(--color-foreground-xdark)"
-				stroke-width="2"
+				stroke-width="1"
 				rx="4"
 				fill="var(--color-foreground-xlight)"
 			/>
@@ -162,11 +163,11 @@ function onClick(event: MouseEvent) {
 			cursor: pointer;
 
 			path {
-				fill: var(--color-primary);
+				fill: black;
 			}
 
 			rect {
-				stroke: var(--color-primary);
+				stroke: black;
 			}
 		}
 	}

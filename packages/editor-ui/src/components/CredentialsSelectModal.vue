@@ -61,10 +61,8 @@ function openCredentialType() {
 <template>
 	<Modal
 		:name="CREDENTIAL_SELECT_MODAL_KEY"
-		:event-bus="modalBus"
 		width="50%"
 		:center="true"
-		:loading="loading"
 		max-width="460px"
 		min-height="250px"
 	>

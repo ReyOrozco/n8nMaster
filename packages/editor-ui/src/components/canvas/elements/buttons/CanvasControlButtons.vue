@@ -6,6 +6,8 @@ import { useBugReporting } from '@/composables/useBugReporting';
 import { useTelemetry } from '@/composables/useTelemetry';
 import { useI18n } from '@/composables/useI18n';
 
+import { ZoomIn, ZoomOut, Undo, Focus } from 'lucide-vue-next';
+
 const props = withDefaults(
 	defineProps<{
 		zoom?: number;
@@ -52,48 +54,32 @@ function trackBugReport() {
 </script>
 <template>
 	<Controls :show-zoom="false" :show-fit-view="false">
-		<KeyboardShortcutTooltip
-			:label="i18n.baseText('nodeView.zoomToFit')"
-			:shortcut="{ keys: ['1'] }"
-		>
-			<N8nIconButton
-				type="tertiary"
-				size="large"
-				icon="expand"
-				data-test-id="zoom-to-fit"
-				@click="onZoomToFit"
-			/>
-		</KeyboardShortcutTooltip>
 		<KeyboardShortcutTooltip :label="i18n.baseText('nodeView.zoomIn')" :shortcut="{ keys: ['+'] }">
-			<N8nIconButton
-				type="tertiary"
-				size="large"
-				icon="search-plus"
-				data-test-id="zoom-in-button"
-				@click="onZoomIn"
-			/>
+			<RectangularIcon @click="onZoomIn">
+				<ZoomIn />
+			</RectangularIcon>
 		</KeyboardShortcutTooltip>
 		<KeyboardShortcutTooltip :label="i18n.baseText('nodeView.zoomOut')" :shortcut="{ keys: ['-'] }">
-			<N8nIconButton
-				type="tertiary"
-				size="large"
-				icon="search-minus"
-				data-test-id="zoom-out-button"
-				@click="onZoomOut"
-			/>
+			<RectangularIcon @click="onZoomOut">
+				<ZoomOut />
+			</RectangularIcon>
 		</KeyboardShortcutTooltip>
 		<KeyboardShortcutTooltip
 			v-if="isResetZoomVisible"
 			:label="i18n.baseText('nodeView.resetZoom')"
 			:shortcut="{ keys: ['0'] }"
 		>
-			<N8nIconButton
-				type="tertiary"
-				size="large"
-				icon="undo"
-				data-test-id="reset-zoom-button"
-				@click="onResetZoom"
-			/>
+			<RectangularIcon @click="onResetZoom">
+				<Undo />
+			</RectangularIcon>
+		</KeyboardShortcutTooltip>
+		<KeyboardShortcutTooltip
+			:label="i18n.baseText('nodeView.zoomToFit')"
+			:shortcut="{ keys: ['1'] }"
+		>
+			<RectangularIcon @click="onZoomToFit">
+				<Focus />
+			</RectangularIcon>
 		</KeyboardShortcutTooltip>
 	</Controls>
 </template>
@@ -101,7 +87,8 @@ function trackBugReport() {
 <style lang="scss">
 .vue-flow__controls {
 	display: flex;
-	gap: var(--spacing-xs);
+	flex-direction: column;
+	gap: 10px;
 	box-shadow: none;
 }
 </style>

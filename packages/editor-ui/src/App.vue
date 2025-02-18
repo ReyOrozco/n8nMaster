@@ -149,6 +149,7 @@ watch(defaultLocale, (newLocale) => {
 		'sidebar content';
 	grid-template-columns: auto 1fr;
 	grid-template-rows: auto auto 1fr;
+	column-gap: 20px;
 }
 
 .banners {
@@ -161,6 +162,10 @@ watch(defaultLocale, (newLocale) => {
 	align-items: center;
 	overflow: auto;
 	grid-area: content;
+	background-color: #f7f9fb;
+	box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.1215686275);
+	border: 1px solid #e9e9e9;
+	margin-right: 20px;
 }
 
 .contentFooter {

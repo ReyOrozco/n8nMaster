@@ -33,24 +33,10 @@
 
 	&:hover {
 		color: $button-hover-font-color unquote($important);
-		border-color: $button-hover-border-color unquote($important);
-		background-color: $button-hover-background-color unquote($important);
-
-		& a {
-			color: $button-hover-font-color unquote($important);
-		}
 	}
 
 	&:active,
 	&.active {
-		color: $button-active-font-color unquote($important);
-		border-color: $button-active-border-color unquote($important);
-		background-color: $button-active-background-color unquote($important);
-		outline: none;
-
-		& a {
-			color: $button-active-font-color unquote($important);
-		}
 	}
 
 	&:focus-visible:not(:active, .active) {
@@ -118,8 +104,8 @@
 	--button-border-color: var(--color-button-secondary-border);
 	--button-background-color: var(--color-button-secondary-background);
 
-	--button-hover-font-color: var(--color-button-secondary-hover-active-focus-font);
-	--button-hover-border-color: var(--color-button-secondary-hover-active-focus-border);
+	--button-hover-font-color: black;
+	--button-hover-border-color: black;
 	--button-hover-background-color: var(--color-button-secondary-hover-background);
 
 	--button-active-font-color: var(--color-button-secondary-hover-active-focus-font);

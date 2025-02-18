@@ -80,10 +80,10 @@ const onSelect = (item: IMenuItem): void => {
 			[$style.transparentBackground]: transparentBackground,
 		}"
 	>
-		<div v-if="$slots.header" :class="$style.menuHeader">
-			<slot name="header"></slot>
-		</div>
 		<div :class="$style.menuContent">
+			<div v-if="$slots.header" :class="$style.menuHeader">
+				<slot name="header"></slot>
+			</div>
 			<div :class="{ [$style.upperContent]: true, ['pt-xs']: $slots.menuPrefix }">
 				<div v-if="$slots.menuPrefix" :class="$style.menuPrefix">
 					<slot name="menuPrefix"></slot>
@@ -103,36 +103,41 @@ const onSelect = (item: IMenuItem): void => {
 			</div>
 			<div :class="[$style.lowerContent, 'pb-2xs']">
 				<slot name="beforeLowerMenu"></slot>
-				<ElMenu :default-active="defaultActive" :collapse="collapsed">
-					<N8nMenuItem
-						v-for="item in lowerMenuItems"
-						:key="item.id"
-						:item="item"
-						:compact="collapsed"
-						:tooltip-delay="tooltipDelay"
-						:mode="mode"
-						:active-tab="activeTab"
-						:handle-select="onSelect"
-					/>
-				</ElMenu>
+
+				<h6>Social Connectivity</h6>
+				<div :class="$style.socialLinks">
+					<div v-for="item in lowerMenuItems" :key="item.id" :class="$style.socialLinkCard">
+						<!-- For rendering Lucide icons (Vue components) -->
+						<component :is="item.icon" v-if="item.icon && typeof item.icon === 'function'" />
+
+						<!-- For rendering images -->
+						<img v-else :src="item.icon" alt="Custom Icon" />
+
+						<span>
+							{{ item.label }}
+						</span>
+					</div>
+				</div>
+
 				<div v-if="$slots.menuSuffix" :class="$style.menuSuffix">
 					<slot name="menuSuffix"></slot>
 				</div>
 			</div>
-		</div>
-		<div v-if="$slots.footer" :class="$style.menuFooter">
-			<slot name="footer"></slot>
 		</div>
 	</div>
 </template>
 
 <style lang="scss" module>
 .container {
-	height: 100%;
+	height: calc(100vh - 52px - 52px - 15px - 15px - 15px - 15px);
 	display: flex;
 	flex-direction: column;
-	background-color: var(--menu-background, var(--color-background-xlight));
 	overflow: hidden;
+	background-color: #f7f9fb;
+	border: 1px solid #e9e9e9;
+	box-shadow: 0px 0px 2px 0px #0000001f;
+	padding: 16px;
+	padding-bottom: 8px;
 }
 
 .menuHeader {
@@ -146,7 +151,7 @@ const onSelect = (item: IMenuItem): void => {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	flex: 1 1 auto;
+	flex: 1 1;
 
 	& > div > :global(.el-menu) {
 		background: none;
@@ -163,6 +168,44 @@ const onSelect = (item: IMenuItem): void => {
 .lowerContent {
 	ul {
 		padding-bottom: 0 !important;
+	}
+
+	h6 {
+		margin-top: auto;
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 20px;
+		letter-spacing: 0%;
+		color: var(--black-40, #1c1c1c66);
+		margin-bottom: 10px;
+	}
+
+	.socialLinks {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 10px;
+
+		.socialLinkCard {
+			height: 52px;
+			width: 100%;
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			background: #ffffff;
+			border: 1px solid #e6e6e6;
+			border-radius: 4px;
+			padding: 12px;
+
+			img {
+				height: 20px;
+			}
+			span {
+				font-weight: 500;
+				font-size: 14px;
+				line-height: 20px;
+				letter-spacing: 0%;
+			}
+		}
 	}
 }
 

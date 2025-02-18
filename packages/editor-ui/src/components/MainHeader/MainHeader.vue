@@ -213,12 +213,6 @@ function hideGithubButton() {
 					:read-only="readOnly"
 				/>
 			</div>
-			<TabBar
-				v-if="onWorkflowPage"
-				:items="tabBarItems"
-				:model-value="activeHeaderTab"
-				@update:model-value="onTabSelected"
-			/>
 		</div>
 	</div>
 </template>
@@ -235,7 +229,6 @@ function hideGithubButton() {
 	background-color: var(--color-background-xlight);
 	width: 100%;
 	box-sizing: border-box;
-	border-bottom: var(--border-width-base) var(--border-style-base) var(--color-foreground-base);
 }
 
 .top-menu {
@@ -244,7 +237,9 @@ function hideGithubButton() {
 	align-items: center;
 	font-size: 0.9em;
 	font-weight: 400;
-	padding: var(--spacing-xs) var(--spacing-m);
+	padding-top: 15px;
+	padding-bottom: 15px;
+	margin-right: 20px;
 }
 
 .github-button {

@@ -4,6 +4,9 @@ import { useCanvasNode } from '@/composables/useCanvasNode';
 import { computed, ref, useCssModule } from 'vue';
 import type { CanvasNodeDefaultRender } from '@/types';
 import { useI18n } from '@/composables/useI18n';
+import { useNodeCreatorStore } from '@/stores/nodeCreator.store';
+import { useUIStore } from '@/stores/ui.store';
+import { NODE_CREATOR_OPEN_SOURCES, WORKFLOW_NODES_MODAL } from '@/constants';
 
 const emit = defineEmits<{
 	add: [];
@@ -13,6 +16,8 @@ const $style = useCssModule();
 
 const i18n = useI18n();
 const { render } = useCanvasNode();
+const nodeCreatorStore = useNodeCreatorStore();
+const uiStore = useUIStore();
 const { label, isConnected, isConnecting, isReadOnly, isRequired, runData } = useCanvasNodeHandle();
 
 const handleClasses = 'source';
@@ -71,7 +76,10 @@ function onMouseLeave() {
 }
 
 function onClickAdd() {
-	emit('add');
+	nodeCreatorStore.openNodeCreatorForTriggerNodes(
+		NODE_CREATOR_OPEN_SOURCES.TRIGGER_PLACEHOLDER_BUTTON,
+	);
+	uiStore.openModal(WORKFLOW_NODES_MODAL);
 }
 </script>
 <template>

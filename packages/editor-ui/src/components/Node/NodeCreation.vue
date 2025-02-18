@@ -7,6 +7,7 @@ import {
 	DEFAULT_STICKY_WIDTH,
 	NODE_CREATOR_OPEN_SOURCES,
 	STICKY_NODE_TYPE,
+	WORKFLOW_NODES_MODAL,
 } from '@/constants';
 import { useUIStore } from '@/stores/ui.store';
 import type { AddedNodesAndConnections, ToggleNodeCreatorOptions } from '@/Interface';
@@ -14,6 +15,8 @@ import { useActions } from './NodeCreator/composables/useActions';
 import { useThrottleFn } from '@vueuse/core';
 import KeyboardShortcutTooltip from '@/components/KeyboardShortcutTooltip.vue';
 import { useI18n } from '@/composables/useI18n';
+import { Plus, StickyNote } from 'lucide-vue-next';
+import RectangularIcon from '../RectangularIcon.vue';
 
 type Props = {
 	nodeViewScale: number;
@@ -57,6 +60,7 @@ const onMouseMove = useThrottleFn((event: MouseEvent) => {
 }, 250);
 
 function openNodeCreator() {
+	uiStore.openModal(WORKFLOW_NODES_MODAL);
 	emit('toggleNodeCreator', {
 		source: NODE_CREATOR_OPEN_SOURCES.ADD_NODE_BUTTON,
 		createNodeActive: true,
@@ -107,13 +111,9 @@ onBeforeUnmount(() => {
 				:shortcut="{ keys: ['Tab'] }"
 				placement="left"
 			>
-				<n8n-icon-button
-					size="large"
-					icon="plus"
-					type="tertiary"
-					:class="$style.nodeCreatorPlus"
-					@click="openNodeCreator"
-				/>
+				<RectangularIcon @click="openNodeCreator">
+					<Plus />
+				</RectangularIcon>
 			</KeyboardShortcutTooltip>
 			<div
 				:class="[$style.addStickyButton, isStickyNotesButtonVisible ? $style.visibleButton : '']"
@@ -125,7 +125,9 @@ onBeforeUnmount(() => {
 					:shortcut="{ keys: ['s'], shiftKey: true }"
 					placement="left"
 				>
-					<n8n-icon-button type="tertiary" :icon="['far', 'note-sticky']" />
+					<RectangularIcon>
+						<StickyNote />
+					</RectangularIcon>
 				</KeyboardShortcutTooltip>
 			</div>
 		</div>
@@ -169,9 +171,5 @@ onBeforeUnmount(() => {
 	top: var(--spacing-s);
 	right: var(--spacing-s);
 	pointer-events: all !important;
-}
-.nodeCreatorPlus {
-	width: 36px;
-	height: 36px;
 }
 </style>

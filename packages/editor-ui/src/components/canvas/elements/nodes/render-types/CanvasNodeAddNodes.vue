@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 import { useNodeCreatorStore } from '@/stores/nodeCreator.store';
-import { NODE_CREATOR_OPEN_SOURCES } from '@/constants';
+import { NODE_CREATOR_OPEN_SOURCES, WORKFLOW_NODES_MODAL } from '@/constants';
 import { nodeViewEventBus } from '@/event-bus';
 import { useI18n } from '@/composables/useI18n';
+import { useUIStore } from '@/stores/ui.store';
+import RectangularIcon from '@/components/RectangularIcon.vue';
+import { Plus } from 'lucide-vue-next';
 
-const nodeCreatorStore = useNodeCreatorStore();
 const i18n = useI18n();
+const nodeCreatorStore = useNodeCreatorStore();
+const uiStore = useUIStore();
 
 const isTooltipVisible = ref(false);
 
@@ -32,6 +36,7 @@ function onClick() {
 	nodeCreatorStore.openNodeCreatorForTriggerNodes(
 		NODE_CREATOR_OPEN_SOURCES.TRIGGER_PLACEHOLDER_BUTTON,
 	);
+	uiStore.openModal(WORKFLOW_NODES_MODAL);
 }
 </script>
 <template>
@@ -43,14 +48,23 @@ function onClick() {
 			:popper-class="$style.tooltip"
 			:show-after="700"
 		>
-			<button :class="$style.button" data-test-id="canvas-plus-button" @click="onClick">
-				<FontAwesomeIcon icon="plus" size="lg" />
-			</button>
+			<div :class="$style.nodeBox" @click="onClick">
+				<RectangularIcon data-test-id="canvas-plus-button">
+					<Plus />
+				</RectangularIcon>
+				<div :class="$style.nodeText">
+					<h3
+						:class="$style.label"
+						v-text="i18n.baseText('nodeView.canvasAddButton.addFirstStep')"
+					/>
+					<span>Click to get started</span>
+				</div>
+			</div>
+
 			<template #content>
 				{{ i18n.baseText('nodeView.canvasAddButton.addATriggerNodeBeforeExecuting') }}
 			</template>
 		</N8nTooltip>
-		<p :class="$style.label" v-text="i18n.baseText('nodeView.canvasAddButton.addFirstStep')" />
 	</div>
 </template>
 
@@ -68,31 +82,32 @@ function onClick() {
 	}
 }
 
-.button {
-	background: var(--color-foreground-xlight);
-	border: 2px dashed var(--color-foreground-xdark);
-	border-radius: 8px;
-	padding: 0;
-
+.nodeBox {
 	min-width: 100px;
-	min-height: 100px;
+	min-height: 64px;
+	padding: 16px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
 	cursor: pointer;
+	border-radius: 6px;
+	background-color: white;
+	border: 1px solid #e6e6e6;
+	box-shadow: 0px 2px 8px 0px #8c8c8c1a;
 
-	svg {
-		width: 26px !important;
-		height: 40px;
-		path {
-			fill: var(--color-foreground-xdark);
+	.nodeText {
+		width: max-content;
+
+		h3 {
+			font-size: 12px;
+			font-weight: 500;
+		}
+		span {
+			font-size: 10px;
+			font-weight: 400;
+			color: #828282;
 		}
 	}
-}
-
-.label {
-	width: max-content;
-	font-weight: var(--font-weight-bold);
-	font-size: var(--font-size-m);
-	line-height: var(--font-line-height-xloose);
-	color: var(--color-text-dark);
-	margin-top: var(--spacing-2xs);
 }
 </style>

@@ -30,6 +30,28 @@ const home = computed<IMenuItem>(() => ({
 	},
 }));
 
+const workflow = computed<IMenuItem>(() => ({
+	id: 'workflow',
+	label: 'Workflow',
+	icon: 'home',
+	route: {
+		to: { name: VIEWS.NEW_WORKFLOW },
+	},
+}));
+
+const credential = computed<IMenuItem>(() => ({
+	id: 'credential',
+	label: 'Credential',
+	icon: 'home',
+	route: {
+		to: { name: VIEWS.CREDENTIALS },
+		params: {
+			projectId: projectsStore.personalProject?.id,
+			credentialId: 'create',
+		},
+	},
+}));
+
 const getProjectMenuItem = (project: ProjectListItem) => ({
 	id: project.id,
 	label: project.name,
@@ -62,13 +84,36 @@ const showAddFirstProject = computed(
 <template>
 	<div :class="$style.projects">
 		<ElMenu :collapse="props.collapsed" class="home">
-			<N8nMenuItem
-				:item="home"
-				:compact="props.collapsed"
-				:active-tab="projectsStore.projectNavActiveId"
-				mode="tabs"
-				data-test-id="project-home-menu-item"
-			/>
+			<div class="main-menu">
+				<div class="menu-1">
+					<h6>Menu</h6>
+					<N8nMenuItem
+						:item="home"
+						:compact="props.collapsed"
+						:active-tab="projectsStore.projectNavActiveId"
+						mode="tabs"
+						data-test-id="project-home-menu-item"
+					/>
+				</div>
+
+				<div class="menu-2">
+					<h6>Create</h6>
+					<N8nMenuItem
+						:item="workflow"
+						:compact="props.collapsed"
+						:active-tab="projectsStore.projectNavActiveId"
+						mode="tabs"
+						data-test-id="create-workflow-menu-item"
+					/>
+					<N8nMenuItem
+						:item="credential"
+						:compact="props.collapsed"
+						:active-tab="projectsStore.projectNavActiveId"
+						mode="tabs"
+						data-test-id="create-credential-menu-item"
+					/>
+				</div>
+			</div>
 		</ElMenu>
 		<hr v-if="projectsStore.isTeamProjectFeatureEnabled" class="mt-m mb-m" />
 		<N8nText
@@ -202,10 +247,23 @@ const showAddFirstProject = computed(
 
 <style lang="scss" scoped>
 .home {
-	padding: 0 var(--spacing-xs);
-
+	background-color: #f7f9fb;
 	:deep(.el-menu-item) {
 		padding: var(--spacing-m) var(--spacing-xs) !important;
+	}
+
+	.main-menu {
+		h6 {
+			font-weight: 400;
+			font-size: 14px;
+			line-height: 20px;
+			letter-spacing: 0%;
+			color: var(--black-40, #1c1c1c66);
+			margin-bottom: 10px;
+		}
+		.menu-2 {
+			margin-top: 16px;
+		}
 	}
 }
 </style>

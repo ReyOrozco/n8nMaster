@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, watch } from 'vue';
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
 import type { INodeCreateElement } from '@/Interface';
 import {
 	AI_OTHERS_NODE_CREATOR_VIEW,
 	AI_NODE_CREATOR_VIEW,
 	REGULAR_NODE_CREATOR_VIEW,
 	TRIGGER_NODE_CREATOR_VIEW,
+	WORKFLOW_NODES_MODAL,
 } from '@/constants';
 
 import { useNodeCreatorStore } from '@/stores/nodeCreator.store';
@@ -18,6 +19,7 @@ import ActionsRenderer from '../Modes/ActionsMode.vue';
 import NodesRenderer from '../Modes/NodesMode.vue';
 import { useI18n } from '@/composables/useI18n';
 import { useDebounce } from '@/composables/useDebounce';
+import Modal from '@/components/Modal.vue';
 
 const i18n = useI18n();
 const { callDebounced } = useDebounce();
@@ -132,69 +134,85 @@ function onBackButton() {
 		:name="`panel-slide-${activeViewStack.transitionDirection}`"
 		@after-leave="onTransitionEnd"
 	>
-		<aside
+		<Modal
 			:key="`${activeViewStack.uuid}`"
-			:class="[$style.nodesListPanel, activeViewStack.panelClass]"
+			:name="WORKFLOW_NODES_MODAL"
+			width="50%"
+			:center="false"
+			:loading="false"
+			max-width="460px"
+			min-height="250px"
 			@keydown.capture.stop
 		>
-			<header
-				:class="{
-					[$style.header]: true,
-					[$style.hasBg]: !activeViewStack.subtitle,
-					'nodes-list-panel-header': true,
-				}"
-				data-test-id="nodes-list-header"
-			>
-				<div :class="$style.top">
-					<button
-						v-if="viewStacks.length > 1 && !activeViewStack.preventBack"
-						:class="$style.backButton"
-						@click="onBackButton"
-					>
-						<font-awesome-icon :class="$style.backButtonIcon" icon="arrow-left" size="2x" />
-					</button>
-					<n8n-node-icon
-						v-if="activeViewStack.nodeIcon"
-						:class="$style.nodeIcon"
-						:type="activeViewStack.nodeIcon.iconType || 'unknown'"
-						:src="activeViewStack.nodeIcon.icon"
-						:name="activeViewStack.nodeIcon.icon"
-						:color="activeViewStack.nodeIcon.color"
-						:circle="false"
-						:show-tooltip="false"
-						:size="20"
+			<template #header>
+				<div
+					:class="{
+						[$style.header]: true,
+						'nodes-list-panel-header': true,
+					}"
+					data-test-id="nodes-list-header"
+				>
+					<div :class="$style.top">
+						<button
+							v-if="viewStacks.length > 1 && !activeViewStack.preventBack"
+							:class="$style.backButton"
+							@click="onBackButton"
+						>
+							<font-awesome-icon :class="$style.backButtonIcon" icon="arrow-left" size="2x" />
+						</button>
+						<n8n-node-icon
+							v-if="activeViewStack.nodeIcon"
+							:class="$style.nodeIcon"
+							:type="activeViewStack.nodeIcon.iconType || 'unknown'"
+							:src="activeViewStack.nodeIcon.icon"
+							:name="activeViewStack.nodeIcon.icon"
+							:color="activeViewStack.nodeIcon.color"
+							:circle="false"
+							:show-tooltip="false"
+							:size="20"
+						/>
+						<span
+							v-if="activeViewStack.title"
+							:class="$style.title"
+							v-text="activeViewStack.title"
+						/>
+					</div>
+					<p
+						v-if="activeViewStack.subtitle"
+						:class="{ [$style.subtitle]: true, [$style.offsetSubtitle]: viewStacks.length > 1 }"
+						v-text="activeViewStack.subtitle"
 					/>
-					<p v-if="activeViewStack.title" :class="$style.title" v-text="activeViewStack.title" />
-				</div>
-				<p
-					v-if="activeViewStack.subtitle"
-					:class="{ [$style.subtitle]: true, [$style.offsetSubtitle]: viewStacks.length > 1 }"
-					v-text="activeViewStack.subtitle"
-				/>
-			</header>
-			<SearchBar
-				v-if="activeViewStack.hasSearch"
-				:class="$style.searchBar"
-				:placeholder="
-					searchPlaceholder ? searchPlaceholder : i18n.baseText('nodeCreator.searchBar.searchNodes')
-				"
-				:model-value="activeViewStack.search"
-				@update:model-value="onSearch"
-			/>
-			<div :class="$style.renderedItems">
-				<n8n-notice
-					v-if="activeViewStack.info && !activeViewStack.search"
-					:class="$style.info"
-					:content="activeViewStack.info"
-					theme="warning"
-				/>
-				<!-- Actions mode -->
-				<ActionsRenderer v-if="isActionsMode && activeViewStack.subcategory" v-bind="$attrs" />
 
-				<!-- Nodes Mode -->
-				<NodesRenderer v-else :root-view="nodeCreatorView" v-bind="$attrs" />
-			</div>
-		</aside>
+					<SearchBar
+						v-if="activeViewStack.hasSearch"
+						:class="$style.searchBar"
+						:placeholder="
+							searchPlaceholder
+								? searchPlaceholder
+								: i18n.baseText('nodeCreator.searchBar.searchNodes')
+						"
+						:model-value="activeViewStack.search"
+						@update:model-value="onSearch"
+					/>
+				</div>
+			</template>
+
+			<template #content>
+				<div :class="$style.renderedItems">
+					<n8n-notice
+						v-if="activeViewStack.info && !activeViewStack.search"
+						:class="$style.info"
+						:content="activeViewStack.info"
+						theme="warning"
+					/>
+					<!-- Actions mode -->
+					<ActionsRenderer v-if="isActionsMode && activeViewStack.subcategory" v-bind="$attrs" />
+
+					<!-- Nodes Mode -->
+					<NodesRenderer v-else :root-view="nodeCreatorView" v-bind="$attrs" />
+				</div>
+			</template>
+		</Modal>
 	</transition>
 </template>
 
@@ -254,6 +272,9 @@ function onBackButton() {
 }
 .searchBar {
 	flex-shrink: 0;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
 }
 .nodesListPanel {
 	background: var(--color-background-xlight);
@@ -291,8 +312,6 @@ function onBackButton() {
 	font-size: var(--font-size-l);
 	font-weight: var(--font-weight-bold);
 	line-height: var(--font-line-height-compact);
-
-	padding: var(--spacing-s) var(--spacing-s);
 
 	&.hasBg {
 		border-bottom: $node-creator-border-color solid 1px;

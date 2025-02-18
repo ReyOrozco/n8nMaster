@@ -15,13 +15,13 @@ withDefaults(
 
 <style lang="scss" module>
 .dot {
-	width: var(--handle--indicator--width);
-	height: var(--handle--indicator--height);
+	width: 8px;
+	height: 8px;
 	border-radius: 50%;
 	background: var(--color-foreground-xdark);
 
 	&:hover {
-		background: var(--color-primary);
+		background: black;
 	}
 }
 </style>

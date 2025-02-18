@@ -127,19 +127,21 @@ function openContextMenu(event: MouseEvent) {
 <template>
 	<div :class="classes" :style="styles" :data-test-id="dataTestId" @contextmenu="openContextMenu">
 		<CanvasNodeTooltip v-if="renderOptions.tooltip" :visible="showTooltip" />
-		<slot />
+		<div :class="$style.nodeContent">
+			<RectangularIcon>
+				<slot />
+			</RectangularIcon>
+			<div :class="$style.description">
+				<div v-if="label" :class="$style.label">
+					{{ label }}
+				</div>
+
+				<div v-if="subtitle" :class="$style.subtitle">{{ subtitle }}</div>
+			</div>
+		</div>
 		<CanvasNodeTriggerIcon v-if="renderOptions.trigger" />
 		<CanvasNodeStatusIcons v-if="!isDisabled" :class="$style.statusIcons" />
 		<CanvasNodeDisabledStrikeThrough v-if="isStrikethroughVisible" />
-		<div :class="$style.description">
-			<div v-if="label" :class="$style.label">
-				{{ label }}
-			</div>
-			<div v-if="isDisabled" :class="$style.disabledLabel">
-				({{ i18n.baseText('node.disabled') }})
-			</div>
-			<div v-if="subtitle" :class="$style.subtitle">{{ subtitle }}</div>
-		</div>
 	</div>
 </template>
 
@@ -161,19 +163,22 @@ function openContextMenu(event: MouseEvent) {
 	--canvas-node--status-icons-offset: var(--spacing-3xs);
 
 	position: relative;
-	height: var(--canvas-node--height);
-	width: var(--canvas-node--width);
+	min-height: 64px;
+	padding: 16px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	background: var(--canvas-node--background, var(--color-node-background));
-	border: var(--canvas-node-border-width) solid
-		var(--canvas-node--border-color, var(--color-foreground-xdark));
 	border-radius: var(--border-radius-large);
 
-	&.trigger {
-		border-radius: var(--trigger-node--border-radius) var(--border-radius-large)
-			var(--border-radius-large) var(--trigger-node--border-radius);
+	border: 1px solid #e6e6e6;
+	box-shadow: 0px 2px 8px 0px #8c8c8c1a;
+
+	.nodeContent {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		column-gap: 8px;
 	}
 
 	/**
@@ -235,7 +240,7 @@ function openContextMenu(event: MouseEvent) {
 	 */
 
 	&.selected {
-		box-shadow: 0 0 0 8px var(--color-canvas-selected-transparent);
+		box-shadow: 0 0 0 3px var(--color-canvas-selected-transparent);
 	}
 
 	&.success {
@@ -265,21 +270,16 @@ function openContextMenu(event: MouseEvent) {
 }
 
 .description {
-	top: 100%;
-	position: absolute;
 	width: 100%;
 	min-width: calc(var(--canvas-node--width) * 2);
-	margin-top: var(--spacing-2xs);
 	display: flex;
 	flex-direction: column;
 	gap: var(--spacing-4xs);
-	align-items: center;
 }
 
 .label,
 .disabledLabel {
-	font-size: var(--font-size-m);
-	text-align: center;
+	font-size: 14px;
 	text-overflow: ellipsis;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
@@ -292,9 +292,8 @@ function openContextMenu(event: MouseEvent) {
 
 .subtitle {
 	width: 100%;
-	text-align: center;
-	color: var(--color-text-light);
-	font-size: var(--font-size-xs);
+	color: #828282;
+	font-size: 12px;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
