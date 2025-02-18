@@ -13,6 +13,7 @@ services:
       - N8N_PROTOCOL=http
       - WEBHOOK_URL=http://localhost:5678/
       - GENERIC_TIMEZONE=Europe/Berlin
+      - NODES_EXCLUDE=["n8n-nodes-base.executeCommand","n8n-nodes-base.ssh"]
     volumes:
       - n8n_data:/home/node/.n8n
 
