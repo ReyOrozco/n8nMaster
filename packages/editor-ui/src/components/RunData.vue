@@ -1915,7 +1915,7 @@ defineExpose({ enterEditMode });
 	position: relative;
 	width: 100%;
 	height: 100%;
-	background-color: var(--color-run-data-background);
+	background-color: white;
 	display: flex;
 	flex-direction: column;
 }
@@ -1932,11 +1932,13 @@ defineExpose({ enterEditMode });
 	display: flex;
 	align-items: center;
 	margin-bottom: var(--spacing-s);
-	padding: var(--spacing-s) var(--spacing-s) 0 var(--spacing-s);
+	padding: var(--spacing-s) var(--spacing-s) 10px 0px;
+	border-bottom: 1px solid #e4e4e4;
+	margin: 0px 20px;
 	position: relative;
 	overflow-x: auto;
 	overflow-y: hidden;
-	min-height: calc(30px + var(--spacing-s));
+	min-height: calc(40px + var(--spacing-s));
 	scrollbar-width: thin;
 
 	> *:first-child {

@@ -14,6 +14,7 @@ import { useRoute } from 'vue-router';
 
 import type { BaseTextKey } from '@/plugins/i18n';
 import type { Scope } from '@n8n/permissions';
+import CreateWorkflowTemplate from '../CreateWorkflowTemplate/CreateWorkflowTemplate.vue';
 
 export type IResource = {
 	id: string;
@@ -340,29 +341,12 @@ onMounted(async () => {
 		<template v-else>
 			<div v-if="resources.length === 0">
 				<slot name="empty">
-					<n8n-action-box
-						data-test-id="empty-resources-list"
-						emoji="👋"
-						:heading="
-							i18n.baseText(
-								usersStore.currentUser?.firstName
-									? (`${resourceKey}.empty.heading` as BaseTextKey)
-									: (`${resourceKey}.empty.heading.userNotSetup` as BaseTextKey),
-								{
-									interpolate: { name: usersStore.currentUser?.firstName ?? '' },
-								},
-							)
-						"
-						:description="i18n.baseText(`${resourceKey}.empty.description` as BaseTextKey)"
-						:button-text="i18n.baseText(`${resourceKey}.empty.button` as BaseTextKey)"
-						button-type="secondary"
-						:button-disabled="disabled"
-						@click:button="onAddButtonClick"
-					>
-						<template #disabledButtonTooltip>
-							{{ i18n.baseText(`${resourceKey}.empty.button.disabled.tooltip` as BaseTextKey) }}
-						</template>
-					</n8n-action-box>
+					<CreateWorkflowTemplate
+						:description="i18n.baseText(`${resourceKey}.empty.button` as BaseTextKey)"
+						:add-title="i18n.baseText('credentials.project.add')"
+						add-description="Click to start the process"
+						:on-click-add="onAddButtonClick"
+					/>
 				</slot>
 			</div>
 			<PageViewLayoutList v-else :overflow="type !== 'list'">

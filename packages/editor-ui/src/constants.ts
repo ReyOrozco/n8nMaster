@@ -465,6 +465,7 @@ export const TEMPLATES_NODES_FILTER = ['n8n-nodes-base.start', 'n8n-nodes-base.r
 
 export const enum VIEWS {
 	HOMEPAGE = 'Homepage',
+	PROFILE = 'Profile',
 	COLLECTION = 'TemplatesCollectionView',
 	EXECUTIONS = 'Executions',
 	EXECUTION_PREVIEW = 'ExecutionPreview',

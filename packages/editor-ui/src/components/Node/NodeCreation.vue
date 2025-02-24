@@ -60,11 +60,11 @@ const onMouseMove = useThrottleFn((event: MouseEvent) => {
 }, 250);
 
 function openNodeCreator() {
-	uiStore.openModal(WORKFLOW_NODES_MODAL);
 	emit('toggleNodeCreator', {
 		source: NODE_CREATOR_OPEN_SOURCES.ADD_NODE_BUTTON,
 		createNodeActive: true,
 	});
+	uiStore.openModal(WORKFLOW_NODES_MODAL);
 }
 
 function addStickyNote() {

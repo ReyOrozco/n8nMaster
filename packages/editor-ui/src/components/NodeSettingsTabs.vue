@@ -147,6 +147,7 @@ function onTooltipClick(tab: string, event: MouseEvent) {
 
 <template>
 	<N8nTabs
+		:full-width="true"
 		:options="options"
 		:model-value="modelValue"
 		@update:model-value="onTabSelect"

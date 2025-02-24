@@ -366,7 +366,7 @@ function onDragEnd() {
 			<slot name="input"></slot>
 		</div>
 		<div v-if="!hideInputAndOutput" :class="$style.outputPanel" :style="outputPanelStyles">
-			<slot name="output"></slot>
+			<slot name="main"></slot>
 		</div>
 		<div :class="$style.mainPanel" :style="mainPanelStyles">
 			<N8nResizeWrapper
@@ -390,7 +390,7 @@ function onDragEnd() {
 					/>
 				</div>
 				<div :class="{ [$style.mainPanelInner]: true, [$style.dragging]: isDragging }">
-					<slot name="main" />
+					<slot name="output" />
 				</div>
 			</N8nResizeWrapper>
 		</div>
@@ -400,9 +400,8 @@ function onDragEnd() {
 <style lang="scss" module>
 .dataPanel {
 	position: absolute;
-	height: calc(100% - 2 * var(--spacing-l));
 	position: absolute;
-	top: var(--spacing-l);
+	height: 100%;
 	z-index: 0;
 	min-width: 280px;
 }
@@ -439,13 +438,10 @@ function onDragEnd() {
 .mainPanelInner {
 	height: 100%;
 	border: var(--border-base);
-	border-radius: var(--border-radius-large);
-	box-shadow: 0 4px 16px rgb(50 61 85 / 10%);
 	overflow: hidden;
 
 	&.dragging {
-		border-color: var(--color-primary);
-		box-shadow: 0px 6px 16px rgba(255, 74, 51, 0.15);
+		box-shadow: 0px 6px 16px rgba(54, 47, 46, 0.15);
 	}
 }
 

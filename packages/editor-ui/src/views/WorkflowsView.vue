@@ -21,18 +21,11 @@ import { useDocumentTitle } from '@/composables/useDocumentTitle';
 import { useI18n } from '@/composables/useI18n';
 import { useRoute, useRouter } from 'vue-router';
 import { useTelemetry } from '@/composables/useTelemetry';
-import {
-	N8nCard,
-	N8nHeading,
-	N8nIcon,
-	N8nInputLabel,
-	N8nOption,
-	N8nSelect,
-	N8nText,
-} from 'n8n-design-system';
+import { N8nIcon, N8nInputLabel, N8nOption, N8nSelect } from 'n8n-design-system';
 import { pickBy } from 'lodash-es';
 import ProjectHeader from '@/components/Projects/ProjectHeader.vue';
 import { EASY_AI_WORKFLOW_JSON } from '@/constants.workflows';
+import CreateWorkflowTemplate from '@/components/CreateWorkflowTemplate/CreateWorkflowTemplate.vue';
 
 const i18n = useI18n();
 const route = useRoute();
@@ -337,7 +330,14 @@ const dismissEasyAICallout = () => {
 			/>
 		</template>
 		<template #empty>
-			<div class="text-center mt-s">
+			<CreateWorkflowTemplate
+				v-if="!readOnlyEnv && projectPermissions.workflow.create"
+				:description="i18n.baseText('workflows.empty.description')"
+				:add-title="i18n.baseText('workflows.empty.startFromScratch')"
+				add-description="Click to start the process"
+				:on-click-add="addWorkflow"
+			/>
+			<div v-else class="text-center mt-s">
 				<N8nHeading tag="h2" size="xlarge" class="mb-2xs">
 					{{
 						currentUser.firstName
@@ -351,35 +351,8 @@ const dismissEasyAICallout = () => {
 					{{ emptyListDescription }}
 				</N8nText>
 			</div>
-			<div
-				v-if="!readOnlyEnv && projectPermissions.workflow.create"
-				:class="['text-center', 'mt-2xl', $style.actionsContainer]"
-			>
-				<N8nCard
-					:class="$style.emptyStateCard"
-					hoverable
-					data-test-id="new-workflow-card"
-					@click="addWorkflow"
-				>
-					<N8nIcon :class="$style.emptyStateCardIcon" icon="file" />
-					<N8nText size="large" class="mt-xs" color="text-dark">
-						{{ i18n.baseText('workflows.empty.startFromScratch') }}
-					</N8nText>
-				</N8nCard>
-				<N8nCard
-					v-if="showEasyAIWorkflowCallout"
-					:class="$style.emptyStateCard"
-					hoverable
-					data-test-id="easy-ai-workflow-card"
-					@click="openAIWorkflow('empty')"
-				>
-					<N8nIcon :class="$style.emptyStateCardIcon" icon="robot" />
-					<N8nText size="large" class="mt-xs pl-2xs pr-2xs" color="text-dark">
-						{{ i18n.baseText('workflows.empty.easyAI') }}
-					</N8nText>
-				</N8nCard>
-			</div>
 		</template>
+
 		<template #filters="{ setKeyValue }">
 			<div v-if="settingsStore.areTagsEnabled" class="mb-s">
 				<N8nInputLabel

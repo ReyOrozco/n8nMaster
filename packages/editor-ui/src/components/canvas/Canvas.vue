@@ -27,7 +27,6 @@ import CanvasArrowHeadMarker from './elements/edges/CanvasArrowHeadMarker.vue';
 import CanvasBackground from './elements/background/CanvasBackground.vue';
 import { useCanvasTraversal } from '@/composables/useCanvasTraversal';
 import { NodeConnectionType } from 'n8n-workflow';
-import { Cog } from 'lucide-vue-next';
 
 const $style = useCssModule();
 
@@ -735,10 +734,6 @@ provide(CanvasKey, {
 			/>
 		</Transition>
 
-		<N8nButton type="tertiary" :class="$style.templateBtn">
-			<Cog /> <span>Templates</span>
-		</N8nButton>
-
 		<CanvasControlButtons
 			data-test-id="canvas-controls"
 			:class="$style.canvasControls"
@@ -764,6 +759,7 @@ provide(CanvasKey, {
 	height: 100%;
 	opacity: 0;
 	transition: opacity 300ms ease;
+	background-color: #f7f9fb;
 
 	&.ready {
 		opacity: 1;
@@ -778,17 +774,6 @@ provide(CanvasKey, {
 
 		&:global(.dragging) {
 			cursor: grabbing;
-		}
-	}
-
-	.templateBtn {
-		position: absolute;
-		top: 15px;
-		left: 15px;
-
-		svg {
-			width: 20px;
-			margin-right: 8px;
 		}
 	}
 }

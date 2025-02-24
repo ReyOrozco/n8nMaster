@@ -77,8 +77,8 @@ const isItemActive = (item: IMenuItem): boolean => {
 					:class="{
 						[$style.menuItem]: true,
 						[$style.item]: true,
-						[$style.disableActiveStyle]: !isItemActive(item),
-						[$style.active]: isItemActive(item),
+						[$style.disableActiveStyle]: !isActive(item),
+						[$style.active]: isActive(item),
 						[$style.compact]: compact,
 					}"
 					data-test-id="menu-item"
@@ -86,11 +86,10 @@ const isItemActive = (item: IMenuItem): boolean => {
 					:disabled="item.disabled"
 					@click="handleSelect?.(item)"
 				>
-					<N8nIcon
-						v-if="item.icon"
-						:class="$style.icon"
-						:icon="item.icon"
-						:size="item.customIconSize || 'large'"
+					<component
+						:is="item.icon"
+						v-if="item.icon && typeof item.icon === 'function'"
+						:class="$style.menuIcon"
 					/>
 					<span v-if="!compact" :class="$style.label">{{ item.label }}</span>
 					<span v-if="!item.icon && compact" :class="[$style.label, $style.compactLabel]">{{
@@ -169,6 +168,11 @@ const isItemActive = (item: IMenuItem): boolean => {
 			}
 		}
 	}
+}
+
+.menuIcon {
+	height: 18px !important;
+	margin-right: 5px;
 }
 
 .disableActiveStyle {

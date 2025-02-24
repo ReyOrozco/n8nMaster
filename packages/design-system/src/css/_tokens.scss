@@ -229,7 +229,7 @@
 	// Button secondary
 	--color-button-secondary-font: var(--prim-gray-670);
 	--color-button-secondary-border: var(--prim-gray-320);
-	--color-button-secondary-background: var(--prim-gray-0);
+	--color-button-secondary-background: var(--prim-gray-1);
 	--color-button-secondary-hover-active-focus-font: var(--prim-color-primary-shade-100);
 	--color-button-secondary-hover-active-focus-border: var(--prim-color-primary);
 	--color-button-secondary-hover-background: var(--prim-color-primary-tint-300);
@@ -605,7 +605,7 @@
 
 	--font-weight-regular: 400;
 	--font-weight-bold: 600;
-	--font-family: 'Open Sans', sans-serif;
+	--font-family: 'Inter', serif;
 	--font-family-monospace: Menlo, Consolas, 'DejaVu Sans Mono', monospace;
 
 	--spacing-5xs: 0.125rem;

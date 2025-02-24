@@ -7,6 +7,8 @@ import { useProjectsStore } from '@/stores/projects.store';
 import type { ProjectListItem } from '@/types/projects.types';
 import { useGlobalEntityCreation } from '@/composables/useGlobalEntityCreation';
 
+import { House, Workflow, NotebookText } from 'lucide-vue-next';
+
 type Props = {
 	collapsed: boolean;
 	planName?: string;
@@ -24,7 +26,7 @@ const displayProjects = computed(() => globalEntityCreation.displayProjects.valu
 const home = computed<IMenuItem>(() => ({
 	id: 'home',
 	label: locale.baseText('projects.menu.overview'),
-	icon: 'home',
+	icon: House,
 	route: {
 		to: { name: VIEWS.HOMEPAGE },
 	},
@@ -33,7 +35,7 @@ const home = computed<IMenuItem>(() => ({
 const workflow = computed<IMenuItem>(() => ({
 	id: 'workflow',
 	label: 'Workflow',
-	icon: 'home',
+	icon: Workflow,
 	route: {
 		to: { name: VIEWS.NEW_WORKFLOW },
 	},
@@ -42,7 +44,7 @@ const workflow = computed<IMenuItem>(() => ({
 const credential = computed<IMenuItem>(() => ({
 	id: 'credential',
 	label: 'Credential',
-	icon: 'home',
+	icon: NotebookText,
 	route: {
 		to: { name: VIEWS.CREDENTIALS },
 		params: {

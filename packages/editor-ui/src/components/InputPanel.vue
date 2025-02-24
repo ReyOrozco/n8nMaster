@@ -528,10 +528,7 @@ function activatePane() {
 }
 
 .title {
-	text-transform: uppercase;
-	color: var(--color-text-light);
-	letter-spacing: 3px;
-	font-size: var(--font-size-s);
+	font-size: 18px;
 	font-weight: var(--font-weight-bold);
 }
 </style>

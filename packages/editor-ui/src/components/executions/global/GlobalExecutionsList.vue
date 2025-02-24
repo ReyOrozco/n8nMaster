@@ -531,6 +531,8 @@ const goToUpgrade = () => {
 	width: 100%;
 	text-align: left;
 	font-size: var(--font-size-s);
+	border: 1px solid #e6e6e6;
+	box-shadow: 0px 2px 8px 0px #8c8c8c1a;
 
 	thead th {
 		position: sticky;

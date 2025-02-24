@@ -478,6 +478,17 @@ export const routes: RouteRecordRaw[] = [
 		},
 	},
 	{
+		path: '/profile',
+		name: VIEWS.PROFILE,
+		components: {
+			default: SettingsPersonalView,
+			sidebar: MainSidebar,
+		},
+		meta: {
+			middleware: ['authenticated'],
+		},
+	},
+	{
 		path: '/settings',
 		name: VIEWS.SETTINGS,
 		component: SettingsView,

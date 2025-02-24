@@ -106,7 +106,13 @@ const onSelect = (item: IMenuItem): void => {
 
 				<h6>Social Connectivity</h6>
 				<div :class="$style.socialLinks">
-					<div v-for="item in lowerMenuItems" :key="item.id" :class="$style.socialLinkCard">
+					<a
+						v-for="item in lowerMenuItems"
+						:key="item.id"
+						:class="$style.socialLinkCard"
+						:href="item?.link?.href"
+						:target="item?.link?.target"
+					>
 						<!-- For rendering Lucide icons (Vue components) -->
 						<component :is="item.icon" v-if="item.icon && typeof item.icon === 'function'" />
 
@@ -116,7 +122,7 @@ const onSelect = (item: IMenuItem): void => {
 						<span>
 							{{ item.label }}
 						</span>
-					</div>
+					</a>
 				</div>
 
 				<div v-if="$slots.menuSuffix" :class="$style.menuSuffix">
@@ -186,7 +192,7 @@ const onSelect = (item: IMenuItem): void => {
 		gap: 10px;
 
 		.socialLinkCard {
-			height: 52px;
+			height: 42px;
 			width: 100%;
 			display: flex;
 			align-items: center;
@@ -197,13 +203,17 @@ const onSelect = (item: IMenuItem): void => {
 			padding: 12px;
 
 			img {
+				height: 18px;
+			}
+			svg {
 				height: 20px;
 			}
 			span {
-				font-weight: 500;
+				font-weight: 400;
 				font-size: 14px;
 				line-height: 20px;
 				letter-spacing: 0%;
+				color: #71747a;
 			}
 		}
 	}

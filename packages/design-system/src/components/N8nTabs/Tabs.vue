@@ -15,6 +15,7 @@ interface TabOptions {
 }
 
 interface TabsProps {
+	fullWidth?: boolean;
 	modelValue?: Value;
 	options?: TabOptions[];
 }
@@ -81,12 +82,12 @@ const scrollRight = () => scroll(50);
 		<div v-if="canScrollRight" :class="$style.next" @click="scrollRight">
 			<N8nIcon icon="chevron-right" size="small" />
 		</div>
-		<div ref="tabs" :class="$style.tabs">
+		<div ref="tabs" :class="[$style.tabs, { [$style.fullWidth]: fullWidth }]">
 			<div
 				v-for="option in options"
 				:id="option.value.toString()"
 				:key="option.value"
-				:class="{ [$style.alignRight]: option.align === 'right' }"
+				:class="{ [$style.tabDiv]: true, [$style.alignRight]: option.align === 'right' }"
 			>
 				<N8nTooltip :disabled="!option.tooltip" placement="bottom">
 					<template #content>
@@ -132,8 +133,7 @@ const scrollRight = () => scroll(50);
 <style lang="scss" module>
 .container {
 	position: relative;
-	height: 47px;
-	min-height: 47px;
+	min-height: 50px;
 	width: 100%;
 }
 
@@ -150,6 +150,10 @@ const scrollRight = () => scroll(50);
 	border: 1px solid #e9e9e9;
 	box-shadow: 0px 0px 2px 0px #0000001f;
 
+	&.fullWidth {
+		width: 100%;
+	}
+
 	/* Hide scrollbar for Chrome, Safari and Opera */
 	&::-webkit-scrollbar {
 		display: none;
@@ -160,27 +164,32 @@ const scrollRight = () => scroll(50);
 	scrollbar-width: none; /* Firefox */
 }
 
-.tab {
-	--active-tab-border-width: 2px;
-	padding: 0 var(--spacing-s);
-	font-size: var(--font-size-s);
-	cursor: pointer;
-	white-space: nowrap;
-	color: var(--color-text-base);
+.tabDiv {
+	flex: 1;
+	.tab {
+		--active-tab-border-width: 2px;
+		padding: 0 var(--spacing-s);
+		font-size: var(--font-size-s);
+		cursor: pointer;
+		white-space: nowrap;
+		color: var(--color-text-base);
 
-	height: 47px;
-	min-width: 150px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-right: 2px solid #e9e9e9;
+		height: 47px;
+		min-width: 150px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-right: 2px solid #e9e9e9;
+		flex: 1;
+		width: 100%;
 
-	&:hover {
-		color: black;
-	}
+		&:hover {
+			color: black;
+		}
 
-	span + span {
-		margin-left: var(--spacing-4xs);
+		span + span {
+			margin-left: var(--spacing-4xs);
+		}
 	}
 }
 

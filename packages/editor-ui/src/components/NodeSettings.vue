@@ -967,6 +967,9 @@ onBeforeUnmount(() => {
 					/>
 				</div>
 			</div>
+		</div>
+
+		<div :class="$style.nodesContainer">
 			<NodeSettingsTabs
 				v-if="node && nodeValid"
 				:model-value="openPanel"
@@ -975,6 +978,7 @@ onBeforeUnmount(() => {
 				@update:model-value="onTabSelect"
 			/>
 		</div>
+
 		<div v-if="node && !nodeValid" class="node-is-not-valid">
 			<p :class="$style.warningIcon">
 				<font-awesome-icon icon="exclamation-triangle" />
@@ -1107,7 +1111,11 @@ onBeforeUnmount(() => {
 
 <style lang="scss" module>
 .header {
-	background-color: var(--color-background-base);
+	border-bottom: 1px solid #e4e4e4;
+}
+
+.nodesContainer {
+	padding: 20px 20px 0px;
 }
 
 .warningIcon {

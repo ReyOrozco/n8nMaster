@@ -76,9 +76,7 @@ function onMouseLeave() {
 }
 
 function onClickAdd() {
-	nodeCreatorStore.openNodeCreatorForTriggerNodes(
-		NODE_CREATOR_OPEN_SOURCES.TRIGGER_PLACEHOLDER_BUTTON,
-	);
+	emit('add');
 	uiStore.openModal(WORKFLOW_NODES_MODAL);
 }
 </script>

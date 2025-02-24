@@ -100,12 +100,12 @@
 }
 
 @mixin n8n-button-secondary {
-	--button-font-color: var(--color-button-secondary-font);
-	--button-border-color: var(--color-button-secondary-border);
-	--button-background-color: var(--color-button-secondary-background);
+	--button-font-color: #575b65;
+	--button-border-color: #d5d5d5;
+	--button-background-color: #f7f9fb;
 
-	--button-hover-font-color: black;
-	--button-hover-border-color: black;
+	--button-hover-font-color: var(--color-button-secondary-hover-active-focus-font);
+	--button-hover-border-color: var(--color-button-secondary-hover-active-focus-border);
 	--button-hover-background-color: var(--color-button-secondary-hover-background);
 
 	--button-active-font-color: var(--color-button-secondary-hover-active-focus-font);
