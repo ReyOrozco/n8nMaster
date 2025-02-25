@@ -54,17 +54,11 @@ import { useSettingsStore } from '@/stores/settings.store';
 import { useUsersStore } from '@/stores/users.store';
 import { dismissBannerPermanently } from '@/api/ui';
 import type { BannerName } from 'n8n-workflow';
-import {
-	addThemeToBody,
-	getPreferredTheme,
-	getThemeOverride,
-	isValidTheme,
-	updateTheme,
-} from './ui.utils';
+import { addThemeToBody, getThemeOverride, isValidTheme, updateTheme } from './ui.utils';
 import { computed, ref } from 'vue';
 import type { Connection } from '@vue-flow/core';
 
-let savedTheme: ThemeOption = 'system';
+let savedTheme: ThemeOption = 'light';
 
 try {
 	const value = getThemeOverride();
@@ -185,7 +179,7 @@ export const useUIStore = defineStore(STORES.UI, () => {
 	const userStore = useUsersStore();
 
 	const appliedTheme = computed(() => {
-		return theme.value === 'system' ? getPreferredTheme() : theme.value;
+		return 'light';
 	});
 
 	const contextBasedTranslationKeys = computed(() => {

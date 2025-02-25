@@ -14,26 +14,22 @@ export function isValidTheme(theme: string | null): theme is AppliedThemeOption 
 
 // query param allows overriding theme for demo view in preview iframe without flickering
 export function getThemeOverride() {
-	return getQueryParam('theme') || themeRef.value;
+	return 'light';
 }
 
-function getQueryParam(paramName: string): string | null {
-	return new URLSearchParams(window.location.search).get(paramName);
-}
+// function getQueryParam(paramName: string): string | null {
+// 	return new URLSearchParams(window.location.search).get(paramName);
+// }
 
 export function updateTheme(theme: ThemeOption) {
-	if (theme === 'system') {
-		window.document.body.removeAttribute('data-theme');
-		themeRef.value = null;
-	} else {
-		addThemeToBody(theme);
-		themeRef.value = theme;
-	}
+	theme = 'light';
+	addThemeToBody(theme);
+	themeRef.value = theme;
 }
 
-export function getPreferredTheme(): AppliedThemeOption {
-	const isDarkMode =
-		!!window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)')?.matches;
-
-	return isDarkMode ? 'dark' : 'light';
-}
+// export function getPreferredTheme(): AppliedThemeOption {
+// 	const isDarkMode =
+// 		!!window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)')?.matches;
+//
+// 	return isDarkMode ? 'dark' : 'light';
+// }

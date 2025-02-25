@@ -941,7 +941,7 @@
 	"multipleParameter.deleteItem": "Delete item",
 	"multipleParameter.moveDown": "Move down",
 	"multipleParameter.moveUp": "Move up",
-	"ndv.backToCanvas": "Back to canvas",
+	"ndv.backToCanvas": "Exit",
 	"ndv.backToCanvas.waitingForTriggerWarning": "Waiting for a Trigger node to execute. Close this view to see the Workflow Canvas.",
 	"ndv.execute.testNode": "Test step",
 	"ndv.execute.testNode.description": "Runs the current node. Will also run previous nodes if they have not been run yet",
