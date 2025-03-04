@@ -21,7 +21,13 @@ const shortenedName = computed(() =>
 </script>
 
 <template>
-	<span :title="name" :data-test-id="testId">
+	<span :title="name" :data-test-id="testId" class="shorten-name">
 		<slot :shortened-name="shortenedName"></slot>
 	</span>
 </template>
+
+<style lang="scss">
+.shorten-name {
+	width: 100%;
+}
+</style>

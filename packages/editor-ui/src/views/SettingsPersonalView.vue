@@ -298,32 +298,7 @@ onBeforeUnmount(() => {
 					</n8n-input-label>
 				</div>
 			</div>
-			<div>
-				<div class="mb-s">
-					<n8n-heading size="large">{{
-						i18n.baseText('settings.personal.personalisation')
-					}}</n8n-heading>
-				</div>
-				<div>
-					<n8n-input-label :label="i18n.baseText('settings.personal.theme')">
-						<n8n-select
-							v-model="currentSelectedTheme"
-							:class="$style.themeSelect"
-							data-test-id="theme-select"
-							size="small"
-							filterable
-						>
-							<n8n-option
-								v-for="item in themeOptions"
-								:key="item.name"
-								:label="$t(item.label)"
-								:value="item.name"
-							>
-							</n8n-option>
-						</n8n-select>
-					</n8n-input-label>
-				</div>
-			</div>
+
 			<div>
 				<n8n-button
 					float="right"

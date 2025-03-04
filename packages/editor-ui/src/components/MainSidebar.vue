@@ -278,9 +278,9 @@ onClickOutside(createBtn as Ref<VueInstance>, () => {
 				<SquarePen :class="$style.editIcon" />
 			</div>
 
-			<div :class="$style.logout" @click="onLogout">
+			<!-- <div :class="$style.logout" @click="onLogout">
 				<LogOut />
-			</div>
+			</div> -->
 		</div>
 	</div>
 </template>
@@ -391,7 +391,7 @@ onClickOutside(createBtn as Ref<VueInstance>, () => {
 
 		.editIcon {
 			width: 18px;
-			margin-left: 10px;
+			margin-left: auto;
 		}
 	}
 	.logout {
@@ -399,6 +399,10 @@ onClickOutside(createBtn as Ref<VueInstance>, () => {
 		justify-content: center;
 		cursor: pointer;
 	}
+}
+
+.footer:hover {
+	text-decoration: underline;
 }
 
 @media screen and (max-height: 470px) {

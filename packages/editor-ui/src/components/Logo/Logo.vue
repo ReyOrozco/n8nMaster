@@ -3,8 +3,7 @@ import type { FrontendSettings } from '@n8n/api-types';
 import { computed, onMounted, useCssModule, useTemplateRef } from 'vue';
 import { useFavicon } from '@vueuse/core';
 
-import LogoIcon from './logo-icon.svg';
-import LogoText from './logo-text.svg';
+import LogoIcon from './logo-icon-2.svg';
 
 const props = defineProps<
 	(
@@ -51,10 +50,6 @@ onMounted(() => {
 
 	const logoEl = svg.value!.$el;
 
-	// Change the logo fill color inline, so that favicon can also use it
-	const logoColor = releaseChannel === 'dev' ? '#838383' : '#E9984B';
-	logoEl.querySelector('path')?.setAttribute('fill', logoColor);
-
 	// Reuse the SVG as favicon
 	const blob = new Blob([logoEl.outerHTML], { type: 'image/svg+xml' });
 	useFavicon(URL.createObjectURL(blob));
@@ -64,7 +59,7 @@ onMounted(() => {
 <template>
 	<div :class="containerClasses" data-test-id="flowstate-logo">
 		<LogoIcon :class="$style.logo" ref="logo" />
-		<LogoText v-if="showLogoText" :class="$style.logoText" />
+		<h3 v-if="showLogoText" :class="$style.logoText">flowstate</h3>
 		<div v-if="showReleaseChannelTag" size="small" round :class="$style.releaseChannelTag">
 			{{ releaseChannel }}
 		</div>
@@ -75,13 +70,12 @@ onMounted(() => {
 .logoContainer {
 	display: flex;
 	justify-content: center;
+	align-items: center;
 }
 
 .logoText {
-	margin-left: var(--spacing-5xs);
-	path {
-		fill: var(--color-text-dark);
-	}
+	margin-left: 7px;
+	font-size: 12px;
 }
 
 .releaseChannelTag {
@@ -95,7 +89,7 @@ onMounted(() => {
 	text-transform: capitalize;
 	line-height: var(--font-line-height-regular);
 	height: var(--spacing-s);
-	margin: 10px 0 0 3px;
+	margin-left: 4px;
 }
 
 .authView {

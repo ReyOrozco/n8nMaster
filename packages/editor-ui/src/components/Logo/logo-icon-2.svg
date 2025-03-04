@@ -1,0 +1,22 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='30' height='30' style="background:transparent">
+  <!-- Curved connections (now properly closed) -->
+  <path d='M8 6c4 2 8 6 8 6s4-4 8-6' 
+        stroke='#2A5C8F' 
+        fill='transparent' 
+        stroke-width='1.2'/>
+  <path d='M8 18c4-2 8-6 8-6s4 4 8 6' 
+        stroke='#2A5C8F' 
+        fill='transparent' 
+        stroke-width='1.2'/>
+
+  <!-- Central node -->
+  <circle cx='12' cy='12' r='3' fill='#00B4FF'/>
+  
+  <!-- Outer nodes -->
+  <g fill='#2A5C8F'>
+    <circle cx='8' cy='6' r='1.5'/>
+    <circle cx='16' cy='6' r='1.5'/>
+    <circle cx='8' cy='18' r='1.5'/>
+    <circle cx='16' cy='18' r='1.5'/>
+  </g>
+</svg>
