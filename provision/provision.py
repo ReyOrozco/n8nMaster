@@ -11,14 +11,14 @@ from dotenv import load_dotenv, find_dotenv
 import threading
 load_dotenv(find_dotenv())
 
-uri = "mongodb+srv://akaneai420:<db_password>@cluster0.jwyab3g.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-client = MongoClient(uri, server_api=ServerApi('1'))
-users_mono = client['n8n-fork']['users-monolith']
-
 app = Flask(__name__)
 client = docker.from_env()
 
 domain = os.getenv('DOMAIN_NAME')
+db_password = os.getenv('DB_PASSWORD')
+uri = f"mongodb+srv://akaneai420:{db_password}@cluster0.jwyab3g.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+client = MongoClient(uri, server_api=ServerApi('1'))
+users_mono = client['flowstate']['users-monolith']
 
 def is_port_in_use(port):
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
