@@ -52,8 +52,8 @@ const plusLineSize = computed(
 	() =>
 		({
 			small: 46,
-			medium: 66,
-			large: 80,
+			medium: 70,
+			large: 90,
 		})[(runDataTotal.value > 0 ? 'large' : renderOptions.value.outputs?.labelSize) ?? 'small'],
 );
 

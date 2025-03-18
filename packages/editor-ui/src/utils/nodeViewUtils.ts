@@ -48,8 +48,8 @@ export const GRID_SIZE = 20;
 const MIN_X_TO_SHOW_OUTPUT_LABEL = 90;
 const MIN_Y_TO_SHOW_OUTPUT_LABEL = 100;
 
-export const NODE_SIZE = 100;
-export const DEFAULT_NODE_SIZE = [100, 100];
+export const NODE_SIZE = 175;
+export const DEFAULT_NODE_SIZE = [175, 175];
 export const CONFIGURATION_NODE_SIZE = [80, 80];
 export const CONFIGURABLE_NODE_SIZE = [256, 100];
 export const PLACEHOLDER_TRIGGER_NODE_SIZE = 100;
