@@ -350,11 +350,28 @@ async function handleFileImport(): Promise<void> {
 	const inputRef = importFileRef.value;
 	if (inputRef?.files && inputRef.files.length !== 0) {
 		const reader = new FileReader();
-		reader.onload = () => {
+		reader.onload = async () => {
 			let workflowData: IWorkflowDataUpdate;
 			try {
-				workflowData = JSON.parse(reader.result as string);
+				const encryptedData = JSON.parse(reader.result as string);
+				console.log(encryptedData);
+
+				// Call the decryption API
+				const response = await fetch('http://127.0.0.1:5000/crypto/decrypt', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(encryptedData),
+				});
+
+				if (!response.ok) {
+					throw new Error(`HTTP error! status: ${response.status}`);
+				}
+
+				workflowData = await response.json();
 			} catch (error) {
+				console.error('Import error:', error);
 				toast.showMessage({
 					title: locale.baseText('mainSidebar.showMessage.handleFileImport.title'),
 					message: locale.baseText('mainSidebar.showMessage.handleFileImport.message'),
@@ -405,7 +422,22 @@ async function onWorkflowMenuSelect(action: WORKFLOW_MENU_ACTIONS): Promise<void
 				}),
 			};
 
-			const blob = new Blob([JSON.stringify(exportData, null, 2)], {
+			// before downloading, encrypt the workflow data
+			const encryptedData = await fetch('http://127.0.0.1:5000/crypto/encrypt', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(exportData),
+			});
+
+			if (!encryptedData.ok) {
+				throw new Error(`HTTP error! status: ${encryptedData.status}`);
+			}
+
+			const encryptedJson = await encryptedData.json();
+
+			const blob = new Blob([JSON.stringify(encryptedJson)], {
 				type: 'application/json;charset=utf-8',
 			});
 

@@ -11,9 +11,11 @@ from dotenv import load_dotenv, find_dotenv
 import threading
 load_dotenv(find_dotenv())
 
-uri = "mongodb+srv://akaneai420:<db_password>@cluster0.jwyab3g.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-client = MongoClient(uri, server_api=ServerApi('1'))
-users_mono = client['n8n-fork']['users-monolith']
+db_password = os.getenv('DB_PASSWORD')
+
+uri = f"mongodb+srv://akaneai420:{db_password}@cluster0.jwyab3g.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+db_client = MongoClient(uri, server_api=ServerApi('1'))
+users_mono = db_client['n8n-fork']['users-monolith']
 
 app = Flask(__name__)
 client = docker.from_env()
@@ -93,9 +95,10 @@ def create_compose_config_mac(username, randomised_port):
                 'environment': {
                     'N8N_HOST': f'{username}.{domain}',
                     'N8N_PORT': '5678',
-                    'N8N_PROTOCOL': 'https',
+                    'N8N_PROTOCOL': 'http',
                     'NODE_ENV': 'production',
-                    'WEBHOOK_URL': f'https://{username}.{domain}/',
+                    'N8N_SECURE_COOKIE': 'false',
+                    'WEBHOOK_URL': f'http://{username}.{domain}/',
                     'GENERIC_TIMEZONE': 'Europe/Berlin'
                 },
                 'volumes': [
