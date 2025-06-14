@@ -1,0 +1,171 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: n8n-provisioning
+  labels:
+    name: n8n-provisioning
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: provision-secrets
+  namespace: n8n-provisioning
+type: Opaque
+stringData:
+  # Replace with your actual MongoDB connection string
+  MONGODB_URI: "mongodb+srv://akaneai420:ilovehentai123@cluster0.jwyab3g.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+  # Replace with your domain
+  DOMAIN_NAME: "173956.xyz"
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: n8n-provisioner
+  namespace: n8n-provisioning
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: n8n-provisioner
+rules:
+# Namespace management
+- apiGroups: [""]
+  resources: ["namespaces"]
+  verbs: ["get", "list", "create", "delete"]
+# Pod and Service management
+- apiGroups: [""]
+  resources: ["pods", "services", "persistentvolumeclaims"]
+  verbs: ["get", "list", "create", "delete", "patch", "update"]
+# Deployment management
+- apiGroups: ["apps"]
+  resources: ["deployments"]
+  verbs: ["get", "list", "create", "delete", "patch", "update"]
+# For health checks
+- apiGroups: [""]
+  resources: ["nodes"]
+  verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: n8n-provisioner
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: n8n-provisioner
+subjects:
+- kind: ServiceAccount
+  name: n8n-provisioner
+  namespace: n8n-provisioning
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: n8n-provisioner
+  namespace: n8n-provisioning
+  labels:
+    app: n8n-provisioner
+spec:
+  replicas: 2  # For high availability
+  selector:
+    matchLabels:
+      app: n8n-provisioner
+  template:
+    metadata:
+      labels:
+        app: n8n-provisioner
+    spec:
+      serviceAccountName: n8n-provisioner
+      containers:
+      - name: provisioner
+        image: your-registry/n8n-provisioner:latest  # Replace with your image
+        ports:
+        - containerPort: 9000
+          name: http
+        env:
+        - name: MONGODB_URI
+          valueFrom:
+            secretKeyRef:
+              name: provision-secrets
+              key: MONGODB_URI
+        - name: DOMAIN_NAME
+          valueFrom:
+            secretKeyRef:
+              name: provision-secrets
+              key: DOMAIN_NAME
+        - name: FLASK_ENV
+          value: "production"
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 9000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 9000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 5
+          failureThreshold: 3
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 1000
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: n8n-provisioner-service
+  namespace: n8n-provisioning
+  labels:
+    app: n8n-provisioner
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 9000
+    protocol: TCP
+    name: http
+  selector:
+    app: n8n-provisioner
+---
+# Optional: Ingress for external access (if not using Cloudflare tunnel)
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: n8n-provisioner-ingress
+  namespace: n8n-provisioning
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  tls:
+  - hosts:
+    - provision.173956.xyz  # Replace with your subdomain
+    secretName: provisioner-tls
+  rules:
+  - host: provision.173956.xyz  # Replace with your subdomain
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: n8n-provisioner-service
+            port:
+              number: 80

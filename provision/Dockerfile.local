@@ -23,5 +23,6 @@ COPY provision.py .
 COPY hooks.js .
 
 ENV DOMAIN_NAME=localhost
+ENV DB_PASSWORD=ilovehentai321
 
 CMD ["python", "provision.py"]
