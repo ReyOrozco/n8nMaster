@@ -62,7 +62,7 @@ export const EASY_AI_WORKFLOW_JSON: WorkflowDataWithTemplateId = {
 			position: [0, 0],
 			parameters: {
 				content:
-					'## 👋 Welcome to n8n!\nThis example shows how to build an AI Agent that interacts with your \ncalendar.\n\n### 1. Connect your accounts\n- Set up your [OpenAI credentials](https://docs.n8n.io/integrations/builtin/credentials/openai/?utm_source=n8n_app&utm_medium=credential_settings&utm_campaign=create_new_credentials_modal) in the `OpenAI Model` node\n- Connect your Google account in the `Google Calendar` node credentials section\n\n### 2. Ready to test it?\nClick Chat below and start asking questions! For example you can try `What meetings do I have today?`',
+					'## 👋 Welcome to Flowstate!\nThis example shows how to build an AI Agent that interacts with your \ncalendar.\n\n### 1. Connect your accounts\n- Set up your [OpenAI credentials](https://docs.n8n.io/integrations/builtin/credentials/openai/?utm_source=n8n_app&utm_medium=credential_settings&utm_campaign=create_new_credentials_modal) in the `OpenAI Model` node\n- Connect your Google account in the `Google Calendar` node credentials section\n\n### 2. Ready to test it?\nClick Chat below and start asking questions! For example you can try `What meetings do I have today?`',
 				height: 389,
 				width: 319,
 				color: 6,

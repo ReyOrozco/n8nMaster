@@ -18,3 +18,6 @@
 - pnpm dev
 OR
 2. Use the NODES_INCLUDE or NODES_EXCLUDE environment variable (not working as of Jan 2025)
+
+# Running the service
+docker compose -f docker-compose-prod.yaml up -d
