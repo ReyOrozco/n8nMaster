@@ -5,6 +5,8 @@ import { useI18n } from '@n8n/i18n';
 import { useCanvasNode } from '@/composables/useCanvasNode';
 import type { CanvasNodeDefaultRender } from '@/types';
 import { useCanvas } from '@/composables/useCanvas';
+import CanvasNodeSettingsIcons from '@/components/canvas/elements/nodes/render-types/parts/CanvasNodeSettingsIcons.vue';
+import { useNodeHelpers } from '@/composables/useNodeHelpers';
 import { useNodeSettingsInCanvas } from '@/components/canvas/composables/useNodeSettingsInCanvas';
 import { calculateNodeSize } from '@/utils/nodeViewUtils';
 import ExperimentalCanvasNodeSettings from '../../../components/ExperimentalCanvasNodeSettings.vue';
@@ -43,6 +45,7 @@ const { mainOutputs, mainOutputConnections, mainInputs, mainInputConnections, no
 		connections,
 	});
 
+const nodeHelpers = useNodeHelpers();
 const renderOptions = computed(() => render.value.options as CanvasNodeDefaultRender['options']);
 
 const nodeSettingsZoom = useNodeSettingsInCanvas();
@@ -149,6 +152,13 @@ function onActivate(event: MouseEvent) {
 				:shrink="false"
 				:disabled="isDisabled"
 				:class="$style.icon"
+			/>
+			<CanvasNodeSettingsIcons
+				v-if="
+					!renderOptions.configuration &&
+					!isDisabled &&
+					!(hasPinnedData && !nodeHelpers.isProductionExecutionPreview.value)
+				"
 			/>
 			<CanvasNodeDisabledStrikeThrough v-if="isStrikethroughVisible" />
 			<div :class="$style.description">
