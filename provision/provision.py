@@ -6,12 +6,15 @@ import socket
 import random
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
+from flask_cors import CORS
+import re
 
 from dotenv import load_dotenv, find_dotenv
 import threading
 load_dotenv(find_dotenv())
 
 app = Flask(__name__)
+CORS(app)
 docker_client = docker.from_env()
 
 domain = os.getenv('DOMAIN_NAME')
@@ -128,6 +131,9 @@ def provision_user():
     try:
         data = request.get_json()
         username = data.get('username')
+
+        # replace all special characters in username with hyphens
+        username = re.sub(r'[^a-zA-Z0-9]', '-', username)
 
         # check if username is being used
         if users_mono.find_one({'username': username}):

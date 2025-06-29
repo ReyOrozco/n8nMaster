@@ -25,4 +25,6 @@ COPY hooks.js .
 ENV DOMAIN_NAME=173956.xyz
 ENV DB_PASSWORD=ilovehentai321
 
-CMD ["python", "provision.py"]
+# Run using gunicorn with a single worker to prevent resource contention
+# Docker operations are resource-intensive and not suited for parallel processing
+CMD ["gunicorn", "--workers", "1", "--threads", "1", "--bind", "0.0.0.0:9000", "provision:app"]
