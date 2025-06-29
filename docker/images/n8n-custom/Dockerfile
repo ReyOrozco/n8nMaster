@@ -59,6 +59,13 @@ RUN \
 	chown node:node .n8n
 
 COPY provision/hooks.js /home/node/.n8n/hooks.js
+
+RUN mkdir -p /home/node/.n8n/nodes && \
+	cd /home/node/.n8n/nodes && \
+	npm i @majus/n8n-nodes-web3 && \
+	npm i n8n-nodes-solanaoperations && \
+	chown -R node:node /home/node/.n8n
+
 ENV SHELL /bin/sh
 USER node
 ENTRYPOINT ["tini", "--", "/docker-entrypoint.sh"]
