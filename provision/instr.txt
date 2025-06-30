@@ -2,7 +2,7 @@ Prepare dockerfile:
 Edit domain name and password in Dockerfile.prod
 
 Building dockerfile:
-docker buildx build -t 5quidw4rd/provision-script-prod -f Dockerfile.prod .
+docker buildx build --platform linux/amd64 -t 5quidw4rd/provision-script-prod -f Dockerfile.prod .
 Push to dockerhub
 
 Deploying:

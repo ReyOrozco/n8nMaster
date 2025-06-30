@@ -1,7 +1,7 @@
 ARG NODE_VERSION=20
 
 # 1. Create an image to build n8n
-FROM --platform=linux/amd64 5quidw4rd/n8n-base-amd:latest AS builder
+FROM 5quidw4rd/n8n-base-arm:latest AS builder
 
 # Install pnpm
 #RUN npm install -g pnpm
@@ -24,7 +24,7 @@ RUN mkdir /compiled
 RUN NODE_ENV=production DOCKER_BUILD=true pnpm --filter=n8n --prod --no-optional deploy /compiled
 
 # 2. Start with a new clean image with just the code that is needed to run n8n
-FROM 5quidw4rd/n8n-base-amd:latest
+FROM 5quidw4rd/n8n-base-arm:latest
 ENV NODE_ENV=production
 
 # Install pnpm in the final image as well
