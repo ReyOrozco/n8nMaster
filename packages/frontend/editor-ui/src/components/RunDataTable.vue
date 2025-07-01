@@ -16,6 +16,7 @@ import { useTelemetry } from '@/composables/useTelemetry';
 import { N8nIconButton, N8nInfoTip, N8nTooltip, N8nTree } from '@n8n/design-system';
 import { storeToRefs } from 'pinia';
 import { useExecutionHelpers } from '@/composables/useExecutionHelpers';
+import { ComputedRef } from 'vue';
 
 const MAX_COLUMNS_LIMIT = 40;
 
@@ -448,13 +449,20 @@ watch(focusedMappableInput, (curr) => {
 	);
 });
 
+function resetColumnCollapsing() {
+	columnCollapsing.value = undefined;
+}
+
 // Reset column collapsing when column definitions changed
-watch(
-	() => tableData.value.columns.join('|'),
-	() => {
-		columnCollapsing.value = undefined;
-	},
-);
+watch(() => tableData.value.columns.join('|'), resetColumnCollapsing);
+
+defineExpose<{
+	hasCollapsedColumn: ComputedRef<boolean>;
+	resetColumnCollapsing: () => void;
+}>({
+	hasCollapsedColumn: computed(() => columnCollapsing.value !== undefined),
+	resetColumnCollapsing,
+});
 </script>
 
 <template>
@@ -594,11 +602,7 @@ watch(
 												type="tertiary"
 												size="xmini"
 												text
-												:icon="
-													i === columnCollapsing?.columnIndex
-														? 'chevrons-up-down'
-														: 'chevrons-down-up'
-												"
+												icon="chevrons-down-up"
 												:aria-label="i18n.baseText('dataMapping.tableView.columnCollapsing')"
 												@click="handleCollapseColumn(i)"
 											/>

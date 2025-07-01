@@ -94,6 +94,7 @@ import RunDataItemCount from '@/components/RunDataItemCount.vue';
 import RunDataDisplayModeSelect from '@/components/RunDataDisplayModeSelect.vue';
 import RunDataPaginationBar from '@/components/RunDataPaginationBar.vue';
 import { parseAiContent } from '@/utils/aiUtils';
+import { useTemplateRef } from 'vue';
 
 const LazyRunDataTable = defineAsyncComponent(
 	async () => await import('@/components/RunDataTable.vue'),
@@ -1340,6 +1341,8 @@ function onSearchClear() {
 }
 
 defineExpose({ enterEditMode });
+
+const runDataTableRef = useTemplateRef('runDataTableRef');
 </script>
 
 <template>
@@ -1396,8 +1399,6 @@ defineExpose({ enterEditMode });
 		<div :class="$style.header">
 			<div :class="$style.title">
 				<slot name="header"></slot>
-				{{ ' ' }}
-				<N8nButton icon="x" size="xmini" type="tertiary">Reset Collapsing</N8nButton>
 			</div>
 
 			<div
@@ -1436,6 +1437,15 @@ defineExpose({ enterEditMode });
 					"
 					:has-renderable-data="hasParsedAiContent"
 					@change="onDisplayModeChange"
+				/>
+
+				<N8nIconButton
+					v-if="displayMode === 'table' && runDataTableRef?.hasCollapsedColumn"
+					text
+					icon="chevrons-up-down"
+					size="xmini"
+					type="tertiary"
+					@click="runDataTableRef?.resetColumnCollapsing"
 				/>
 
 				<RunDataItemCount v-if="props.compact" v-bind="itemsCountProps" />
@@ -1812,6 +1822,7 @@ defineExpose({ enterEditMode });
 
 			<Suspense v-else-if="hasNodeRun && displayMode === 'table' && node">
 				<LazyRunDataTable
+					ref="runDataTableRef"
 					:node="node"
 					:input-data="inputDataPage"
 					:mapping-enabled="mappingEnabled"
