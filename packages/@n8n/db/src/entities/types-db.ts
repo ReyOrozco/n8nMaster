@@ -332,7 +332,8 @@ export type ProjectRole =
 	| 'project:personalOwner'
 	| 'project:admin'
 	| 'project:editor'
-	| 'project:viewer';
+	| 'project:viewer'
+	| 'project:executor';
 
 export interface IGetExecutionsQueryFilter {
 	id?: FindOperator<string> | string;
