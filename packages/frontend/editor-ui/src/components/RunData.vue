@@ -41,6 +41,7 @@ import {
 	LOCAL_STORAGE_PIN_DATA_DISCOVERY_NDV_FLAG,
 	MAX_DISPLAY_DATA_SIZE,
 	MAX_DISPLAY_DATA_SIZE_SCHEMA_VIEW,
+	NDV_UI_OVERHAUL_EXPERIMENT,
 	NODE_TYPES_EXCLUDED_FROM_OUTPUT_NAME_APPEND,
 	TEST_PIN_DATA,
 } from '@/constants';
@@ -94,6 +95,7 @@ import RunDataItemCount from '@/components/RunDataItemCount.vue';
 import RunDataDisplayModeSelect from '@/components/RunDataDisplayModeSelect.vue';
 import RunDataPaginationBar from '@/components/RunDataPaginationBar.vue';
 import { parseAiContent } from '@/utils/aiUtils';
+import { usePostHog } from '@/stores/posthog.store';
 
 const LazyRunDataTable = defineAsyncComponent(
 	async () => await import('@/components/RunDataTable.vue'),
@@ -229,6 +231,7 @@ const sourceControlStore = useSourceControlStore();
 const rootStore = useRootStore();
 const uiStore = useUIStore();
 const schemaPreviewStore = useSchemaPreviewStore();
+const posthogStore = usePostHog();
 
 const toast = useToast();
 const route = useRoute();
@@ -583,6 +586,13 @@ const isSchemaPreviewEnabled = computed(
 	() =>
 		props.paneType === 'input' &&
 		!(nodeType.value?.codex?.categories ?? []).some((category) => category === CORE_NODES_CATEGORY),
+);
+
+const isNDVV2 = computed(() =>
+	posthogStore.isVariantEnabled(
+		NDV_UI_OVERHAUL_EXPERIMENT.name,
+		NDV_UI_OVERHAUL_EXPERIMENT.variant,
+	),
 );
 
 const hasPreviewSchema = asyncComputed(async () => {
@@ -1344,7 +1354,11 @@ defineExpose({ enterEditMode });
 
 <template>
 	<div
-		:class="['run-data', $style.container, props.compact ? $style.compact : '']"
+		:class="[
+			'run-data',
+			$style.container,
+			{ [$style['ndv-v2']]: isNDVV2, [$style.compact]: compact },
+		]"
 		@mouseover="activatePane"
 	>
 		<N8nCallout
@@ -1992,7 +2006,7 @@ defineExpose({ enterEditMode });
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	padding: var(--spacing-s) var(--spacing-s) var(--spacing-xl) var(--spacing-s);
+	padding: var(--ndv-spacing) var(--ndv-spacing) var(--spacing-xl) var(--ndv-spacing);
 	text-align: center;
 
 	> * {
@@ -2002,6 +2016,7 @@ defineExpose({ enterEditMode });
 }
 
 .container {
+	--ndv-spacing: var(--spacing-s);
 	position: relative;
 	width: 100%;
 	height: 100%;
@@ -2020,12 +2035,12 @@ defineExpose({ enterEditMode });
 .header {
 	display: flex;
 	align-items: center;
-	margin-bottom: var(--spacing-s);
-	padding: var(--spacing-s) var(--spacing-s) 0 var(--spacing-s);
+	margin-bottom: var(--ndv-spacing);
+	padding: var(--ndv-spacing) var(--ndv-spacing) 0 var(--ndv-spacing);
 	position: relative;
 	overflow-x: auto;
 	overflow-y: hidden;
-	min-height: calc(30px + var(--spacing-s));
+	min-height: calc(30px + var(--ndv-spacing));
 	scrollbar-width: thin;
 	container-type: inline-size;
 
@@ -2053,7 +2068,7 @@ defineExpose({ enterEditMode });
 	position: absolute;
 	top: 0;
 	left: 0;
-	padding: 0 var(--spacing-s) var(--spacing-3xl) var(--spacing-s);
+	padding: 0 var(--ndv-spacing) var(--spacing-3xl) var(--ndv-spacing);
 	right: 0;
 	overflow-y: auto;
 	line-height: var(--font-line-height-xloose);
@@ -2067,18 +2082,18 @@ defineExpose({ enterEditMode });
 
 .inlineError {
 	line-height: var(--font-line-height-xloose);
-	padding-left: var(--spacing-s);
-	padding-right: var(--spacing-s);
-	padding-bottom: var(--spacing-s);
+	padding-left: var(--ndv-spacing);
+	padding-right: var(--ndv-spacing);
+	padding-bottom: var(--ndv-spacing);
 }
 
 .outputs {
 	display: flex;
 	flex-direction: column;
-	gap: var(--spacing-s);
-	padding-left: var(--spacing-s);
-	padding-right: var(--spacing-s);
-	padding-bottom: var(--spacing-s);
+	gap: var(--ndv-spacing);
+	padding-left: var(--ndv-spacing);
+	padding-right: var(--ndv-spacing);
+	padding-bottom: var(--ndv-spacing);
 
 	.compact & {
 		padding-left: var(--spacing-2xs);
@@ -2100,25 +2115,25 @@ defineExpose({ enterEditMode });
 	display: flex;
 	align-items: center;
 	gap: var(--spacing-2xs);
-	padding-left: var(--spacing-s);
-	padding-right: var(--spacing-s);
-	padding-bottom: var(--spacing-s);
+	padding-left: var(--ndv-spacing);
+	padding-right: var(--ndv-spacing);
+	padding-bottom: var(--ndv-spacing);
 	flex-flow: wrap;
 }
 
 .inputSelect {
-	padding-left: var(--spacing-s);
-	padding-right: var(--spacing-s);
-	padding-bottom: var(--spacing-s);
+	padding-left: var(--ndv-spacing);
+	padding-right: var(--ndv-spacing);
+	padding-bottom: var(--ndv-spacing);
 }
 
 .runSelector {
 	display: flex;
 	align-items: center;
 	flex-flow: wrap;
-	padding-left: var(--spacing-s);
-	padding-right: var(--spacing-s);
-	margin-bottom: var(--spacing-s);
+	padding-left: var(--ndv-spacing);
+	padding-right: var(--ndv-spacing);
+	margin-bottom: var(--ndv-spacing);
 	gap: var(--spacing-3xs);
 
 	:global(.el-input--suffix .el-input__inner) {
@@ -2168,11 +2183,11 @@ defineExpose({ enterEditMode });
 	width: 300px;
 	overflow: hidden;
 	background-color: var(--color-foreground-xlight);
-	margin-right: var(--spacing-s);
-	margin-bottom: var(--spacing-s);
+	margin-right: var(--ndv-spacing);
+	margin-bottom: var(--ndv-spacing);
 	border-radius: var(--border-radius-base);
 	border: var(--border-base);
-	padding: var(--spacing-s);
+	padding: var(--ndv-spacing);
 }
 
 .binaryHeader {
@@ -2227,7 +2242,7 @@ defineExpose({ enterEditMode });
 
 	display: flex;
 	justify-content: center;
-	margin-bottom: var(--spacing-s);
+	margin-bottom: var(--ndv-spacing);
 }
 
 .editMode {
@@ -2235,8 +2250,8 @@ defineExpose({ enterEditMode });
 	display: flex;
 	flex-direction: column;
 	justify-content: stretch;
-	padding-left: var(--spacing-s);
-	padding-right: var(--spacing-s);
+	padding-left: var(--ndv-spacing);
+	padding-right: var(--ndv-spacing);
 }
 
 .editModeBody {
@@ -2252,8 +2267,8 @@ defineExpose({ enterEditMode });
 	width: 100%;
 	justify-content: space-between;
 	align-items: center;
-	padding-top: var(--spacing-s);
-	padding-bottom: var(--spacing-s);
+	padding-top: var(--ndv-spacing);
+	padding-bottom: var(--ndv-spacing);
 }
 
 .editModeFooterInfotip {
@@ -2266,7 +2281,7 @@ defineExpose({ enterEditMode });
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
-	margin-left: var(--spacing-s);
+	margin-left: var(--ndv-spacing);
 }
 
 .stretchVertically {
@@ -2280,8 +2295,8 @@ defineExpose({ enterEditMode });
 
 .hintCallout {
 	margin-bottom: var(--spacing-xs);
-	margin-left: var(--spacing-s);
-	margin-right: var(--spacing-s);
+	margin-left: var(--ndv-spacing);
+	margin-right: var(--ndv-spacing);
 
 	.compact & {
 		margin: 0 var(--spacing-2xs) var(--spacing-2xs) var(--spacing-2xs);
@@ -2289,7 +2304,7 @@ defineExpose({ enterEditMode });
 }
 
 .schema {
-	padding: 0 var(--spacing-s);
+	padding: 0 var(--ndv-spacing);
 }
 
 .search,
@@ -2316,6 +2331,11 @@ defineExpose({ enterEditMode });
 		visibility: hidden;
 		width: 0;
 	}
+}
+
+.ndv-v2,
+.compact {
+	--ndv-spacing: var(--spacing-2xs);
 }
 </style>
 

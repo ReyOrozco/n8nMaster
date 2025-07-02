@@ -92,7 +92,7 @@ const onClaimCreditsClicked = async () => {
 			icon="circle-alert"
 		>
 			{{
-				i18n.baseText('freeAi.credits.callout.claim.title', {
+				i18n.baseText('freeAi.credits.callout.success.title.part1', {
 					interpolate: { credits: settingsStore.aiCreditsQuota },
 				})
 			}}
