@@ -67,13 +67,6 @@ export const draftFields: INodeProperties[] = [
 		placeholder: 'Hello World!',
 	},
 	{
-		displayName: 'To reply to an existing thread, specify the exact subject title of that thread.',
-		name: 'threadNotice',
-		type: 'notice',
-		default: '',
-		displayOptions: { show: { resource: ['draft'], operation: ['create'] } },
-	},
-	{
 		displayName: 'Email Type',
 		name: 'emailType',
 		type: 'options',
@@ -203,6 +196,24 @@ export const draftFields: INodeProperties[] = [
 				placeholder: 'info@example.com',
 				description:
 					'The email addresses of the recipients. Multiple addresses can be separated by a comma. e.g. jay@getsby.com, jon@smith.com.',
+			},
+			{
+				displayName: 'References',
+				name: 'references',
+				type: 'string',
+				default: '',
+				placeholder: '<message-1@example.com>',
+				description:
+					'The full chain of message IDs in the conversation thread to be used to reply to a thread with a thread ID',
+			},
+			{
+				displayName: 'In-Reply-To',
+				name: 'inReplyTo',
+				type: 'string',
+				default: '',
+				placeholder: '<message-1@example.com>',
+				description:
+					'The specific message this email is directly replying to. To be used to reply to a thread with a thread ID.',
 			},
 		],
 	},

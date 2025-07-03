@@ -13,7 +13,6 @@ import { labelFields, labelOperations } from './LabelDescription';
 import { getGmailAliases, getLabels, getThreadMessages } from './loadOptions';
 import { messageFields, messageOperations } from './MessageDescription';
 import { threadFields, threadOperations } from './ThreadDescription';
-import { addThreadHeadersToEmail } from './utils/draft';
 import { configureWaitTillDate } from '../../../../utils/sendAndWait/configureWaitTillDate.util';
 import { sendAndWaitWebhooksDescription } from '../../../../utils/sendAndWait/descriptions';
 import type { IEmail } from '../../../../utils/sendAndWait/interfaces';
@@ -511,6 +510,9 @@ export class GmailV2 implements INodeType {
 						let fromAlias = '';
 						let threadId = null;
 
+						const references = options.references as string | undefined;
+						const inReplyTo = options.inReplyTo as string | undefined;
+
 						if (options.sendTo) {
 							to += prepareEmailsInput.call(this, options.sendTo as string, 'To', i);
 						}
@@ -561,10 +563,9 @@ export class GmailV2 implements INodeType {
 							attachments,
 						};
 
-						if (threadId && options.replyTo) {
-							// If a threadId is set, we need to add the Message-ID of the last message in the thread
-							// to the email so that Gmail can correctly associate the draft with the thread
-							await addThreadHeadersToEmail.call(this, email, threadId);
+						if (references && inReplyTo) {
+							email.inReplyTo = inReplyTo;
+							email.reference = references;
 						}
 
 						const body = {
