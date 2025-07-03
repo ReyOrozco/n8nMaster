@@ -184,7 +184,7 @@ const getListItemName = (path: string) => {
 				<template #renderNodeValue="{ node }">
 					<TextWithHighlights
 						v-if="isNaN(node.index)"
-						:content="getContent(node.content)"
+						:content="JSON.stringify(node.content)"
 						:search="search"
 					/>
 					<TextWithHighlights
