@@ -145,7 +145,7 @@ export class JsTaskRunner extends TaskRunner {
 		if (!allowPrototypeMutation) {
 			Object.getOwnPropertyNames(globalThis)
 				// @ts-expect-error globalThis does not have string in index signature
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 				.map((name) => globalThis[name])
 				.filter((value) => typeof value === 'function')
 				// eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
